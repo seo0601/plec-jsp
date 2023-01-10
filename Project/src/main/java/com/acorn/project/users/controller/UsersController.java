@@ -95,18 +95,8 @@ public class UsersController {
 		mView.setViewName("users/info");
 		return mView;
 	}	
-	@RequestMapping("/users/pwd_updateform")
-	public String pwdUpdateForm() {
 	
-		return "users/pwd_updateform";
-	}	
-	
-	@RequestMapping("/users/pwd_update")
-	public ModelAndView pwdUpdate(UsersDto dto, ModelAndView mView, HttpSession session) {
-		service.updateUserPwd(session, dto, mView);
-		mView.setViewName("users/pwd_update");
-		return mView;
-	}	
+
 	@RequestMapping("/users/delete")
 	public ModelAndView delete(HttpSession session, ModelAndView mView) {
 		service.deleteUser(session, mView);
@@ -126,8 +116,8 @@ public class UsersController {
 	public ModelAndView update(UsersDto dto, HttpSession session, ModelAndView mView,
 			 HttpServletRequest request) {
 
-		service.updateUser(dto, session);
-		mView.setViewName("redirect:/users/info");
+		service.updateUser(dto, session, mView);
+		mView.setViewName("users/update");
 		return mView;
 	}
 	

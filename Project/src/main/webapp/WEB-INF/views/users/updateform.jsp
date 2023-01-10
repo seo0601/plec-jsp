@@ -46,6 +46,18 @@
 				<label for="email">이메일</label>
 				<input type="text" id="email" name="email" value="${dto.email }"/>
 			</div>
+			<div>
+		        <label for="pwd">기존 비밀 번호</label>
+		        <input type="password" name="pwd" id="pwd"/>
+      		</div>
+      		<div>
+         		<label for="newPwd">새 비밀번호</label>
+         		<input type="password" name="newPwd" id="newPwd"/>
+      		</div>
+      		<div>
+         		<label for="newPwd2">새 비밀번호 확인</label>
+         		<input type="password" id="newPwd2"/>
+      		</div>
 			<button type="submit">수정확인</button>
 			<button type="reset">취소</button>
 		</form>	
@@ -77,7 +89,15 @@
 				document.querySelector("#profileLink").innerHTML=img;
 			});
 		});		
-		
+		document.querySelector("#myForm").addEventListener("submit", function(e){
+		      let pwd1=document.querySelector("#newPwd").value;
+		      let pwd2=document.querySelector("#newPwd2").value;
+		      //일치 확인
+		      if(pwd1 != pwd2){
+		         alert("비밀번호를 확인 하세요!");
+		         e.preventDefault();
+		      }
+		   });
 	</script>
 </body>
 </html>

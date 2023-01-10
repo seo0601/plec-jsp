@@ -28,10 +28,6 @@ public class UsersDaoImpl implements UsersDao{
 		return dto;
 	}
 	@Override
-	public void updatePwd(UsersDto dto) {
-		session.update("users.updatePwd", dto);
-	}
-	@Override
 	public void update(UsersDto dto) {
 		session.update("users.update", dto);
 	}

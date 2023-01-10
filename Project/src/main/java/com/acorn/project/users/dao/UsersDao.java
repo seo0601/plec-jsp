@@ -9,8 +9,6 @@ public interface UsersDao {
 	public void insert(UsersDto dto);
 	//아이디에 해당하는 정보 리턴 메소드
 	public UsersDto getData(String id);
-	//비밀번호 수정 메소드
-	public void updatePwd(UsersDto dto);
 	//개인정보 수정 메소드
 	public void update(UsersDto dto);
 	//회원정보 삭제 메소드
