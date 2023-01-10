@@ -1,5 +1,8 @@
 package com.acorn.project.qna_board.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("QnaBoardDto")
 public class QnaBoardDto {
 	
 	private int num;

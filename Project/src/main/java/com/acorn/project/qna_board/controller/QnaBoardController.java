@@ -15,7 +15,6 @@ import com.acorn.project.qna_board.dto.QnaBoardDto;
 import com.acorn.project.qna_board.service.QnaBoardService;
 
 
-
 @Controller
 public class QnaBoardController {
 
