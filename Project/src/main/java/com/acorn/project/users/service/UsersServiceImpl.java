@@ -1,7 +1,9 @@
 package com.acorn.project.users.service;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -140,5 +142,22 @@ public class UsersServiceImpl implements UsersService{
 		mView.addObject("id", id);
 		
 	}
+	@Override
+	public void getList(HttpServletRequest request) {			
+		UsersDto dto=new UsersDto();
+		
+		List<UsersDto> list= dao.getList(dto);	
+		
+		request.setAttribute("list", list);
+		
+		}
+	
+	//회원 강제 삭제
+	@Override
+	public void forceDelete(String id, HttpServletRequest request) {
+		dao.delete(id);
+		
+	}
+	
 
 }

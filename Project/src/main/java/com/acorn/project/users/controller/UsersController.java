@@ -48,6 +48,12 @@ public class UsersController {
 		InputStream is=new FileInputStream(absolutePath);
 		return IOUtils.toByteArray(is);
 	}	
+	
+	@RequestMapping("/users/list")
+	public String list(HttpServletRequest request) {
+		service.getList(request);
+		return "users/list";
+	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/users/signup_form")
 	public String signupForm() {
@@ -102,6 +108,12 @@ public class UsersController {
 		service.deleteUser(session, mView);
 		mView.setViewName("users/delete");
 		return mView;
+	}
+	
+	@RequestMapping("/users/users_delete")
+	public String userDelete(String id , HttpServletRequest request) {
+		service.forceDelete(id, request);
+		return "redirect:/users/list";
 	}
 	
 	
