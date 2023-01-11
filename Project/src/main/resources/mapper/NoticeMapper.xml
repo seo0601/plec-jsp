@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+	
+	<sql id="searchCondition">
+		<choose>
+			<when test="title != null and content != null">
+				WHERE title LIKE '%'||#{title}||'%' OR content LIKE '%'||#{content}||'%'
+			</when>
+			<when test="title != null">
+				WHERE title LIKE '%'||#{title}||'%'
+			</when>
+		</choose>
+	</sql>
+	
+	<select id="getList" parameterType="noticeDto" resultType="noticeDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT num,title,content,viewCount,regdate
+				FROM NOTICE
+				<include refid="searchCondition"/>
+				ORDER BY num DESC) result1)
+		<![CDATA[ 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>
+	</select>
+	
+	<select id="getCount" parameterType="noticeDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM NOTICE
+		<include refid="searchCondition"/>
+	</select>		
+
+	<insert id="insert" parameterType="noticeDto">
+		INSERT INTO NOTICE
+		(num,title,content,viewCount,regdate)
+		VALUES(NOTICE_seq.NEXTVAL, #{title},
+			#{content}, #{viewCount}, SYSDATE)
+	</insert>
+	
+	<select id="getData" parameterType="int" resultType="noticeDto">
+		SELECT result1.*
+		FROM
+			(SELECT num,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			   LAG(num, 1, 0) OVER (ORDER BY num DESC) nextNum,
+	   		   LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
+			 FROM NOTICE) result1
+		WHERE num=#{num}
+	</select>
+	
+	<select id="getData2" parameterType="noticeDto" resultType="noticeDto">
+		SELECT result1.*
+		FROM
+			(SELECT num,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			   LAG(num, 1, 0) OVER (ORDER BY num DESC) nextNum,
+	   		   LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
+			 FROM NOTICE
+			 <include refid="searchCondition"/>
+			 ) result1
+		WHERE num=#{num}
+	</select>
+	
+	<update id="addViewCount" parameterType="int">
+		UPDATE NOTICE
+		SET viewCount=viewCount+1
+		WHERE num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM NOTICE
+		WHERE num=#{num}
+	</delete>
+	
+	<update id="update" parameterType="noticeDto">
+		UPDATE NOTICE
+		SET title=#{title}, content=#{content}
+		WHERE num=#{num}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

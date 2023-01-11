@@ -45,6 +45,14 @@
          <th>이메일</th>
          <td>${dto.email }</td>
       </tr>
+       <tr>
+         <th>핸드폰 번호</th>
+         <td>${dto.phone}</td>
+      </tr>
+       <tr>
+         <th>생일</th>
+         <td>${dto.birth }</td>
+      </tr>
       <tr>
          <th>가입일</th>
          <td>${dto.regdate }</td>

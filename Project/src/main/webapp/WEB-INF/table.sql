@@ -5,6 +5,8 @@ CREATE TABLE users(
     email VARCHAR2(100),
     profile VARCHAR2(100), --프로필 이미지 경로를 저장할 칼럼
     regdate DATE
+    phone VARCHAR2(32),
+    birth DATE
 );
 
 -- QNA_BOARD_QUESTION
