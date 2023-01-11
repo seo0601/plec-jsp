@@ -58,6 +58,14 @@
          		<label for="newPwd2">새 비밀번호 확인</label>
          		<input type="password" id="newPwd2"/>
       		</div>
+      		<div>
+				<label for="phone">핸드폰 번호</label>
+				<input type="text" id="phone" name="phone" value="${dto.phone }"/>
+			</div>
+			<div>
+				<label for="birth">생일</label>
+				<input type="text" id="birth" name="birth" value="${dto.birth }"/>
+			</div>
 			<button type="submit">수정확인</button>
 			<button type="reset">취소</button>
 		</form>	

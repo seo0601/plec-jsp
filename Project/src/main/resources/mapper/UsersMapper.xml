@@ -3,22 +3,22 @@
 <mapper namespace="users">
 	<insert id="insert" parameterType="usersDto">
 		INSERT INTO users
-		(id, pwd, email, regdate)
-		VALUES( #{id}, #{pwd}, #{email}, SYSDATE)
+		(id, pwd, email, regdate, phone, birth)
+		VALUES( #{id}, #{pwd}, #{email}, SYSDATE, #{phone}, #{birth})
 	</insert>
 	<select id="getData" parameterType="string" resultType="usersDto">
-		SELECT id, pwd, profile, email, regdate
+		SELECT id, pwd, profile, email, regdate, phone, TO_CHAR(birth,'YYYY-MM-DD') birth
 		FROM users
 		WHERE id=#{id}
 	</select>
 	<update id="update" parameterType="usersDto">
 		UPDATE users
-		SET email=#{email }, profile=#{profile, jdbcType=VARCHAR}, pwd=#{newPwd}
+		SET email=#{email }, profile=#{profile, jdbcType=VARCHAR}, pwd=#{newPwd}, phone=#{phone}, birth=#{birth}
 		WHERE id=#{id }
 	</update>
 	<update id="update2" parameterType="usersDto">
 		UPDATE users
-		SET email=#{email } <if test="profile != null">, profile=#{profile }, pwd=#{newPwd}</if>
+		SET email=#{email } <if test="profile != null">, profile=#{profile }, pwd=#{newPwd}, phone=#{phone}, birth=#{birth}</if>
 		WHERE id=#{id }
 	</update>
 	<delete id="delete" parameterType="string">
