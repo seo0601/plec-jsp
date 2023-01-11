@@ -25,6 +25,9 @@
 		</c:choose>	
 		
 		<ul>
+			<c:if test="${sessionScope.id eq 'admin'}">
+				<li><a href="${pageContext.request.contextPath }/users/list">회원 목록</a></li>
+			</c:if>
 			<li><a href="lecture/list">강의실</a></li>
 			<li><a href="notice/list">공지사항</a></li>
 			<li><a href="faq/list">자주묻는질문</a></li>
