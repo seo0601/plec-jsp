@@ -14,7 +14,7 @@
 		</div>
 		<div>
 			<a href="">수강 신청</a>
-			<a href="qna_board/list"  target="_blank">1:1 문의</a>	
+			<a href="${pageContext.request.contextPath}/qna_board/list"  target="_blank">1:1 문의</a>	
 		</div>
 		
 		<div>					   
