@@ -45,5 +45,10 @@ public class UsersDaoImpl implements UsersDao{
 	public int getCount(UsersDto dto) {
 		return session.selectOne("users.getCount", dto);
 	}
+	@Override
+	public void updatePwd(UsersDto dto) {
+		session.update("users.updatePwd", dto);
+		
+	}
 
 }

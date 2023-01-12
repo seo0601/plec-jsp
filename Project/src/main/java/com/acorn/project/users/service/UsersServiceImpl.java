@@ -112,21 +112,6 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public void updateUser(UsersDto dto, HttpSession session, ModelAndView mView) {
 		String id=(String)session.getAttribute("id");
-		UsersDto resultDto=dao.getData(id);
-		String encodedPwd=resultDto.getPwd();
-		String inputPwd=dto.getPwd();
-		boolean isValid=BCrypt.checkpw(inputPwd, encodedPwd);
-		//if 일치?
-		if(isValid) {
-			BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-			String encodedNewPwd=encoder.encode(dto.getNewPwd());
-			dto.setNewPwd(encodedNewPwd);
-			dto.setId(id);
-			dao.update(dto);
-			session.removeAttribute("id");
-		}
-		mView.addObject("isSuccess", isValid);
-		mView.addObject("id", id);	
 		dto.setId(id);
 		if(dto.getProfile().equals("empty")) {
 			dto.setProfile(null);
@@ -156,6 +141,26 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public void forceDelete(String id, HttpServletRequest request) {
 		dao.delete(id);
+		
+	}
+	@Override
+	public void updateUserPwd(HttpSession session, UsersDto dto, ModelAndView mView) {
+		String id=(String)session.getAttribute("id");
+		UsersDto resultDto=dao.getData(id);
+		String encodedPwd=resultDto.getPwd();
+		String inputPwd=dto.getPwd();
+		boolean isValid=BCrypt.checkpw(inputPwd, encodedPwd);
+		//if 일치?
+		if(isValid) {
+			BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+			String encodedNewPwd=encoder.encode(dto.getNewPwd());
+			dto.setNewPwd(encodedNewPwd);
+			dto.setId(id);
+			dao.updatePwd(dto);
+			session.removeAttribute("id");
+		}
+		mView.addObject("isSuccess", isValid);
+		mView.addObject("id", id);		
 		
 	}
 	

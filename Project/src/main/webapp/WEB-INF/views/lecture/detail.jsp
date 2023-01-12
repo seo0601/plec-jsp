@@ -12,6 +12,11 @@
 		<div>
 			<img style="width:100px; height:100px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
 		</div>
+		<div>
+			<a href="">수강 신청</a>
+			<a href="qna_board/list"  target="_blank">1:1 문의</a>	
+		</div>
+		
 		<div>					   
 	    	<p>${dto.describe}</p>
   	    </div>
