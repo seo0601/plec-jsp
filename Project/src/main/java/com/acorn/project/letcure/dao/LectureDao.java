@@ -6,11 +6,11 @@ import com.acorn.project.lecture.dto.LectureDto;
 
 public interface LectureDao {
 	//프론트엔드 리스트
-	public List<LectureDto> frontGetList(LectureDto dto);
+	public List<LectureDto> frontEndList(LectureDto dto);
 	//백엔드 리스트
-	public List<LectureDto> backGetList(LectureDto dto);
+	public List<LectureDto> backEndList(LectureDto dto);
 	//모바일 리스트
-	public List<LectureDto> mobileGetList(LectureDto dto);
+	public List<LectureDto> mobileList(LectureDto dto);
 	//모든 ROW 의 개수
 	public int getCount();
 	//동영상 업로드
