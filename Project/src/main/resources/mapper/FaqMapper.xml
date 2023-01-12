@@ -9,13 +9,21 @@
 	</insert>
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM board_faq
+		DELETE FROM faq
 		WHERE num=#{num}
 	</delete>
 	
 	<update id="update" parameterType="faqDto">
-		UPDATE board_faq
+		UPDATE faq
 		SET question=#{question}, content=#{content}
 		WHERE num=#{num}
 	</update>
+	
+	<select id="getList" parameterType="faqDto" resultType="faqDto">
+		SELECT *FROM
+				(SELECT num,question,content
+				FROM faq)		
+	</select>
+	
+	
 </mapper>

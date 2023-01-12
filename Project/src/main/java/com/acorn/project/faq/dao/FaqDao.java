@@ -13,6 +13,7 @@ public interface FaqDao {
 	public void delete(int num);
 	//글 수정
 	public void update(FaqDto dto);
-	//글 정보 얻어오기
+	
 	public FaqDto getData(int num);
+	
 }

@@ -1,5 +1,7 @@
 package com.acorn.project.faq.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,15 @@ public class FaqServiceImpl implements FaqService{
 
 	@Override
 	public void getList(HttpServletRequest request) {
-		
+		String question=request.getParameter("question");
+		String content=request.getParameter("content");
+		FaqDto dto=new FaqDto();
+		dto.setQuestion(question);
+		dto.setContent(content);
+		List<FaqDto> list=faqDao.getList(dto);
+		request.setAttribute("list", list);
 	}
+	
 	@Override
 	public void saveContent(FaqDto dto) {
 		faqDao.insert(dto);
@@ -34,14 +43,21 @@ public class FaqServiceImpl implements FaqService{
 	}
 
 	@Override
-	public void getData(HttpServletRequest request) {
+	public void getDetail(HttpServletRequest request) {
 		int num=Integer.parseInt(request.getParameter("num"));
-		FaqDto dto=faqDao.getData(num);
-		request.setAttribute("dto", dto);
+		String question=request.getParameter("question");
+		String content=request.getParameter("content");
+		FaqDto dto=new FaqDto();
+		dto.setNum(num);
+		dto.setQuestion(question);
+		dto.setContent(content);
+		List<FaqDto> list=faqDao.getList(dto);
+		request.setAttribute("list", list);
 	}
 
 	@Override
-	public void getDetail(HttpServletRequest request) {
-		int num=Integer.parseInt(request.getParameter("num"));
+	public void getData(HttpServletRequest request) {
+		
 	}
+
 }

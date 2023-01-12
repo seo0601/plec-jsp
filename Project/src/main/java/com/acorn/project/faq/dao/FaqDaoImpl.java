@@ -15,12 +15,6 @@ public class FaqDaoImpl implements FaqDao{
 	private SqlSession session;
 
 	@Override
-	public List<FaqDto> getList(FaqDto dto) {
-		
-		return session.selectList("faq.getList", dto);
-	}
-
-	@Override
 	public void insert(FaqDto dto) {
 		
 		session.insert("faq.insert", dto);
@@ -37,11 +31,15 @@ public class FaqDaoImpl implements FaqDao{
 	}
 
 	@Override
+	public List<FaqDto> getList(FaqDto dto) {
+
+		return session.selectList("faq.getList", dto);
+	}
+
+	@Override
 	public FaqDto getData(int num) {
 		
 		return session.selectOne("faq.getData", num);
 	}
-	
-	
 
 }

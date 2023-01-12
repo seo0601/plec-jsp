@@ -12,7 +12,7 @@
 <div class="container">
    <h1>글 수정 폼 입니다.</h1>
    <form action="update" method="post">
-      <input type="hidden" name="num" value="${dto.num }" />
+      <input type="number" name="num" value="${dto.num }" />
       <div>
          <label for="question">질문</label>
          <input type="text" name="question" id="question" value="${dto.question }"/>
