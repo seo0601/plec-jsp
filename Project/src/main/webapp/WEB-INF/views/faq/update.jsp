@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>/views/faq/update.jsp</title>
 </head>
 <body>
-
+	<script>
+		alert("${id} 님 글을 수정 했습니다.")
+		location.href="${pageContext.request.contextPath}/faq/detail?num=${param.num}";
+	</script>
 </body>
 </html>

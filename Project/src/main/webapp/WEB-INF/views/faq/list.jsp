@@ -6,9 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>/views/faq/list.jsp</title>
 </head>
 <body>
-
+	<div class="container">
+		<a href="${pageContext.request.contextPath}/faq/insertform">새글 작성</a>
+		<h3>자주 묻는 질문</h3>		
+			<c:forEach var="tmp" items="${list }">
+				<ul>
+					<li>${tmp.question }</li>
+					<li>${tmp.content }</li>
+				</ul>
+			</c:forEach>	
+	</div>
 </body>
 </html>

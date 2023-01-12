@@ -9,6 +9,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<div class="container">
+		<h3>글 상세 보기</h3>
+		<table>
+			<tr>
+				<th>질문</th>
+				<td>${dto.question }</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td>${dto.content }</td>
+			</tr>
+		</table>
+		<c:if test="${sessionScope.id eq dto.writer }">
+			<a href="updateform?num=${dto.num }">수정</a>
+			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
+			<script>
+				function deleteConfirm(){
+					const isDelete=confirm("이 글을 삭제 하겠습니까?");
+					if(isDelete){
+						location.href="delete?num=${dto.num}";
+					}
+				}
+			</script>
+		</c:if>
+	</div>
 </body>
 </html>

@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>/views/faq/insert.jsp</title>
 </head>
 <body>
-
+	<script>
+		alert("새글이 추가 되었습니다.");
+		location.href="${pageContext.request.contextPath}/faq/list"
+	</script>
 </body>
 </html>

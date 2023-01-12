@@ -13,29 +13,35 @@ public class FaqServiceImpl implements FaqService{
 
 	@Autowired
 	private FaqDao faqDao;
-	
+
+	@Override
+	public void getList(HttpServletRequest request) {
+		
+	}
 	@Override
 	public void saveContent(FaqDto dto) {
-		// TODO Auto-generated method stub
-		
+		faqDao.insert(dto);
 	}
 
 	@Override
 	public void updateContent(FaqDto dto) {
-		// TODO Auto-generated method stub
-		
+		faqDao.update(dto);
 	}
 
 	@Override
 	public void deleteContent(int num, HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
+		faqDao.delete(num);
 	}
 
 	@Override
 	public void getData(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
+		int num=Integer.parseInt(request.getParameter("num"));
+		FaqDto dto=faqDao.getData(num);
+		request.setAttribute("dto", dto);
 	}
 
+	@Override
+	public void getDetail(HttpServletRequest request) {
+		int num=Integer.parseInt(request.getParameter("num"));
+	}
 }

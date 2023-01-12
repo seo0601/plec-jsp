@@ -1,5 +1,7 @@
 package com.acorn.project.faq.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,23 +13,35 @@ public class FaqDaoImpl implements FaqDao{
 
 	@Autowired
 	private SqlSession session;
-	
+
+	@Override
+	public List<FaqDto> getList(FaqDto dto) {
+		
+		return session.selectList("faq.getList", dto);
+	}
+
 	@Override
 	public void insert(FaqDto dto) {
-		// TODO Auto-generated method stub
 		
+		session.insert("faq.insert", dto);
 	}
 
 	@Override
 	public void delete(int num) {
-		// TODO Auto-generated method stub
-		
+		session.delete("faq.delete", num);
 	}
 
 	@Override
 	public void update(FaqDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.update("faq.update", dto);
 	}
+
+	@Override
+	public FaqDto getData(int num) {
+		
+		return session.selectOne("faq.getData", num);
+	}
+	
+	
 
 }

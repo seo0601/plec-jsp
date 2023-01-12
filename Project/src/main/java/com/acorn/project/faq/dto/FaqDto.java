@@ -41,5 +41,9 @@ public class FaqDto {
 		this.content = content;
 	}
 
+	public void setWriter(String writer) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
