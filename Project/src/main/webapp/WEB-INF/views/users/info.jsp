@@ -57,6 +57,10 @@
          <th>가입일</th>
          <td>${dto.regdate }</td>
       </tr>
+      <tr>
+         <th>비밀번호</th>
+         <td><a href="${pageContext.request.contextPath}/users/pwd_updateform">수정하기</a></td>
+      </tr>
    </table>
    <a href="${pageContext.request.contextPath}/users/updateform">개인정보 수정</a>
    <a href="javascript:deleteConfirm()">탈퇴</a>
