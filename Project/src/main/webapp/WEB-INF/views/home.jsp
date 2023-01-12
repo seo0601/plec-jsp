@@ -35,7 +35,7 @@
 			<li><a href="faq/list">자주묻는질문</a></li>
 			<li><a href="qna_board/list">1:1답변</a></li>
 			<li><a href="qna_users/list">질문답변</a></li>
-			<li><a href="free/list">자유게시판</a></li>
+			<li><a href="qna_free/list">자유게시판</a></li>
 		</ul>
 	</div>
 	
