@@ -48,6 +48,12 @@ public class UsersController {
 		InputStream is=new FileInputStream(absolutePath);
 		return IOUtils.toByteArray(is);
 	}	
+	
+	@RequestMapping("/users/list")
+	public String list(HttpServletRequest request) {
+		service.getList(request);
+		return "users/list";
+	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/users/signup_form")
 	public String signupForm() {
@@ -95,23 +101,19 @@ public class UsersController {
 		mView.setViewName("users/info");
 		return mView;
 	}	
-	@RequestMapping("/users/pwd_updateform")
-	public String pwdUpdateForm() {
 	
-		return "users/pwd_updateform";
-	}	
-	
-	@RequestMapping("/users/pwd_update")
-	public ModelAndView pwdUpdate(UsersDto dto, ModelAndView mView, HttpSession session) {
-		service.updateUserPwd(session, dto, mView);
-		mView.setViewName("users/pwd_update");
-		return mView;
-	}	
+
 	@RequestMapping("/users/delete")
 	public ModelAndView delete(HttpSession session, ModelAndView mView) {
 		service.deleteUser(session, mView);
 		mView.setViewName("users/delete");
 		return mView;
+	}
+	
+	@RequestMapping("/users/users_delete")
+	public String userDelete(String id , HttpServletRequest request) {
+		service.forceDelete(id, request);
+		return "redirect:/users/list";
 	}
 	
 	
@@ -126,8 +128,8 @@ public class UsersController {
 	public ModelAndView update(UsersDto dto, HttpSession session, ModelAndView mView,
 			 HttpServletRequest request) {
 
-		service.updateUser(dto, session);
-		mView.setViewName("redirect:/users/info");
+		service.updateUser(dto, session, mView);
+		mView.setViewName("users/update");
 		return mView;
 	}
 	

@@ -1,5 +1,7 @@
 package com.acorn.project.users.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,16 +30,20 @@ public class UsersDaoImpl implements UsersDao{
 		return dto;
 	}
 	@Override
-	public void updatePwd(UsersDto dto) {
-		session.update("users.updatePwd", dto);
-	}
-	@Override
 	public void update(UsersDto dto) {
 		session.update("users.update", dto);
 	}
 	@Override
 	public void delete(String id) {
 		session.delete("users.delete", id);
+	}
+	@Override
+	public List<UsersDto> getList(UsersDto dto) {
+		return session.selectList("users.getList", dto);
+	}
+	@Override
+	public int getCount(UsersDto dto) {
+		return session.selectOne("users.getCount", dto);
 	}
 
 }
