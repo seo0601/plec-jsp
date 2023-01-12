@@ -11,9 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.acorn.project.qna_board.dto.QnaBoardAnswerDto;
 import com.acorn.project.qna_board.dto.QnaBoardDto;
 import com.acorn.project.qna_board.service.QnaBoardService;
-
 
 @Controller
 public class QnaBoardController {
@@ -68,7 +68,7 @@ public class QnaBoardController {
 	}
 	
 	//새로운 댓글 저장 요청 처리
-	/*@RequestMapping("/qna_board/comment_insert")
+	@RequestMapping("/qna_board/comment_insert")
 	public String commentInsert(HttpServletRequest request, int ref_group) {
       
       service.saveComment(request);
@@ -90,29 +90,17 @@ public class QnaBoardController {
       
 		return "qna_board/ajax_comment_list";
 	}
-	/*
-	
-	//댓글 삭제 요청 처리
-	@RequestMapping("/qna_board/comment_delete")
-	@ResponseBody
-	public Map<String, Object> commentDelete(HttpServletRequest request) {
-      service.deleteComment(request);
-      Map<String, Object> map=new HashMap<String, Object>();
-      map.put("isSuccess", true);
-      // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
-      return map;
-	}
 	
 	//댓글 수정 요청처리 (JSON 으로 응답하도록 한다)
 	@RequestMapping("/qna_board/comment_update")
 	@ResponseBody
-	public Map<String, Object> commentUpdate(QnaBoardCommentDto dto, HttpServletRequest request){
-      service.updateComment(dto);
-      Map<String, Object> map=new HashMap<String, Object>();
-      map.put("isSuccess", true);
-      // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
-	      return map;
-		}
+	public Map<String, Object> commentUpdate(QnaBoardAnswerDto dto, HttpServletRequest request){
+		service.updateComment(dto);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+	    return map;
+	}
 		
-	*/
+	
 }
