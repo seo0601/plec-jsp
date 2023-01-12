@@ -22,7 +22,7 @@
 	      FROM
 	         (SELECT result1.*, ROWNUM AS rnum
 	         FROM
-	            (SELECT num,writer,title,content,viewCount,regdate
+	            (SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD') AS regdate
 	            FROM QNA_BOARD_QUESTION
 	            <include refid="searchCondition"/>
 	            ORDER BY num DESC) result1)
