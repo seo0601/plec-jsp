@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lecture">
+	<select id="backEndList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=2
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM LECTURE
+	</select>
+	
+	<insert id="insert" parameterType="lectureDto">
+		INSERT INTO LECTURE
+		(lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category)
+		VALUES(LECTURE_seq.NEXTVAL, #{teacher}, #{title}, #{describe},#{imagePath}, #{videoPath}, #{viewCount}, SYSDATE, #{Large_category}, #{small_category} )
+	</insert>
+	
+	<select id="getData" parameterType="int" resultType="lectureDto">
+		SELECT *
+		FROM
+			(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category, 
+				LAG(lectureNum, 1, 0) OVER (ORDER BY lectureNum DESC) AS prevNum,
+				LEAD(lectureNum, 1, 0) OVER (ORDER BY lectureNum DESC) AS nextNum
+			FROM LECTURE
+			ORDER BY lectureNum DESC)
+		WHERE lectureNum = #{lectureNum}
+	</select>
+</mapper>

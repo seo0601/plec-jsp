@@ -28,7 +28,9 @@
 			<c:if test="${sessionScope.id eq 'admin'}">
 				<li><a href="${pageContext.request.contextPath }/users/list">회원 목록</a></li>
 			</c:if>
-			<li><a href="lecture/list">강의실</a></li>
+			<li><a href="lecture/frontendList">프론트</a></li>
+			<li><a href="lecture/backendList">백엔드</a></li>
+			<li><a href="lecture/mobileList">모바일</a></li>
 			<li><a href="notice/list">공지사항</a></li>
 			<li><a href="faq/list">자주묻는질문</a></li>
 			<li><a href="qna_board/list">1:1답변</a></li>
