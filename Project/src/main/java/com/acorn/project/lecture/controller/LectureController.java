@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.lecture.dto.LectureDto;
+import com.acorn.project.lecture.dto.LectureReviewDto;
 import com.acorn.project.lecture.service.LectureService;
+
 
 
 @Controller
@@ -195,5 +199,38 @@ public class LectureController {
 		service.updateContent(dto,request);
 		return "lecture/update";
 	}
+	
+	
+	
+	//새로운 댓글 저장 요청 처리
+	@RequestMapping("/lecture/lectureReview_insert")
+	public String commentInsert(HttpServletRequest request, int ref_group) {
+      
+      service.saveReview(request);
+   
+      return "redirect:/lecture/detail?num="+ref_group;
+	}
+	//댓글 더보기 요청 처리
+	
+	//댓글 삭제 요청 처리
+	@RequestMapping("/lecture/lectureReview_delete")
+	@ResponseBody
+	public Map<String, Object> commentDelete(HttpServletRequest request) {
+      service.deleteReview(request);
+      Map<String, Object> map=new HashMap<String, Object>();
+      map.put("isSuccess", true);
+      // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+      return map;
+	}
+	//댓글 수정 요청처리 (JSON 으로 응답하도록 한다)
+	@RequestMapping("/lecture/lectureReview_update")
+	@ResponseBody
+	public Map<String, Object> commentUpdate(LectureReviewDto dto, HttpServletRequest request){
+      service.updateReview(dto);
+      Map<String, Object> map=new HashMap<String, Object>();
+      map.put("isSuccess", true);
+      // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+	      return map;
+		}
 
 }

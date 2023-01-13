@@ -20,10 +20,13 @@
 	</update>
 	
 	<select id="getList" parameterType="faqDto" resultType="faqDto">
-		SELECT *FROM
-				(SELECT num,question,content
-				FROM faq)		
+		SELECT * FROM faq
+		ORDER BY num DESC				
 	</select>
 	
-	
+	<select id="getData" parameterType="int" resultType="faqDto">
+		SELECT num,question,content
+		FROM faq
+		WHERE num=#{num}
+	</select>
 </mapper>

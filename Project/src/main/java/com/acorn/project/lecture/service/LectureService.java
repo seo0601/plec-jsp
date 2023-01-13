@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.lecture.dto.LectureDto;
+import com.acorn.project.lecture.dto.LectureReviewDto;
 
 
 public interface LectureService {
@@ -44,4 +45,11 @@ public interface LectureService {
 	public void updateContent(LectureDto dto, HttpServletRequest request);
 	//강의 삭제
 	public void deleteContent(int num, HttpServletRequest request);
+	
+	//후기 저장
+	public void saveReview(HttpServletRequest request); 
+	//후기 삭제
+	public void deleteReview(HttpServletRequest request);
+	//후기 수정
+	public void updateReview(LectureReviewDto dto); 
 }
