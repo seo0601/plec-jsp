@@ -46,7 +46,7 @@
 		
 		<ul>
 			<li><a href="lecture/mobile/mobileList">모바일</a></li>
-			<li><a href="lecture/mobile/kotlinList">코틀린</a></li>
+			<li><a href="lecture/mobile/kotlinList">코틀린</a></li>                      
 		</ul>
 		
 		<ul>
