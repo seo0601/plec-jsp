@@ -57,7 +57,7 @@
 		
 		<ul>
 			<li><a href="qna_users/list">질문답변</a></li>
-			<li><a href="free/list">자유게시판</a></li>
+			<li><a href="qna_free/list">자유게시판</a></li>
 		</ul>
 	</div>
 	
