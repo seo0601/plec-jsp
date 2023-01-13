@@ -4,7 +4,7 @@ CREATE TABLE users(
     pwd VARCHAR2(100) NOT NULL,
     email VARCHAR2(100),
     profile VARCHAR2(100), --프로필 이미지 경로를 저장할 칼럼
-    regdate DATE
+    regdate DATE,
     phone VARCHAR2(32),
     birth DATE
 );
@@ -99,10 +99,24 @@ CREATE SEQUENCE NOTICE_seq;
 -- FAQ(자주묻는질문)
 CREATE TABLE FAQ(
     num NUMBER PRIMARY KEY, --글번호
-    title VARCHAR2(50) NOT NULL, -- 제목
-    question CLOB,
+    question CLOB, -- 질문
     content CLOB, --글 내용
-    regdate DATE --글 작성일
 );
 -- FAQ 시퀀스
 CREATE SEQUENCE FAQ_seq;
+
+-- LECTURE 테이블 
+CREATE TABLE LECTURE(
+    lectureNum NUMBER PRIMARY KEY, --글번호
+    teacher VARCHAR2(50) NOT NULL, --선생님
+    title VARCHAR2(50) NOT NULL, --제목
+    describe CLOB, --강의 설명
+    imagePath VARCHAR2(100), -- 이미지 업로드
+    videoPath VARCHAR2(300), --영상 링크
+    viewCount NUMBER, -- 조회수
+    regdate DATE, --등록일
+    Large_category NUMBER, -- 강의 대분류
+    small_category NUMBER -- 강의 소분류
+);
+-- LECTURE 시퀀스
+CREATE SEQUENCE LECTURE_seq;

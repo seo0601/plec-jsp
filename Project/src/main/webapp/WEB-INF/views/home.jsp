@@ -28,12 +28,36 @@
 			<c:if test="${sessionScope.id eq 'admin'}">
 				<li><a href="${pageContext.request.contextPath }/users/list">회원 목록</a></li>
 			</c:if>
-			<li><a href="lecture/list">강의실</a></li>
+			<li><a href="lecture/frontend/frontendList">프론트</a></li>
+			<li><a href="lecture/frontend/jsList">javascript</a></li>
+			<li><a href="lecture/frontend/html_cssList">html/css</a></li>
+			<li><a href="lecture/frontend/reactList">react</a></li>
+			<li><a href="lecture/frontend/vueList">vue.js</a></li>
+			<li><a href="lecture/frontend/jQueryList">jQuery</a></li>
+			
+		</ul>
+		
+		<ul>
+			<li><a href="lecture/backend/backendList">백엔드</a></li>
+			<li><a href="lecture/backend/javaList">Java</a></li>
+			<li><a href="lecture/backend/springList">Spring</a></li>
+			<li><a href="lecture/backend/springbootList">Spring Boot</a></li>
+		</ul>
+		
+		<ul>
+			<li><a href="lecture/mobile/mobileList">모바일</a></li>
+			<li><a href="lecture/mobile/kotlinList">코틀린</a></li>                      
+		</ul>
+		
+		<ul>
 			<li><a href="notice/list">공지사항</a></li>
 			<li><a href="faq/list">자주묻는질문</a></li>
 			<li><a href="qna_board/list">1:1답변</a></li>
+		</ul>
+		
+		<ul>
 			<li><a href="qna_users/list">질문답변</a></li>
-			<li><a href="free/list">자유게시판</a></li>
+			<li><a href="qna_free/list">자유게시판</a></li>
 		</ul>
 	</div>
 	

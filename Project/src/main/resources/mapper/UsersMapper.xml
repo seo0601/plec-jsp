@@ -25,13 +25,18 @@
 	</select>
 	<update id="update" parameterType="usersDto">
 		UPDATE users
-		SET email=#{email }, profile=#{profile, jdbcType=VARCHAR}, pwd=#{newPwd}, phone=#{phone}, birth=#{birth}
+		SET email=#{email }, profile=#{profile, jdbcType=VARCHAR}, phone=#{phone}, birth=#{birth}
 		WHERE id=#{id }
 	</update>
 	<update id="update2" parameterType="usersDto">
 		UPDATE users
-		SET email=#{email } <if test="profile != null">, profile=#{profile }, pwd=#{newPwd}, phone=#{phone}, birth=#{birth}</if>
+		SET email=#{email } <if test="profile != null">, profile=#{profile }, phone=#{phone}, birth=#{birth}</if>
 		WHERE id=#{id }
+	</update>
+	<update id="updatePwd" parameterType="usersDto">
+		UPDATE users
+		SET pwd=#{newPwd}
+		WHERE id=#{id}
 	</update>
 	<delete id="delete" parameterType="string">
 		DELETE FROM users

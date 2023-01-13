@@ -129,7 +129,7 @@ public class UsersController {
 			 HttpServletRequest request) {
 
 		service.updateUser(dto, session, mView);
-		mView.setViewName("users/update");
+		mView.setViewName("redirect:/users/info");
 		return mView;
 	}
 	
@@ -141,4 +141,17 @@ public class UsersController {
 		//서비스를 이용해서 이미지를 upload 폴더에 저장하고 리턴되는 Map 을 리턴해서 json 문자열 응답하기
 		return service.saveProfileImage(request, image);
 	}
+	
+	@RequestMapping("/users/pwd_updateform")
+	public String pwdUpdateForm() {
+	
+		return "users/pwd_updateform";
+	}	
+	
+	@RequestMapping("/users/pwd_update")
+	public ModelAndView pwdUpdate(UsersDto dto, ModelAndView mView, HttpSession session) {
+		service.updateUserPwd(session, dto, mView);
+		mView.setViewName("users/pwd_update");
+		return mView;
+	}	
 }

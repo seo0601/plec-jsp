@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/notice/insertform.jsp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>/views/faq/insertform.jsp</title>
 <style>
 	textarea{
 		width: 768px;
@@ -18,8 +19,8 @@
 		<h3>새글 작성 폼입니다.</h3>
 		<form action="insert" method="post">
 			<div>
-				<label for="title">제목</label>
-				<input type="text" name="title" id="title"/>
+				<label for="question">질문</label>
+				<input type="text" name="question" id="question"/>
 			</div>
 			<div>
 				<label for="content">내용</label>
@@ -28,7 +29,7 @@
 			<button type="submit" onclick="submitContents(this)">저장</button>
 		</form>
 	</div>
-	<script src="${pageContext.request.contextPath }/resources/SmartEditor/js/HuskyEZCreator.js"></script>
+	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 	<script>
 		var oEditors = [];
 		
@@ -38,7 +39,7 @@
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
 			elPlaceHolder: "content",
-			sSkinURI: "${pageContext.request.contextPath}/resources/SmartEditor/SmartEditor2Skin.html",	
+			sSkinURI: "${pageContext.request.contextPath}/SmartEditor/SmartEditor2Skin.html",	
 			htParams : {
 				bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 				bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -82,6 +83,6 @@
 			var nFontSize = 24;
 			oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 		}
-	</script>		
+	</script>	
 </body>
 </html>

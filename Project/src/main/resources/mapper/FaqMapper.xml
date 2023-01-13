@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq">
+	
+	<insert id="insert" parameterType="faqDto">
+		INSERT INTO faq
+		(num,question,content)
+		VALUES(faq_seq.NEXTVAL, #{question}, #{content})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM faq
+		WHERE num=#{num}
+	</delete>
+	
+	<update id="update" parameterType="faqDto">
+		UPDATE faq
+		SET question=#{question}, content=#{content}
+		WHERE num=#{num}
+	</update>
+	
+	<select id="getList" parameterType="faqDto" resultType="faqDto">
+		SELECT *FROM
+				(SELECT num,question,content
+				FROM faq)		
+	</select>
+	
+	
+</mapper>
