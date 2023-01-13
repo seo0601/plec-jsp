@@ -44,11 +44,9 @@ public class FaqServiceImpl implements FaqService{
 
 	@Override
 	public void getDetail(HttpServletRequest request) {
-		int num=Integer.parseInt(request.getParameter("num"));
 		String question=request.getParameter("question");
 		String content=request.getParameter("content");
 		FaqDto dto=new FaqDto();
-		dto.setNum(num);
 		dto.setQuestion(question);
 		dto.setContent(content);
 		List<FaqDto> list=faqDao.getList(dto);

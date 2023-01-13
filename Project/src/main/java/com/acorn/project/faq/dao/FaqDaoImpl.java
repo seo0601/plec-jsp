@@ -42,4 +42,10 @@ public class FaqDaoImpl implements FaqDao{
 		return session.selectOne("faq.getData", num);
 	}
 
+	@Override
+	public FaqDto getData(FaqDto dto) {
+		
+		return session.selectOne("faq.getData2", dto);
+	}
+
 }

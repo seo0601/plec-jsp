@@ -16,4 +16,5 @@ public interface FaqDao {
 	
 	public FaqDto getData(int num);
 	
+	public FaqDto getData(FaqDto dto);
 }

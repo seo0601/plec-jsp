@@ -29,8 +29,6 @@ public class FaqController {
 	
 	@RequestMapping("/faq/insert")
 	public String insert(FaqDto dto, HttpSession session) {
-		String writer=(String)session.getAttribute("id");
-		dto.setWriter(writer);
 		service.saveContent(dto);
 		return "faq/insert";
 	}
