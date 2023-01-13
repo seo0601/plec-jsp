@@ -17,6 +17,7 @@ CREATE TABLE QNA_BOARD_QUESTION(
     content CLOB, --글 내용
     viewCount NUMBER, -- 조회수
     regdate DATE --글 작성일
+    answered CHAR(3) DEFAULT 'no', -- 답변여부
 );
 -- QNA_BOARD_QUESTION 시퀀스
 CREATE SEQUENCE QNA_BOARD_QUESTION_seq; 
