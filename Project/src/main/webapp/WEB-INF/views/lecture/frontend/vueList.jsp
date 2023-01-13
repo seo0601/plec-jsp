@@ -5,14 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/lecture/backend/backendList.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<div class="container">
 
 		<a href="${pageContext.request.contextPath }/lecture/upload_form">새 글 작성</a>
 
-		<h3>백엔드</h3>
+		<h3>vue.js</h3>
 		<div>
 		<c:forEach var="tmp" items="${list }">
 			<div>

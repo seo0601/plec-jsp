@@ -12,7 +12,7 @@
 	   	<div >
    			<h1 >강의 업로드 폼</h1>
 		   	<form action="${pageContext.request.contextPath}/lecture/upload" method="post" enctype="multipart/form-data">
-		      	<div class="mb-3">
+		      	<div>
 				  <label for="image">썸네일</label>
 				  <input type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG" >
 				</div>

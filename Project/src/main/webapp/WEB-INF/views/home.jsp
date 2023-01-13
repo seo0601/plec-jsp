@@ -30,7 +30,7 @@
 			</c:if>
 			<li><a href="lecture/frontend/frontendList">프론트</a></li>
 			<li><a href="lecture/frontend/jsList">javascript</a></li>
-			<li><a href="lecture/frontend/htmlList">html/css</a></li>
+			<li><a href="lecture/frontend/html_cssList">html/css</a></li>
 			<li><a href="lecture/frontend/reactList">react</a></li>
 			<li><a href="lecture/frontend/vueList">vue.js</a></li>
 			<li><a href="lecture/frontend/jQueryList">jQuery</a></li>
@@ -41,7 +41,7 @@
 			<li><a href="lecture/backend/backendList">백엔드</a></li>
 			<li><a href="lecture/backend/javaList">Java</a></li>
 			<li><a href="lecture/backend/springList">Spring</a></li>
-			<li><a href="lecture/backend/springBootList">Srpring Boot</a></li>
+			<li><a href="lecture/backend/springbootList">Spring Boot</a></li>
 		</ul>
 		
 		<ul>

@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lecture">
-	<select id="backEndList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
-				FROM LECTURE
-				WHERE Large_category=2
-				ORDER BY lectureNum DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
 	<select id="frontEndList" parameterType="lectureDto" resultType="lectureDto">
 		SELECT *
 		FROM	
@@ -23,6 +12,105 @@
 				ORDER BY lectureNum DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
+	<select id="jsList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=1 AND small_category=1
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="html_cssList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=1 AND small_category=2
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="reactList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=1 AND small_category=3
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="vueList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=1 AND small_category=4
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="jQueryList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=1 AND small_category=5
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="backEndList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=2
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="javaList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=2 AND small_category=6
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="springList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=2 AND small_category=7
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="springbootList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=2 AND small_category=8
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
 	<select id="mobileList" parameterType="lectureDto" resultType="lectureDto">
 		SELECT *
 		FROM	
@@ -31,6 +119,17 @@
 				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=3
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="kotlinList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=3 AND small_category=9
 				ORDER BY lectureNum DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -55,4 +154,14 @@
 			ORDER BY lectureNum DESC)
 		WHERE lectureNum = #{lectureNum}
 	</select>
+		<delete id="delete" parameterType="int">
+		DELETE FROM LECTURE
+		WHERE lectureNum = #{lectureNum}				
+	</delete>
+	
+	<update id="update" parameterType="lectureDto">
+		UPDATE LECTURE
+		SET title= #{title}, teacher=#{teacher},imagePath=#{imagePath},describe=#{describe}, videoPath=#{videoPath}, Large_category=#{Large_category},small_category=#{small_category}
+		WHERE lectureNum = #{lectureNum}
+	</update>
 </mapper>

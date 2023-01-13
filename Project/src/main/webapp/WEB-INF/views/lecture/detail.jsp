@@ -9,6 +9,16 @@
 </head>
 <body>
 	<div class="container">
+		<a href="${pageContext.request.contextPath}/lecture/updateform?num=${dto.lectureNum }">수정</a>
+        <a href="javascript:" onclick="deleteConfirm()">삭제</a>
+        <script>
+            function deleteConfirm(){
+               const isDelete=confirm("이 글을 삭제 하겠습니까?");
+               if(isDelete){
+                  location.href="${pageContext.request.contextPath}/lecture/delete?num=${dto.lectureNum}";
+               }
+            }
+        </script>
 		<div>
 			<img style="width:100px; height:100px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
 		</div>

@@ -17,15 +17,60 @@ public class LectureDaoImpl implements LectureDao{
 	public List<LectureDto> frontEndList(LectureDto dto) {
 		return session.selectList("lecture.frontEndList", dto);
 	}
+	
+	@Override
+	public List<LectureDto> jsList(LectureDto dto) {
+		return session.selectList("lecture.jsList", dto);
+	}
+
+	@Override
+	public List<LectureDto> html_cssList(LectureDto dto) {
+		return session.selectList("lecture.html_cssList", dto);
+	}
+
+	@Override
+	public List<LectureDto> reactList(LectureDto dto) {
+		return session.selectList("lecture.reactList", dto);
+	}
+
+	@Override
+	public List<LectureDto> vueList(LectureDto dto) {
+		return session.selectList("lecture.vueList", dto);
+	}
+
+	@Override
+	public List<LectureDto> jQueryList(LectureDto dto) {
+		return session.selectList("lecture.jQueryList", dto);
+	}
 
 	@Override
 	public List<LectureDto> backEndList(LectureDto dto) {
 		return session.selectList("lecture.backEndList", dto);
 	}
+	
+	@Override
+	public List<LectureDto> javaList(LectureDto dto) {
+		return session.selectList("lecture.javaList", dto);
+	}
+
+	@Override
+	public List<LectureDto> springList(LectureDto dto) {
+		return session.selectList("lecture.springList", dto);
+	}
+
+	@Override
+	public List<LectureDto> springbootList(LectureDto dto) {
+		return session.selectList("lecture.springbootList", dto);
+	}
 
 	@Override
 	public List<LectureDto> mobileList(LectureDto dto) {
 		return session.selectList("lecture.mobileList", dto);
+	}
+	
+	@Override
+	public List<LectureDto> kotlinList(LectureDto dto) {
+		return session.selectList("lecture.kotlinList", dto);
 	}
 
 	@Override
@@ -55,5 +100,6 @@ public class LectureDaoImpl implements LectureDao{
 		session.update("lecture.update", dto);
 		
 	}
+
 
 }
