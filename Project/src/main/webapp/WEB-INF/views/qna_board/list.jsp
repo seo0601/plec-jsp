@@ -34,9 +34,14 @@
                <td>${tmp.writer }</td>               
                <td>${tmp.regdate }</td>
                <td>
-                  <%--<c:if test="${tmp.num }"> --%>
-                     답변대기
-                  <%--</c:if> --%>
+               		<c:choose>               		             		
+		                  <c:when test="${tmp.answered eq 'yes' }">
+		                     답변완료
+		                  </c:when>
+		                  <c:otherwise>  
+		                     답변대기    
+		                  </c:otherwise>
+                     </c:choose>              
                </td>
             </tr>
          </c:forEach>

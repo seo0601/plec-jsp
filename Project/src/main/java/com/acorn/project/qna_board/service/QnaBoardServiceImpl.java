@@ -245,6 +245,13 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	    dto.setRef_group(ref_group);	    
 	    //댓글 정보를 DB 에 저장하기
 	    qnaAnswerDao.insert(dto);
+	    
+	    //answered(답변여부) 정보 업데이트하기
+	    QnaBoardDto dto2=new QnaBoardDto();
+	    dto2.setNum(ref_group);
+	    dto2.setAnswered("yes");
+	    //answered(답변여부) 정보 DB 저장
+	    qnaDao.answered(dto2);
 	}
 
 	@Override
