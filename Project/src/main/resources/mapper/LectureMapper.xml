@@ -12,6 +12,28 @@
 				ORDER BY lectureNum DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
+	<select id="frontEndList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=1
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="mobileList" parameterType="lectureDto" resultType="lectureDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				FROM LECTURE
+				WHERE Large_category=3
+				ORDER BY lectureNum DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
 	<select id="getCount" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM LECTURE

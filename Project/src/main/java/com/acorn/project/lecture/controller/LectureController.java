@@ -44,13 +44,29 @@ public class LectureController {
 		//이미지 데이터(byte)를 읽어서 배열에 담아서 클라이언트에게 응답한다.
 		return IOUtils.toByteArray(is);
 	}	
-	
-	@RequestMapping(value = "/lecture/backendList")
+	//백엔드 리스트
+	@RequestMapping(value = "/lecture/backend/backendList")
 	public String backEndList(HttpServletRequest request) {
 		//view 페이지에 사용될 데이터는 request 영역에 담는다.
 		service.backEndList(request);
 		
-		return "lecture/backendList";
+		return "lecture/backend/backendList";
+	}
+	//프론트엔드 리스트
+	@RequestMapping(value = "/lecture/frontend/frontendList")
+	public String frontEndList(HttpServletRequest request) {
+		//view 페이지에 사용될 데이터는 request 영역에 담는다.
+		service.frontEndList(request);
+		
+		return "lecture/frontend/frontendList";
+	}
+	//모바일 리스트
+	@RequestMapping(value = "/lecture/mobile/mobileList")
+	public String mobileList(HttpServletRequest request) {
+		//view 페이지에 사용될 데이터는 request 영역에 담는다.
+		service.mobileList(request);
+		
+		return "lecture/mobile/mobileList";
 	}
 	
 	@RequestMapping(value = "/lecture/upload_form")

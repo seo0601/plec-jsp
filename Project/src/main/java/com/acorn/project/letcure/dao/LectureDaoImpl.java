@@ -14,17 +14,17 @@ public class LectureDaoImpl implements LectureDao{
 	@Autowired private SqlSession session;
 	
 	@Override
-	public List<LectureDto> frontGetList(LectureDto dto) {
-		return session.selectList("lecture.forntEndList", dto);
+	public List<LectureDto> frontEndList(LectureDto dto) {
+		return session.selectList("lecture.frontEndList", dto);
 	}
 
 	@Override
-	public List<LectureDto> backGetList(LectureDto dto) {
+	public List<LectureDto> backEndList(LectureDto dto) {
 		return session.selectList("lecture.backEndList", dto);
 	}
 
 	@Override
-	public List<LectureDto> mobileGetList(LectureDto dto) {
+	public List<LectureDto> mobileList(LectureDto dto) {
 		return session.selectList("lecture.mobileList", dto);
 	}
 
