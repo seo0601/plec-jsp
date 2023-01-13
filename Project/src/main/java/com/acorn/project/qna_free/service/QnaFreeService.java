@@ -14,7 +14,7 @@ public interface QnaFreeService {
 	public void getData(HttpServletRequest request); //글 수정하기 위해 정보 불러오는 기능
 	
 	public void saveComment(HttpServletRequest request); //댓글 저장	
+	public void deleteComment(HttpServletRequest request); //댓글 삭제
 	public void updateComment(QnaFreeAnswerDto dto); //댓글 수정
 	public void moreCommentList(HttpServletRequest request); //댓글 더보기 기능
-	
 }

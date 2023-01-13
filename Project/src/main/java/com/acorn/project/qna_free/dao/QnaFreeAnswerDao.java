@@ -6,7 +6,9 @@ import com.acorn.project.qna_free.dto.QnaFreeAnswerDto;
 
 public interface QnaFreeAnswerDao {
 	//댓글 목록 얻어오기
-	public List<QnaFreeAnswerDto> getList(QnaFreeAnswerDto dto);	
+	public List<QnaFreeAnswerDto> getList(QnaFreeAnswerDto dto);
+	//댓글 삭제 
+	public void delete(int num);
 	//댓글 추가
 	public void insert(QnaFreeAnswerDto dto);
 	//추가할 댓글의 글번호를 리턴하는 메소드

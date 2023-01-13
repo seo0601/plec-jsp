@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.acorn.project.qna_free.dto.QnaFreeAnswerDto;
 
-
 @Repository
 public class QnaFreeAnswerDaoImpl implements QnaFreeAnswerDao {
 	
@@ -22,10 +21,14 @@ public class QnaFreeAnswerDaoImpl implements QnaFreeAnswerDao {
 	   }	
 	
 	   @Override
+	   public void delete(int num) {
+		  session.update("qnaFreeAnswer.delete", num);
+	   }
+	   
+	   @Override
 	   public void insert(QnaFreeAnswerDto dto) {
 	      session.insert("qnaFreeAnswer.insert", dto);
 	   }
-	
 	   //저장될 예정인 댓글의 글번호를 얻어내서 리턴해주는 메소드
 	   @Override
 	   public int getSequence() {
@@ -49,4 +52,5 @@ public class QnaFreeAnswerDaoImpl implements QnaFreeAnswerDao {
 	      
 	      return session.selectOne("qnaFreeAnswer.getCount", ref_group);
 	   }
+  
 }

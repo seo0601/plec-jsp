@@ -15,10 +15,9 @@ import com.acorn.project.qna_free.dto.QnaFreeDto;
 
 @Service
 public class QnaFreeServiceImpl implements QnaFreeService {
-	
+	//하나의 서비스에서 여러개의 dao 에 의존할수도 있다.
 	@Autowired
 	private QnaFreeDao qnaDao;
-	
 	@Autowired
 	private QnaFreeAnswerDao qnaAnswerDao;
 	
@@ -62,28 +61,26 @@ public class QnaFreeServiceImpl implements QnaFreeService {
 	    //특수기호를 인코딩한 키워드를 미리 준비한다. 
 	    String encodedK=URLEncoder.encode(keyword);
 	         
-	    //FileDto 객체에 startRowNum 과 endRowNum 을 담는다.
+	    //QnaFreeDto 객체에 startRowNum 과 endRowNum 을 담는다.
 	    QnaFreeDto dto=new QnaFreeDto();
 	    dto.setStartRowNum(startRowNum);
 	    dto.setEndRowNum(endRowNum);
 	   
-	    //만일 검색 키워드가 넘어온다면 
-	    if(!keyword.equals("")){
-	       //검색 조건이 무엇이냐에 따라 분기 하기
-	       if(condition.equals("title_content")){//제목 + 내용 검색인 경우
-	          dto.setTitle(keyword);
-	          dto.setContent(keyword);
-	       }else if(condition.equals("title")){ //제목 검색인 경우
-	          dto.setTitle(keyword);
-	       }else if(condition.equals("writer")){ //작성자 검색인 경우
-	          dto.setWriter(keyword);
-	       } // 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
-	    }
-	      
-	      
-	    //파일 목록을 select 해 온다.(검색 키워드가 있는경우 키워드에 부합하는 전체 글) 
+	  //만일 검색 키워드가 넘어온다면 
+	      if(!keyword.equals("")){
+	         //검색 조건이 무엇이냐에 따라 분기 하기
+	         if(condition.equals("title_content")){//제목 + 내용 검색인 경우
+	            //검색 키워드를 CafeDto 에 담아서 전달한다.
+	            dto.setTitle(keyword);
+	            dto.setContent(keyword);
+	         }else if(condition.equals("title")){ //제목 검색인 경우
+	            dto.setTitle(keyword);
+	         }else if(condition.equals("writer")){ //작성자 검색인 경우
+	            dto.setWriter(keyword);
+	         } // 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
+	      }
+	    //글 목록 얻어오기 
 	    List<QnaFreeDto> list=qnaDao.getList(dto);
-	      
 	    //전체 글의 갯수(검색 키워드가 있는경우 키워드에 부합하는 전체 글의 갯수)
 	    int totalRow=qnaDao.getCount(dto);
 	      
@@ -99,18 +96,17 @@ public class QnaFreeServiceImpl implements QnaFreeService {
 	         endPageNum=totalPageCount; //보정해 준다. 
 	    }
 	      
-	    //응답에 필요한 데이터를 view page 에 전달하기 위해  request scope 에 담는다
-	    request.setAttribute("list", list);
-	    request.setAttribute("pageNum", pageNum);
-	    request.setAttribute("startPageNum", startPageNum);
-	    request.setAttribute("endPageNum", endPageNum);
-	    request.setAttribute("totalPageCount", totalPageCount);
-	    request.setAttribute("keyword", keyword);
-	    request.setAttribute("encodedK", encodedK);
-	    request.setAttribute("totalRow", totalRow); 
-	    request.setAttribute("condition", condition);
-	}
-		
+	    //view page 에서 필요한 값을 request 에 담아준다. 
+        request.setAttribute("pageNum", pageNum);
+        request.setAttribute("startPageNum", startPageNum);
+        request.setAttribute("endPageNum", endPageNum);
+        request.setAttribute("condition", condition);
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("encodedK", encodedK);
+        request.setAttribute("totalPageCount", totalPageCount);
+        request.setAttribute("list", list);
+        request.setAttribute("totalRow", totalRow);
+	   }
 	
 	@Override
 	public void getDetail(HttpServletRequest request) {
@@ -152,6 +148,7 @@ public class QnaFreeServiceImpl implements QnaFreeService {
 		
 		//글 하나의 정보를 얻어온다.
 		QnaFreeDto resultDto=qnaDao.getData(dto);
+		
 		//특수기호를 인코딩한 키워드를 미리 준비한다.
 		String encodedK=URLEncoder.encode(keyword);
 		
@@ -208,12 +205,7 @@ public class QnaFreeServiceImpl implements QnaFreeService {
 	@Override
 	public void deleteContent(int num, HttpServletRequest request) {
 		//세션에서 로그인된 아이디를 읽어와서
-		
-		/*String id=(String)request.getAttribute("id");
-		QnaFreeDto dto=new QnaFreeDto();
-		if(dto.getWriter().equals(id)) {
-			qnaDao.delete(num);			
-		}*/		
+			
 		qnaDao.delete(num);
 	}
 
@@ -230,8 +222,15 @@ public class QnaFreeServiceImpl implements QnaFreeService {
 	@Override
 	public void saveComment(HttpServletRequest request) {
 		//폼 전송되는 파라미터 추출 
-	    int ref_group=Integer.parseInt(request.getParameter("ref_group")); //원글의 글번호	    
+		int ref_group=Integer.parseInt(request.getParameter("ref_group")); //원글의 글번호
+	    String target_id=request.getParameter("target_id"); //댓글 대상자의 아이디
 	    String content=request.getParameter("content"); //댓글의 내용
+	    /*
+	     *  원글의 댓글은 comment_group 번호가 전송이 안되고
+	     *  댓글의 댓글은 comment_group 번호가 전송이 된다.
+	     *  따라서 null 여부를 조사하면 원글의 댓글인지 댓글의 댓글인지 판단할수 있다. 
+	     */	    
+	    String comment_group=request.getParameter("comment_group");
 	    
 	    //댓글 작성자는 session 영역에서 얻어내기
 	    String writer=(String)request.getSession().getAttribute("id");
@@ -240,13 +239,40 @@ public class QnaFreeServiceImpl implements QnaFreeService {
 	    //저장할 댓글의 정보를 dto 에 담기
 	    QnaFreeAnswerDto dto=new QnaFreeAnswerDto();
 	    dto.setNum(seq);
-	    dto.setWriter(writer);	    
+	    dto.setWriter(writer);	 
+	    dto.setTarget_id(target_id);
 	    dto.setContent(content);
-	    dto.setRef_group(ref_group);	    
+	    dto.setRef_group(ref_group);
+	    //원글의 댓글인경우
+	    if(comment_group == null){
+	       //댓글의 글번호를 comment_group 번호로 사용한다.
+	       dto.setComment_group(seq);
+	    }else{
+	       //전송된 comment_group 번호를 숫자로 바꾸서 dto 에 넣어준다. 
+	       dto.setComment_group(Integer.parseInt(comment_group));
+	    }	    
+	    
 	    //댓글 정보를 DB 에 저장하기
 	    qnaAnswerDao.insert(dto);
+	    
 	}
 
+	@Override
+	public void deleteComment(HttpServletRequest request) {
+		int num=Integer.parseInt(request.getParameter("num"));
+	    //삭제할 댓글 정보를 읽어와서 
+	    QnaFreeAnswerDto dto=qnaAnswerDao.getData(num);
+	    String id=(String)request.getSession().getAttribute("id");
+	    //글 작성자와 로그인된 아이디와 일치하지 않으면
+	    /*
+	     * if(!dto.getWriter().equals(id)) {
+	    	throw new NotDeleteException("남의 댓글 지우면 혼난당!");
+	       }
+	    */
+	      
+	    qnaAnswerDao.delete(num);
+	}	
+	
 	@Override
 	public void updateComment(QnaFreeAnswerDto dto) {
 		qnaAnswerDao.update(dto);		
@@ -290,4 +316,7 @@ public class QnaFreeServiceImpl implements QnaFreeService {
 	      request.setAttribute("num", num); //원글의 글번호
 	      request.setAttribute("pageNum", pageNum); //댓글의 페이지 번호			
 	}
+
+
+
 }

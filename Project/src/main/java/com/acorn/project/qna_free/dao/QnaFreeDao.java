@@ -5,7 +5,6 @@ import java.util.List;
 import com.acorn.project.qna_free.dto.QnaFreeDto;
 
 public interface QnaFreeDao {
-
 	//글목록
 	public List<QnaFreeDto> getList(QnaFreeDto dto);
 	//글의 갯수

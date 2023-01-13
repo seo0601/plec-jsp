@@ -10,19 +10,27 @@
       FROM
          (SELECT result1.*, ROWNUM AS rnum
          FROM
-            (SELECT num, writer, content, ref_group, qna_free_answer.regdate, profile
+            (SELECT num, writer, content, ref_group, 
+            	comment_group, deleted, qna_free_answer.regdate, profile
             FROM qna_free_answer
             INNER JOIN users
             ON qna_free_answer.writer=users.id
             WHERE ref_group=#{ref_group}
-            ORDER BY num ASC) result1)
+            ORDER BY comment_group ASC, num ASC) result1)
       WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}   
    </select>   
+   <!-- 댓글은 실제로 삭제하지 않고 deleted 칼럼에 저장된값을 no 에서 yes 로 수정하는 작업만 한다. -->
+   <update id="delete" parameterType="int">
+      UPDATE qna_free_answer
+      SET deleted='yes'
+      WHERE num=#{num}
+   </update>
    <!-- 댓글을 저장할때 댓글의 글번호도 미리 QnaFreeAnswerDto 객체에 담아와야 한다. -->
    <insert id="insert" parameterType="qnaFreeAnswerDto">
       INSERT INTO qna_free_answer
-      (num, writer, content, ref_group, regdate)
-      VALUES(#{num}, #{writer}, #{content}, #{ref_group}, SYSDATE)
+      (num, writer, content, target_id, ref_group, comment_group, regdate)
+      VALUES(#{num}, #{writer}, #{content}, #{target_id}, #{ref_group},
+         #{comment_group}, SYSDATE)
    </insert>
    <!-- 저장 예정인 댓글의 글번호를 미리 얻어내기 -->
    <select id="getSequence" resultType="int">
@@ -35,7 +43,7 @@
       WHERE num=#{num}
    </update>
    <select id="getData" parameterType="int" resultType="qnaFreeAnswerDto">
-      SELECT num,writer,content,ref_group,regdate
+      SELECT num,writer,content,ref_group,comment_group,deleted,regdate
       FROM qna_free_answer
       WHERE num=#{num}
    </select>
