@@ -22,4 +22,6 @@ public interface QnaBoardDao {
 	public void delete(int num);
 	//글 수정
 	public void update(QnaBoardDto dto);
+	//답변완료 추가
+	public QnaBoardDto answered(QnaBoardDto dto);
 }

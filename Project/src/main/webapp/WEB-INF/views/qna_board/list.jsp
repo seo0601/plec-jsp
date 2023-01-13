@@ -10,33 +10,38 @@
 </head>
 <body>
 	<div class="container">
-      <a href="${pageContext.request.contextPath }/qna_board/insertform">새글 작성</a>
-      <h3>QnA</h3>
+      <c:if test="${sessionScope.id ne 'admin' }">
+      	<a href="${pageContext.request.contextPath }/qna_board/insertform">새글 작성</a>
+      </c:if>
+      <h3>1:1문의</h3>
       <table>
          <thead>
             <tr>
-               <th>번호</th>
+               <th>질문번호</th>               
+               <th>제목</th>   
                <th>작성자</th>
-               <th>제목</th>               
-               <th>조회수</th>
                <th>등록일</th>
-               <th>삭제</th>
+               <th>답변여부</th>
             </tr>
          </thead>
          <tbody>
          <c:forEach var="tmp" items="${list }">
             <tr>
-               <td>${tmp.num }</td>
-               <td>${tmp.writer }</td>
+               <td>${tmp.num }</td>               
                <td>
                	<a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK }">${tmp.title }</a>
-               </td>               
-               <td>${tmp.viewCount }</td>
+               </td> 
+               <td>${tmp.writer }</td>               
                <td>${tmp.regdate }</td>
                <td>
-                  <c:if test="${tmp.writer eq sessionScope.id }">
-                     <a href="javascript:deleteConfirm(${tmp.num })">삭제</a>
-                  </c:if>
+               		<c:choose>               		             		
+		                  <c:when test="${tmp.answered eq 'yes' }">
+		                     답변완료
+		                  </c:when>
+		                  <c:otherwise>  
+		                     답변대기    
+		                  </c:otherwise>
+                     </c:choose>              
                </td>
             </tr>
          </c:forEach>
@@ -68,23 +73,26 @@
             </c:if>
          </ul>
       </nav>
-      <!-- 검색 폼 -->
-      <form action="list" method="get">
-         <label for="condition">검색조건</label>   
-         <select name="condition" id="condition">
-            <option value="title_content" ${condition eq 'title_content' ? 'selected' : '' }>제목 + 내용</option>
-            <option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
-            <option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
-         </select>
-         <input type="text" name="keyword" placeholder="검색어..." value="${keyword }"/>
-         <button type="submit">검색</button>
-      </form>
+      <c:if test="${sessionScope.id eq 'admin' }">
+	      <!-- 검색 폼 -->
+	      <form action="list" method="get">
+	         <label for="condition">검색조건</label>   
+	         <select name="condition" id="condition">
+	            <option value="title_content" ${condition eq 'title_content' ? 'selected' : '' }>제목 + 내용</option>
+	            <option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
+	            <option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
+	         </select>
+	         <input type="text" name="keyword" placeholder="검색어..." value="${keyword }"/>
+	         <button type="submit">검색</button>
+	      </form>
+	  </c:if>
       <c:if test="${not empty condition }">
          <p>
             <strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
             <a href="list">리셋</a>
          </p>
       </c:if>
+      
    </div>
    <script>
       function deleteConfirm(num){

@@ -11,6 +11,7 @@ public class QnaBoardDto {
 	private String content;
 	private int viewCount;
 	private String regdate;
+	private String answered;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum; //이전 글의 글번호
@@ -18,7 +19,7 @@ public class QnaBoardDto {
 	
 	public QnaBoardDto() {}
 
-	public QnaBoardDto(int num, String writer, String title, String content, int viewCount, String regdate,
+	public QnaBoardDto(int num, String writer, String title, String content, int viewCount, String regdate, String answered,
 			int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;
@@ -27,6 +28,7 @@ public class QnaBoardDto {
 		this.content = content;
 		this.viewCount = viewCount;
 		this.regdate = regdate;
+		this.answered = answered;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
@@ -80,7 +82,15 @@ public class QnaBoardDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	
+	public String getAnswered() {
+		return answered;
+	}
 
+	public void setAnswered(String answered) {
+		this.answered = answered;
+	}	
+	
 	public int getStartRowNum() {
 		return startRowNum;
 	}

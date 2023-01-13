@@ -68,4 +68,9 @@ public class QnaBoardDaoImpl implements QnaBoardDao {
 		return session.selectOne("qnaboard.getData2", dto);
 	}
 	
+	@Override
+	public QnaBoardDto answered(QnaBoardDto dto) {
+		
+		return session.selectOne("qnaboard.answered", dto);
+	}
 }

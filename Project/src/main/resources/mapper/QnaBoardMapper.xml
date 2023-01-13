@@ -22,7 +22,7 @@
 	      FROM
 	         (SELECT result1.*, ROWNUM AS rnum
 	         FROM
-	            (SELECT num,writer,title,content,viewCount,regdate
+	            (SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD') AS regdate,answered
 	            FROM QNA_BOARD_QUESTION
 	            <include refid="searchCondition"/>
 	            ORDER BY num DESC) result1)
@@ -47,7 +47,7 @@
 	<select id="getData" parameterType="int" resultType="QnaBoardDto">
 		SELECT result1.*
       	FROM
-        		(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+        		(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,answered,
             		LAG(num, 1, 0) OVER (ORDER BY num DESC) nextNum,
                	LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
           	FROM QNA_BOARD_QUESTION) result1
@@ -57,7 +57,7 @@
 	<select id="getData2" parameterType="QnaBoardDto" resultType="QnaBoardDto">
 		SELECT result1.*
       	FROM
-        		(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+        		(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,answered,
             		LAG(num, 1, 0) OVER (ORDER BY num DESC) nextNum,
                	LEAD(num, 1, 0) OVER (ORDER BY num DESC) prevNum
           	FROM QNA_BOARD_QUESTION
@@ -80,6 +80,12 @@
 	<update id="update" parameterType="QnaBoardDto">
 		UPDATE QNA_BOARD_QUESTION
 		SET title=#{title}, content='${content}'
+		WHERE num=#{num}
+	</update>
+	
+	<update id="answered" parameterType="QnaBoardDto">
+		UPDATE QNA_BOARD_QUESTION
+		SET answered=#{answered}
 		WHERE num=#{num}
 	</update>
 </mapper>
