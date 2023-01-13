@@ -2,7 +2,6 @@ package com.acorn.project.qna_free.dao;
 
 import java.util.List;
 
-import com.acorn.project.qna_board.dto.QnaBoardDto;
 import com.acorn.project.qna_free.dto.QnaFreeDto;
 
 public interface QnaFreeDao {

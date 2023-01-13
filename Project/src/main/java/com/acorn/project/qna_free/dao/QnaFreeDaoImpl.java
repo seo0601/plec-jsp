@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.acorn.project.qna_board.dto.QnaBoardDto;
 import com.acorn.project.qna_free.dto.QnaFreeDto;
 
 @Repository
@@ -24,49 +23,49 @@ public class QnaFreeDaoImpl implements QnaFreeDao {
 		 * 3. 작성자
 		 * 검색 3가지 기능을 제공할 예정이다. 
 		 */
-		return session.selectList("qnaboard.getList", dto);
+		return session.selectList("qnafree.getList", dto);
 	}
 
 	@Override
 	public int getCount(QnaFreeDto dto) {
 		
-		return session.selectOne("qnaboard.getCount", dto);
+		return session.selectOne("qnafree.getCount", dto);
 	}
 
 	@Override
 	public void insert(QnaFreeDto dto) {
-		session.insert("qnaboard.insert", dto);
+		session.insert("qnafree.insert", dto);
 		
 	}
 
 	@Override
 	public QnaFreeDto getData(int num) {
 		
-		return session.selectOne("qnaboard.getData", num);
+		return session.selectOne("qnafree.getData", num);
 	}
 	//조회수 올리는 메소드
 	@Override
 	public void addViewCount(int num) {
-		session.update("qnaboard.addViewCount", num);
+		session.update("qnafree.addViewCount", num);
 		
 	}
 
 	@Override
 	public void delete(int num) {
-		session.delete("qnaboard.delete", num);
+		session.delete("qnafree.delete", num);
 		
 	}
 
 	@Override
 	public void update(QnaFreeDto dto) {
-		session.update("qnaboard.update", dto);
+		session.update("qnafree.update", dto);
 		
 	}
 
 	@Override
 	public QnaFreeDto getData(QnaFreeDto dto) {
 		
-		return session.selectOne("qnaboard.getData2", dto);
+		return session.selectOne("qnafree.getData2", dto);
 	}
 	
 }
