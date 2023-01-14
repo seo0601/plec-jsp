@@ -21,7 +21,7 @@
 				<td>${dto.content }</td>
 			</tr>
 		</table>
-		<c:if test="${sessionScope.id eq dto.writer }">
+		
 			<a href="updateform?num=${dto.num }">수정</a>
 			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
 			<script>
@@ -32,7 +32,7 @@
 					}
 				}
 			</script>
-		</c:if>
+		
 	</div>
 </body>
 </html>

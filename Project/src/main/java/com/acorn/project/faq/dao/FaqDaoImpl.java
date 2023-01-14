@@ -45,7 +45,7 @@ public class FaqDaoImpl implements FaqDao{
 	@Override
 	public FaqDto getData(FaqDto dto) {
 		
-		return session.selectOne("faq.getData2", dto);
+		return session.selectOne("faq.getData", dto);
 	}
 
 }
