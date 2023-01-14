@@ -12,5 +12,4 @@ public interface FaqService {
 	public void deleteContent(int num, HttpServletRequest request);
 	public void getData(HttpServletRequest request);
 	
-	
 }

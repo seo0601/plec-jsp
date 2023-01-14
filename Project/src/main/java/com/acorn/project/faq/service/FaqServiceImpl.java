@@ -61,8 +61,11 @@ public class FaqServiceImpl implements FaqService{
 
 	@Override
 	public void getData(HttpServletRequest request) {
-		
-		
+		int num=Integer.parseInt(request.getParameter("num"));
+		FaqDto dto=new FaqDto();
+		dto.setNum(num);
+		FaqDto resultDto = faqDao.getData(dto);
+		request.setAttribute("dto", resultDto);	
 	}
 
 }
