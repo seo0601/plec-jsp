@@ -208,7 +208,7 @@ public class LectureController {
       
       service.saveReview(request);
    
-      return "redirect:/lecture/detail?num="+ref_group;
+      return "redirect:/lecture/detail?num=";
 	}
 	//댓글 더보기 요청 처리
 	

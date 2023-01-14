@@ -630,17 +630,9 @@ public class LectureServiceImpl implements LectureService{
 	    LectureReviewDto dto=new LectureReviewDto();
 	    dto.setNum(seq);
 	    dto.setWriter(writer);
-	    dto.setTarget_id(target_id);
 	    dto.setContent(content);
-	    dto.setRef_group(ref_group);
 	    //원글의 댓글인경우
-	    if(comment_group == null){
-	       //댓글의 글번호를 comment_group 번호로 사용한다.
-	       dto.setComment_group(seq);
-	    }else{
-	       //전송된 comment_group 번호를 숫자로 바꾸서 dto 에 넣어준다. 
-	       dto.setComment_group(Integer.parseInt(comment_group));
-	    }
+	 
 	    //댓글 정보를 DB 에 저장하기
 	    reviewDao.insert(dto);
 		

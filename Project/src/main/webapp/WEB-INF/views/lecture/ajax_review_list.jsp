@@ -18,7 +18,7 @@
                      <c:if test="${not empty tmp.profile }">
                         <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
                      </c:if>
-                     <span>${tmp.writer }</span>
+                     
                      <c:if test="${tmp.num ne tmp.comment_group }">
                         @<i>${tmp.target_id }</i>
                      </c:if>
@@ -40,13 +40,13 @@
                   <textarea name="content"></textarea>
                   <button type="submit">등록</button>
                </form>
-            <c:if test="${tmp.writer eq id }">
+           
                <form id="updateForm${tmp.num }" class="comment-form update-form" action="comment_update" method="post">
                   <input type="hidden" name="num" value="${tmp.num }" />
                   <textarea name="content">${tmp.content }</textarea>
                   <button type="submit">수정</button>
                </form>
-            </c:if>
+           
             </li>      
       </c:otherwise>
    </c:choose>
