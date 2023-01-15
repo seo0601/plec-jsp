@@ -12,7 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.lecture.dto.LectureDto;
+import com.acorn.project.lecture.dto.LectureReviewDto;
 import com.acorn.project.letcure.dao.LectureDao;
+import com.acorn.project.letcure.dao.LectureReviewDao;
+import com.acorn.project.qna_free.dto.QnaFreeAnswerDto;
 
 
 
@@ -20,6 +23,7 @@ import com.acorn.project.letcure.dao.LectureDao;
 public class LectureServiceImpl implements LectureService{
 
 	@Autowired LectureDao lectureDao;
+	@Autowired LectureReviewDao reviewDao;
 	
 	@Value("${file.location}")
 	private String fileLocation;
@@ -602,6 +606,52 @@ public class LectureServiceImpl implements LectureService{
 		LectureDto dto=lectureDao.getData(num);
 		//request에 담아준다.
 		request.setAttribute("dto", dto);	
+		
+	}
+
+	@Override
+	public void saveReview(HttpServletRequest request) {
+		//폼 전송되는 파라미터 추출 
+	    int ref_group=Integer.parseInt(request.getParameter("ref_group")); //원글의 글번호
+	    String target_id=request.getParameter("target_id"); //댓글 대상자의 아이디
+	    String content=request.getParameter("content"); //댓글의 내용
+	    /*
+	     *  원글의 댓글은 comment_group 번호가 전송이 안되고
+	     *  댓글의 댓글은 comment_group 번호가 전송이 된다.
+	     *  따라서 null 여부를 조사하면 원글의 댓글인지 댓글의 댓글인지 판단할수 있다. 
+	     */
+	    String comment_group=request.getParameter("comment_group");
+
+	    //댓글 작성자는 session 영역에서 얻어내기
+	    String writer=(String)request.getSession().getAttribute("id");
+	    //댓글의 시퀀스 번호 미리 얻어내기
+	    int seq=reviewDao.getSequence();
+	    //저장할 댓글의 정보를 dto 에 담기
+	    LectureReviewDto dto=new LectureReviewDto();
+	    dto.setNum(seq);
+	    dto.setWriter(writer);
+	    dto.setContent(content);
+	    //원글의 댓글인경우
+	 
+	    //댓글 정보를 DB 에 저장하기
+	    reviewDao.insert(dto);
+		
+	}
+
+	@Override
+	public void deleteReview(HttpServletRequest request) {
+		int num=Integer.parseInt(request.getParameter("num"));
+		LectureReviewDto dto=reviewDao.getData(num);
+	    String id=(String)request.getSession().getAttribute("id");
+
+	      
+	    reviewDao.delete(num);
+		
+	}
+
+	@Override
+	public void updateReview(LectureReviewDto dto) {
+		reviewDao.update(dto);
 		
 	}
 

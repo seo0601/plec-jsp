@@ -16,8 +16,8 @@ CREATE TABLE QNA_BOARD_QUESTION(
     title VARCHAR2(50) NOT NULL, --제목
     content CLOB, --글 내용
     viewCount NUMBER, -- 조회수
-    regdate DATE --글 작성일
-    answered CHAR(3) DEFAULT 'no', -- 답변여부
+    regdate DATE, --글 작성일
+    answered CHAR(3) DEFAULT 'no' -- 답변여부
 );
 -- QNA_BOARD_QUESTION 시퀀스
 CREATE SEQUENCE QNA_BOARD_QUESTION_seq; 
@@ -101,7 +101,7 @@ CREATE SEQUENCE NOTICE_seq;
 CREATE TABLE FAQ(
     num NUMBER PRIMARY KEY, --글번호
     question CLOB, -- 질문
-    content CLOB, --글 내용
+    content CLOB --글 내용
 );
 -- FAQ 시퀀스
 CREATE SEQUENCE FAQ_seq;
@@ -121,3 +121,16 @@ CREATE TABLE LECTURE(
 );
 -- LECTURE 시퀀스
 CREATE SEQUENCE LECTURE_seq;
+
+-- 강의 후기
+CREATE TABLE LECTURE_REVIEW(
+    num NUMBER PRIMARY KEY, 
+    writer VARCHAR2(50), 
+    content VARCHAR2(500), 
+    deleted CHAR(3) DEFAULT 'no',
+    regdate DATE,
+    starRating NUMBER
+);
+
+-- 강의 후기의 글번호를 얻어낼 시퀀스
+CREATE SEQUENCE LECTURE_REVIEW_seq;

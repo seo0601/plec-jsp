@@ -20,4 +20,5 @@ public interface UsersDao {
 	public void delete(String id);
 	//전체 회원 정보 메소드
 	public List<UsersDto> getList(UsersDto dto);
+	
 }

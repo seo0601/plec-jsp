@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lectureReview">
+
+	<select id="getList" parameterType="lectureReviewDto" resultType="lectureReviewDto">
+      SELECT *
+      FROM
+         (SELECT result1.*, ROWNUM AS rnum
+         FROM
+            (SELECT num, writer, content,LECTURE_REVIEW.regdate, profile, starRating
+            FROM LECTURE_REVIEW
+            INNER JOIN users         
+            ORDER BY comment_group ASC, num ASC) result1)
+      WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}   
+   </select>   
+  
+   <update id="delete" parameterType="int">
+      UPDATE LECTURE_REVIEW
+      SET deleted='yes'
+      WHERE num=#{num}
+   </update>
+ 
+   <insert id="insert" parameterType="lectureReviewDto">
+       INSERT INTO LECTURE_REVIEW
+      (num, writer, content, starRating ,regdate)
+      VALUES(#{num}, #{writer}, #{content}, #{starRating}, SYSDATE)
+   </insert>
+  
+   <select id="getSequence" resultType="int">
+      SELECT LECTURE_REVIEW_seq.NEXTVAL
+      FROM DUAL
+   </select>
+   
+   <update id="update" parameterType="lectureReviewDto">
+      UPDATE LECTURE_REVIEW
+      SET content=#{content}, starRating=#{starRating}
+      WHERE num=#{num}
+   </update>
+   
+   <select id="getData" parameterType="int" resultType="lectureReviewDto">
+      SELECT num,writer,content,regdate,starRating
+      FROM LECTURE_REVIEW
+      WHERE num=#{num}
+   </select>
+   
+   <select id="getCount" parameterType="int" resultType="int">
+      SELECT NVL(MAX(ROWNUM), 0)
+      FROM LECTURE_REVIEW
+   </select>   
+</mapper>
