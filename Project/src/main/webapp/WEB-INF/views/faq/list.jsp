@@ -10,15 +10,19 @@
 </head>
 <body>
 	<div class="container">
-		<a href="${pageContext.request.contextPath}/faq/insertform">새글 작성</a>
+		<c:if test="${sessionScope.id eq 'admin'}">
+			<a href="${pageContext.request.contextPath}/faq/insertform">새글 작성</a>
+		</c:if>
 		<h3>자주 묻는 질문</h3>
 		<ul>
 			<c:forEach var="tmp" items="${list }">	
 					<li>${tmp.question }</li>
 					<li>${tmp.content }</li>
-					<li>
-                     	<a href="updateform?num=${tmp.num }">수정하기</a>
-                  	</li>
+					<c:if test="${sessionScope.id eq 'admin'}">
+						<li>
+                     		<a href="detail?num=${tmp.num }">수정하기</a>
+                  		</li>
+                  	</c:if>
 			</c:forEach>
 		</ul>		
 	</div>

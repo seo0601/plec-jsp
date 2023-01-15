@@ -22,7 +22,7 @@
 	<select id="getList" parameterType="faqDto" resultType="faqDto">
 		SELECT *FROM
 				(SELECT num,question,content
-				FROM faq)		
+				FROM faq)	
 	</select>
 	
 	<select id="getData" parameterType="int" resultType="faqDto">
