@@ -126,10 +126,9 @@ CREATE SEQUENCE LECTURE_seq;
 CREATE TABLE LECTURE_REVIEW(
     num NUMBER PRIMARY KEY, 
     writer VARCHAR2(50), 
+    title VARCHAR2(100),
     content VARCHAR2(500), 
-    deleted CHAR(3) DEFAULT 'no',
-    regdate DATE,
-    starRating NUMBER
+    regdate DATE
 );
 
 -- 강의 후기의 글번호를 얻어낼 시퀀스

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>views/lecture/detail.jsp</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <style>
    .content{
       border: 1px dotted gray;
@@ -124,9 +126,9 @@
 		<iframe width="560" height="315" src="${dto.videoPath }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 	</div>
 	
-	<h4>댓글을 입력해 주세요</h4>
+	<h4>수강 후기</h4>
 		<!-- 원글에 댓글을 작성할 폼 -->
-		<form class="comment-form insert-form" action="comment_insert" method="post">
+		<form class="lectureReview insert-form" action="lectureReview_insert" method="post">
 			<!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
 			<input type="hidden" name="ref_group" value="${dto.lectureNum }"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
@@ -274,7 +276,7 @@
 					"pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다. 
 				*/
 				ajaxPromise("ajax_comment_list","get",
-						"pageNum="+currentPage+"&num=${dto.num}")
+						"pageNum="+currentPage+"&num=${dto.lectureNum}")
 				.then(function(response){
 					//json 이 아닌 html 문자열을 응답받았기 때문에  return response.text() 해준다.
 					return response.text();

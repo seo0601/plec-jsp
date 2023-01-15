@@ -11,7 +11,7 @@
 <body>
 <script>
 	alert("글을 수정했습니다.");
-	location.href="${pageContext.request.contextPath}/";
+	history.go(-1);
 </script>
 </body>
 </html>

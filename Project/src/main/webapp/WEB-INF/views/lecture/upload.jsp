@@ -10,7 +10,7 @@
 <body>
 	<script>
 		alert("새글이 추가 되었습니다.");
-		location.href="${pageContext.request.contextPath}/";
+		history.go(-2);
 	</script>
 </body>
 </html>
