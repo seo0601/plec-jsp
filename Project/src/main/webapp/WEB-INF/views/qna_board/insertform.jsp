@@ -16,7 +16,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<div class="container">
-	   	<form class="mt-5" action="insert" method="post" id="insertForm">
+	   	<form class="mt-3" action="insert" method="post" id="insertForm">
 	      <div class="mb-3">
 	         <label for="title" class="form=label">제목</label>
 	         <input type="text" name="title" id="title" class="form-control"/>

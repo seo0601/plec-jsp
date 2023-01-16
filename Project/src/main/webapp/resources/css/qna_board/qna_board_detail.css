@@ -9,3 +9,8 @@ body{
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+.mainContent{
+	width:98%;
+	height:300px;
+	border :1px solid black;
+}

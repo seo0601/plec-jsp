@@ -106,15 +106,17 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<div class="container">
-		      <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
-      <c:if test="${dto.prevNum ne 0}">
-         <button class="btn btn-secondary" type="button" onclick="location.href='detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}'">이전글</button>
-      </c:if>
-      
-      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
-      <c:if test="${dto.nextNum ne 0 }">
-        <button class="btn btn-secondary" type="button" onclick="location.href='detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}'">다음글</button>
-      </c:if>
+	  <div class="d-flex justify-content-end mt-3">
+	  	  <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
+	      <c:if test="${dto.prevNum ne 0}">
+	         <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}'">이전글</button>
+	      </c:if>
+	      
+	      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
+	      <c:if test="${dto.nextNum ne 0 }">
+	        <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}'">다음글</button>
+	      </c:if>
+	  </div>
       
       <%-- 만일 검색 키워드가 있다면 --%>
       <c:if test="${not empty keyword }">
@@ -123,34 +125,27 @@
             <strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
          </p>
       </c:if>
-      <h3>글 상세 보기</h3>
+      <h1>${dto.title }</h1>
       <table>
          <tr>
-            <th>글번호</th>
+            <th>글번호 </th>
             <td>${dto.num }</td>
          </tr>
          <tr>
-            <th>작성자</th>
+            <th>작성자 </th>
             <td>${dto.writer }</td>
          </tr>
          <tr>
-            <th>제목</th>
-            <td>${dto.title }</td>
-         </tr>
-         <tr>
-            <th>조회수</th>
+            <th>조회수 </th>
             <td>${dto.viewCount }</td>   
          </tr>
          <tr>
-            <th>작성일</th>
+            <th>작성일 </th>
             <td>${dto.regdate }</td>
          </tr>
-         <tr>
-            <td colspan="2">
-               <div>${dto.content }</div>
-            </td>
-         </tr>   
       </table>
+      <div class="mainContent mt-3">${dto.content }</div>
+             
       <c:if test="${sessionScope.id eq dto.writer }">
          <a href="updateform?num=${dto.num }">수정</a>
          <a href="javascript:" onclick="deleteConfirm()">삭제</a>
@@ -164,7 +159,7 @@
          </script>
       </c:if>
       <c:if test="${sessionScope.id eq 'admin'}">
-      <h4>댓글을 입력해주세요</h4>
+      <p class="mt-4">댓글을 입력해주세요</p>
 	      <!-- 원글에 댓글을 작성할 폼 -->
 	      <form class="comment-form insert-form" action="comment_insert" method="post">
 	         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
