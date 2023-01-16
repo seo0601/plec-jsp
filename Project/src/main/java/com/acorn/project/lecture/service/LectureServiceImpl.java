@@ -684,6 +684,7 @@ public class LectureServiceImpl implements LectureService{
 		int ref_group=Integer.parseInt(request.getParameter("ref_group")); //원글의 글번호
 		String target_id=request.getParameter("target_id"); //댓글 대상자의 아이디
 		String content=request.getParameter("content"); //댓글의 내용 
+		int star = Integer.parseInt(request.getParameter("star"));
 		/*
 		 *  원글의 댓글은 comment_group 번호가 전송이 안되고
 		 *  댓글의 댓글은 comment_group 번호가 전송이 된다.
@@ -702,6 +703,7 @@ public class LectureServiceImpl implements LectureService{
 		dto.setTarget_id(target_id);
 		dto.setContent(content);
 		dto.setRef_group(ref_group);
+		dto.setStar(star);
 		//원글의 댓글인경우
 		if(comment_group == null){
 			//댓글의 글번호를 comment_group 번호로 사용한다.
