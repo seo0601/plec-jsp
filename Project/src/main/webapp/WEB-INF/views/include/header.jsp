@@ -50,7 +50,7 @@
 	                    <c:otherwise>
 	                        <p>
 	                            <span class="navbar-text"><a href="${pageContext.request.contextPath}/users/info" class="login">${sessionScope.id }</a> 로그인중... </span>
-	                            <a href="${pageContext.request.contextPath}/users/logout" class="btn btn-light action-button" role="button" >로그아웃</a>
+	                            <a href="${pageContext.request.contextPath}/users/logout" class="btn btn-light action-button" role="button" >로그아웃</a>	                        	
 	                        </p>
 	                    </c:otherwise>
 	                </c:choose>	

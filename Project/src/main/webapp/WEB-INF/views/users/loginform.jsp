@@ -40,8 +40,7 @@
 	
 	    <div class="checkbox mb-3">
 	      <label>
-	        <input type="checkbox" value="remember-me" name=isSave value="yes" ${not empty cookie.savedId ? 'checked':'' } > 아이디 기억하기 </label>
-	            <input type="checkbox" value="remember-me" name=isSave value="yes" ${not empty cookie.savedId ? 'checked':'' } }> Remember me
+	        <input type="checkbox" value="remember-me" name=isSave value="yes" ${not empty cookie.savedId ? 'checked':'' } }> Remember me
 	      </label>
 	    </div>
 	    <button class="w-100 btn btn-lg btn" type="submit">로그인</button>

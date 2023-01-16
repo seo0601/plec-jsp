@@ -14,8 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.acorn.project.lecture.dto.LectureDto;
 import com.acorn.project.lecture.dto.LectureReviewDto;
+import com.acorn.project.lecture.dto.LectureStudentDto;
 import com.acorn.project.letcure.dao.LectureDao;
 import com.acorn.project.letcure.dao.LectureReviewDao;
+import com.acorn.project.letcure.dao.LectureStudentDao;
 
 
 
@@ -26,6 +28,7 @@ public class LectureServiceImpl implements LectureService{
 
 	@Autowired LectureDao lectureDao;
 	@Autowired LectureReviewDao reviewDao;
+	@Autowired LectureStudentDao studentDao;
 	
 	@Value("${file.location}")
 	private String fileLocation;
@@ -769,6 +772,12 @@ public class LectureServiceImpl implements LectureService{
 	      request.setAttribute("commentList", commentList);
 	      request.setAttribute("num", num); //원글의 글번호
 	      request.setAttribute("pageNum", pageNum); //댓글의 페이지 번호	
+		
+	}
+
+	@Override
+	public void lectureSignup(LectureStudentDto dto) {
+		studentDao.lectureSignup(dto);
 		
 	}
 

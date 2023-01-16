@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.lecture.dto.LectureDto;
 import com.acorn.project.lecture.dto.LectureReviewDto;
+import com.acorn.project.lecture.dto.LectureStudentDto;
 
 
 public interface LectureService {
@@ -45,6 +46,9 @@ public interface LectureService {
 	public void updateContent(LectureDto dto, HttpServletRequest request);
 	//강의 삭제
 	public void deleteContent(int num, HttpServletRequest request);
+	
+	//강의 신청
+	public void lectureSignup(LectureStudentDto dto);
 	
 	//후기 저장
 	public void saveReview(HttpServletRequest request); 

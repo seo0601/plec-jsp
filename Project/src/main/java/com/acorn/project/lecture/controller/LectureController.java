@@ -208,6 +208,8 @@ public class LectureController {
 		return "lecture/update";
 	}
 	
+	//수강 신청 처리
+	
 	
 	
 	//새로운 댓글 저장 요청 처리

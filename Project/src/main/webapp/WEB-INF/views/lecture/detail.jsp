@@ -126,7 +126,15 @@
 			<img style="width:100px; height:100px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
 		</div>
 		<div>
-			<a href="">수강 신청</a>
+			<a href="javascript:" onclick="lectureSignupConfirm()">수강 신청</a>
+			<script>
+	            function lectureSignupConfirm(){
+	               const isSignup=confirm("강의를 신청하시겠습니까?");
+	               if(isSignup){
+	                  location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
+	               }
+	            }
+        	</script>
 			<a href="${pageContext.request.contextPath}/qna_board/list"  target="_blank">1:1 문의</a>	
 		</div>
 		
