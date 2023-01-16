@@ -5,9 +5,9 @@ body {
 
 body {
   display: flex;
-  align-items: center;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .form-signin {
@@ -33,6 +33,7 @@ body {
 .main{
 	color : #1EBD8E;
 	font-family: 'Noto Sans', sans-serif;
+	margin-top:150px;
 }
 
 .btn{

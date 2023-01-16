@@ -9,47 +9,50 @@
 <title>/views/users/signup_form.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
 <link href="${pageContext.request.contextPath }/resources/css/signup-form.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-	<main class="form-signup w-100 m-auto">
-	   <h3 class="text-center mb-3 fw-normal">환영합니다</h3>
-	   <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
-	  	  <div class="form-floating">
-	         <input type="text" class="form-control" name="id" id="floatingId" placeholder="아이디"/>   
-	         <label for="floatingId">아이디</label>
-	         <small class="form-text text-muted">영문자 소문자로 시작하고 5글자~10글자 이내로 입력하세요</small>
-			 <div class="valid-feedback">사용 가능한 아이디 입니다.</div>
-			 <div class="invalid-feedback">사용할 수 없는 아이디 입니다.</div>   
-	      </div>
-	      <div class="form-floating">
-	      	 <input type="password" class="form-control" name="pwd" id="floatingPwd" placeholder="비밀번호"/> 
-	         <label for="floatingPassword">비밀번호</label>
-	         <small class="form-text text-muted">특수 문자를 하나 이상 조합하세요.</small>
-			 <div class="invalid-feedback">비밀 번호를 확인 하세요</div>  
-	      </div>
-	      <div class="form-floating">
-	         <input type="password" class="form-control" name="pwd2" id="floatingPwd2" placeholder="비밀번호 확인"/>
-	         <label for="floatingPassword2">비밀번호 확인</label>
-	      </div>
-	      <div class="form-floating">
-	      	 <input type="text" class="form-control" name="phone" id="floatingPhone" placeholder="핸드폰 번호"/>  
-	      	 <label for="floatingPhone">핸드폰 번호</label>
-	      </div>
-	      <div class="form-floating">
-	         <input type="date" class="form-control" name="birth" id="floatingBirth" placeholder="생일"/>  
-	         <label for="floatingBirth">생일</label>
-	      </div>
-	      <div class="form-floating">
-	         <input type="email" class="form-control" name="email" id="floatingEmail" placeholder="이메일"/>
-	         <label for="floatingEmail">이메일</label>
-	         <div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
-	      </div>
-	      <button class="w-100 btn btn-lg btn" type="submit">가입</button>
-	  </form>
-	</main>
-	   
+	<div class="container">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<main class="form-signup w-100 m-auto mt-5">
+		   <h3 class="text-center mb-3 fw-normal">환영합니다</h3>
+		   <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
+		  	  <div class="form-floating">
+		         <input type="text" class="form-control" name="id" id="floatingId" placeholder="아이디"/>   
+		         <label for="floatingId">아이디</label>
+		         <small class="form-text text-muted">영문자 소문자로 시작하고 5글자~10글자 이내로 입력하세요</small>
+				 <div class="valid-feedback">사용 가능한 아이디 입니다.</div>
+				 <div class="invalid-feedback">사용할 수 없는 아이디 입니다.</div>   
+		      </div>
+		      <div class="form-floating">
+		      	 <input type="password" class="form-control" name="pwd" id="floatingPwd" placeholder="비밀번호"/> 
+		         <label for="floatingPassword">비밀번호</label>
+		         <small class="form-text text-muted">특수 문자를 하나 이상 조합하세요.</small>
+				 <div class="invalid-feedback">비밀 번호를 확인 하세요</div>  
+		      </div>
+		      <div class="form-floating">
+		         <input type="password" class="form-control" name="pwd2" id="floatingPwd2" placeholder="비밀번호 확인"/>
+		         <label for="floatingPassword2">비밀번호 확인</label>
+		      </div>
+		      <div class="form-floating">
+		      	 <input type="text" class="form-control" name="phone" id="floatingPhone" placeholder="핸드폰 번호"/>  
+		      	 <label for="floatingPhone">핸드폰 번호</label>
+		      </div>
+		      <div class="form-floating">
+		         <input type="date" class="form-control" name="birth" id="floatingBirth" placeholder="생일"/>  
+		         <label for="floatingBirth">생일</label>
+		      </div>
+		      <div class="form-floating">
+		         <input type="email" class="form-control" name="email" id="floatingEmail" placeholder="이메일"/>
+		         <label for="floatingEmail">이메일</label>
+		         <div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
+		      </div>
+		      <button class="w-100 btn btn-lg btn" type="submit">가입</button>
+		  </form>
+		</main>
+	 </div>
 	   	<script>
 		//유효성 여부를 저장할 변수를 만들고 초기값 대입 
 		let isIdValid=false;
