@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main_nav.css" />
 <div class="header-blue">
 	<nav class="navbar navbar-dark navbar-expand-md navigation-clean-search" style="background-color:#fff">
         <div class="container"><a class="navbar-brand" href="${pageContext.request.contextPath}/">logo</a><button class="navbar-toggler"
