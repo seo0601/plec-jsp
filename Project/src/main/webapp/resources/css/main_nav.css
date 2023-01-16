@@ -219,5 +219,16 @@
 
 
 
+/* 메인 header */
+.navbar-text{color:#000}
+.new-nav-link {color:#000}
+.new-nav-link:hover, 
+.new-nav-link:focus,
+.navbar-nav .new-nav-link.active, 
+.navbar-nav .show>.new-nav-link{color:#000; font-weight:700}
+.ham-btn{background-image:url(../images/Hamburger_Icon.png);}
+
+
+
 
 

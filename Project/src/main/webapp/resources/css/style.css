@@ -23,14 +23,6 @@ a{text-decoration: none; color:inherit;}
 
 
 /* 메인 페이지 */
-/* 메인 header */
-.navbar-text{color:#000}
-.new-nav-link {color:#000}
-.new-nav-link:hover, 
-.new-nav-link:focus,
-.navbar-nav .new-nav-link.active, 
-.navbar-nav .show>.new-nav-link{color:#000; font-weight:700}
-.ham-btn{background-image:url(../images/Hamburger_Icon.png);}
 
 /*메인 visual*/
 .visual-bg {
