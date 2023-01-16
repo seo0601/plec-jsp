@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+@media screen and (max-width:767px){
+    .table-search-box{
+        width:100%;
+    }
+    .table-search-box select{width:100%}
+    .table-search-box .table-search-btn{width:100%}
+}
