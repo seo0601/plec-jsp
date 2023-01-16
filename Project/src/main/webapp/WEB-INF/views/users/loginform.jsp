@@ -35,7 +35,7 @@
 	
 	    <div >
 	      <label>
-	        <input type="checkbox" value="remember-me" name=isSave value="yes" ${not empty cookie.savedId ? 'checked':'' } }> 아이디 기억하기 </label>
+	        <input type="checkbox" value="remember-me" name=isSave value="yes" ${not empty cookie.savedId ? 'checked':'' } > 아이디 기억하기 </label>
 	    </div>
 	    <button  type="submit">로그인</button>
 	  </form>

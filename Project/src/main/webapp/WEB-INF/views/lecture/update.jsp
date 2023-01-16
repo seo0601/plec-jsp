@@ -11,7 +11,7 @@
 <body>
 <script>
 	alert("글을 수정했습니다.");
-	history.go(-1);
+	history.go(-2);
 </script>
 </body>
 </html>

@@ -13,6 +13,7 @@ public class LectureReviewDto {
 	private String deleted;
 	private String regdate;
 	private String profile;
+	private int star;
 	private int startRowNum;
 	private int endRowNum;
 	
@@ -25,7 +26,7 @@ public class LectureReviewDto {
 
 
 	public LectureReviewDto(int num, String writer, String content, String target_id, int ref_group, int comment_group,
-			String deleted, String regdate, String profile, int startRowNum, int endRowNum) {
+			String deleted, String regdate, String profile, int star, int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
 		this.writer = writer;
@@ -36,6 +37,7 @@ public class LectureReviewDto {
 		this.deleted = deleted;
 		this.regdate = regdate;
 		this.profile = profile;
+		this.star = star;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 	}
@@ -169,6 +171,20 @@ public class LectureReviewDto {
 
 
 
+	public int getStar() {
+		return star;
+	}
+
+
+
+
+	public void setStar(int star) {
+		this.star = star;
+	}
+
+
+
+
 	public int getStartRowNum() {
 		return startRowNum;
 	}
@@ -195,7 +211,6 @@ public class LectureReviewDto {
 	}
 
 
-	
 
     
 }

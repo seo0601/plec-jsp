@@ -174,13 +174,21 @@ public class LectureController {
 		return "lecture/upload";
 	}
 	
-	@RequestMapping(value = "/lecture/detail", method = RequestMethod.GET)
-	public ModelAndView detail(ModelAndView mView, int num) {
-		service.getDetail(mView, num);
-		mView.setViewName("lecture/detail");
+	@RequestMapping("/lecture/detail")
+	public String detail(HttpServletRequest request) {
 		
-		return mView;
+		service.getDetail(request);
+		
+		return "lecture/detail";
 	}
+	
+	@RequestMapping(value = "/lecture/lecture_view", method = RequestMethod.GET)
+	public String request(HttpServletRequest request) {
+		service.getDetail(request);
+		return "lecture/lecture_view";
+	}
+	
+	
 	
 	@RequestMapping("/lecture/delete")
 	public String delete(int num, HttpServletRequest request) {
@@ -208,9 +216,24 @@ public class LectureController {
       
       service.saveReview(request);
    
-      return "redirect:/lecture/detail?num=";
+      return "redirect:/lecture/detail?num="+ref_group;
 	}
+	
 	//댓글 더보기 요청 처리
+	@RequestMapping("/lecture/ajax_review_list")
+	public String commentList(HttpServletRequest request) {
+      		
+		//테스트를 위해 시간 지연시키기
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		service.moreReviewList(request);
+      
+		return "lecture/ajax_review_list";
+	}
 	
 	//댓글 삭제 요청 처리
 	@RequestMapping("/lecture/lectureReview_delete")
