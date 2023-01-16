@@ -5,46 +5,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/users/signup_form.jsp</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<link href="${pageContext.request.contextPath }/resources/css/signup-form.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-	   <h1>회원 가입 폼 입니다.</h1>
+	<main class="form-signup w-100 m-auto">
+	   <h3 class="text-center mb-3 fw-normal">환영합니다</h3>
 	   <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
-	      <div>
-	         <label for="id">아이디</label>
-	         <input type="text" name="id" id="id"/>   
+	  	  <div class="form-floating">
+	         <input type="text" class="form-control" name="id" id="floatingId" placeholder="아이디"/>   
+	         <label for="floatingId">아이디</label>
 	         <small class="form-text text-muted">영문자 소문자로 시작하고 5글자~10글자 이내로 입력하세요</small>
 			 <div class="valid-feedback">사용 가능한 아이디 입니다.</div>
 			 <div class="invalid-feedback">사용할 수 없는 아이디 입니다.</div>   
 	      </div>
-	      <div>
-	         <label for="pwd">비밀번호</label>
-	         <input type="password" name="pwd" id="pwd"/> 
+	      <div class="form-floating">
+	      	 <input type="password" class="form-control" name="pwd" id="floatingPwd" placeholder="비밀번호"/> 
+	         <label for="floatingPassword">비밀번호</label>
 	         <small class="form-text text-muted">특수 문자를 하나 이상 조합하세요.</small>
 			 <div class="invalid-feedback">비밀 번호를 확인 하세요</div>  
 	      </div>
-	      <div>
-	         <label for="pwd2">비밀번호 확인</label>
-	         <input type="password" name="pwd2" id="pwd2"/>
+	      <div class="form-floating">
+	         <input type="password" class="form-control" name="pwd2" id="floatingPwd2" placeholder="비밀번호 확인"/>
+	         <label for="floatingPassword2">비밀번호 확인</label>
 	      </div>
-	      <div>
-	      	 <label for="phone">핸드폰 번호</label>
-	         <input type="text" name="phone" id="phone"/>  
+	      <div class="form-floating">
+	      	 <input type="text" class="form-control" name="phone" id="floatingPhone" placeholder="핸드폰 번호"/>  
+	      	 <label for="floatingPhone">핸드폰 번호</label>
 	      </div>
-	      <div>
-	      	 <label for="birth">생일</label>
-	         <input type="text" name="birth" id="birth"/>  
+	      <div class="form-floating">
+	         <input type="date" class="form-control" name="birth" id="floatingBirth" placeholder="생일"/>  
+	         <label for="floatingBirth">생일</label>
 	      </div>
-	      <div>
-	         <label for="email">이메일</label>
-	         <input type="text" name="email" id="email"/>
+	      <div class="form-floating">
+	         <input type="email" class="form-control" name="email" id="floatingEmail" placeholder="이메일"/>
+	         <label for="floatingEmail">이메일</label>
 	         <div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
 	      </div>
-	      <button type="submit">가입</button>
-	   </form>
+	      <button class="w-100 btn btn-lg btn" type="submit">가입</button>
+	  </form>
+	</main>
 	   
 	   	<script>
 		//유효성 여부를 저장할 변수를 만들고 초기값 대입 
@@ -52,7 +56,7 @@
 		let isPwdValid=false;
 		let isEmailValid=false;	
 	
-		document.querySelector("#email").addEventListener("input", function(){
+		document.querySelector("#floatingEmail").addEventListener("input", function(){
 			
 			this.classList.remove("is-valid");
 			this.classList.remove("is-invalid");
@@ -72,42 +76,42 @@
 		
 		function checkPwd(){
 			//먼저 2개의 클래스를 제거하고 
-			document.querySelector("#pwd").classList.remove("is-valid");
-			document.querySelector("#pwd").classList.remove("is-invalid");
+			document.querySelector("#floatingPwd").classList.remove("is-valid");
+			document.querySelector("#floatingPwd").classList.remove("is-invalid");
 			//입력한 두개의 비밀 번호를 읽어와서 
-			const pwd=document.querySelector("#pwd").value;
-			const pwd2=document.querySelector("#pwd2").value;
+			const pwd=document.querySelector("#floatingPwd").value;
+			const pwd2=document.querySelector("#floatingPwd2").value;
 			
 			//비밀번호를 검증할 정규 표현식
 			const reg=/[\W]/;
 			//만일 정규표현식 검증을 통과 하지 못했다면
 			if(!reg.test(pwd)){
-				document.querySelector("#pwd").classList.add("is-invalid");
+				document.querySelector("#floatingPwd").classList.add("is-invalid");
 				isPwdValid=false;
 				return; //함수를 여기서 끝내라 
 			}
 			
 			//만일 비밀번호 입력란과 확인란이 다르다면
 			if(pwd != pwd2){
-				document.querySelector("#pwd").classList.add("is-invalid");
+				document.querySelector("#floatingPwd").classList.add("is-invalid");
 				isPwdValid=false;
 			}else{//같다면
-				document.querySelector("#pwd").classList.add("is-valid");
+				document.querySelector("#floatingPwd").classList.add("is-valid");
 				isPwdValid=true;
 			}
 		}
 	
-		document.querySelector("#pwd").addEventListener("input", function(){
+		document.querySelector("#floatingPwd").addEventListener("input", function(){
 			checkPwd();
 		});
 		
-		document.querySelector("#pwd2").addEventListener("input", function(){
+		document.querySelector("#floatingPwd2").addEventListener("input", function(){
 			checkPwd();
 		});
 	
 	
 		// id 를 입력 할때 마다 호출되는 함수 등록 
-		document.querySelector("#id").addEventListener("input", function(){
+		document.querySelector("#floatingId").addEventListener("input", function(){
 			//input 요소의 참조값을 self 에 미리 담아 놓기 
 			const self=this;
 			//일단 2개의 클래스를 모두 제거 한다음 
@@ -129,13 +133,12 @@
 			}
 			
 			//2. 서버에 페이지 전환없이 전송을 하고 응답을 받는다.
-			fetch("checkid.jsp?inputId="+inputId)
+			fetch("checkid?inputId="+inputId)
 			.then(function(response){
 				return response.json();
 			})
 			.then(function(data){
 				//3. 사용가능한지 여부에 따라 아이디 입력란에 is-valid or is-invalid 클래스를 적절히 추가, 제거를 한다.
-				console.log(data);
 				if(data.isExist){
 					self.classList.add("is-invalid");
 					isIdValid=false;
@@ -158,7 +161,6 @@
 			}
 		});
 		
-	</script>
-</div>   
+	</script>  
 </body>
 </html>
