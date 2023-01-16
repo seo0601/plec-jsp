@@ -34,7 +34,15 @@ public class UsersServiceImpl implements UsersService{
 	
 	@Override
 	public Map<String, Object> isExistId(String inputId) {
-		return null;
+		UsersDto dto = dao.getData(inputId);
+		Map<String, Object> isExist = new HashMap<>();
+		
+		if(dto==null) {
+			isExist.put("isExist", false);
+		}else {
+			isExist.put("isExist", true);
+		}
+		return isExist;
 	}
 	//회원 한명의 정보 추가하는 메소드
 	@Override
