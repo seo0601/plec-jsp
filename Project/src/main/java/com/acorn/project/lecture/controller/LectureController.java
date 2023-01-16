@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.lecture.dto.LectureDto;
 import com.acorn.project.lecture.dto.LectureReviewDto;
+import com.acorn.project.lecture.dto.LectureStudentDto;
 import com.acorn.project.lecture.service.LectureService;
 
 
@@ -209,7 +210,11 @@ public class LectureController {
 	}
 	
 	//수강 신청 처리
-	
+	@RequestMapping("/lecture/lectureSignup")
+	public String lectureSignup(LectureStudentDto dto, HttpServletRequest request) {
+		service.lectureSignup(dto, request);
+		return "lecture/lectureSignup";
+	}
 	
 	
 	//새로운 댓글 저장 요청 처리

@@ -109,7 +109,7 @@ CREATE SEQUENCE FAQ_seq;
 -- LECTURE 테이블 
 CREATE TABLE LECTURE(
     num NUMBER PRIMARY KEY, --글번호
-	writer VARCHAR2(50) NOT NULL,
+    writer VARCHAR2(50) NOT NULL,
     teacher VARCHAR2(50) NOT NULL, --선생님
     title VARCHAR2(50) NOT NULL, --제목
     describe CLOB, --강의 설명
@@ -132,7 +132,7 @@ CREATE TABLE LECTURE_REVIEW(
     ref_group NUMBER,
     comment_group NUMBER,
     deleted CHAR(3) DEFAULT 'no',
-	star NUMBER, --별점	
+    star NUMBER, --별점    
     regdate DATE
 );
 
@@ -141,9 +141,10 @@ CREATE SEQUENCE LECTURE_REVIEW_seq;
 
 -- 강의 수강생
 CREATE TABLE LECTURE_STUDENT(
-	num NUMBER PRIMARY KEY,
-	id VARCHAR2(50),
-	complete CHAR(3) DEFAULT 'no'
+    num NUMBER PRIMARY KEY,
+    id VARCHAR2(50),
+	lectureSign NUMBER,
+    complete CHAR(3) DEFAULT 'no'
 );
 
 CREATE SEQUENCE LECTURE_STUDENT_seq;

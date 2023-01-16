@@ -48,7 +48,7 @@ public interface LectureService {
 	public void deleteContent(int num, HttpServletRequest request);
 	
 	//강의 신청
-	public void lectureSignup(LectureStudentDto dto);
+	public void lectureSignup(LectureStudentDto dto, HttpServletRequest request);
 	
 	//후기 저장
 	public void saveReview(HttpServletRequest request); 

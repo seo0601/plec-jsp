@@ -161,7 +161,7 @@
 			<img style="width:100px; height:100px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
 		</div>
 		<div>
-			<a href="javascript:" onclick="lectureSignupConfirm()">수강 신청</a>
+			<button  value="1" onclick="lectureSignupConfirm()">수강 신청</button>
 			<script>
 	            function lectureSignupConfirm(){
 	               const isSignup=confirm("강의를 신청하시겠습니까?");

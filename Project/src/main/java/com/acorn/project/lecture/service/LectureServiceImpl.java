@@ -739,7 +739,7 @@ public class LectureServiceImpl implements LectureService{
 
 	@Override
 	public void moreReviewList(HttpServletRequest request) {
-		//로그인된 아이디
+		  //로그인된 아이디
 	      String id=(String)request.getSession().getAttribute("id");
 	      //ajax 요청 파라미터로 넘어오는 댓글의 페이지 번호를 읽어낸다
 	      int pageNum=Integer.parseInt(request.getParameter("pageNum"));
@@ -750,26 +750,26 @@ public class LectureServiceImpl implements LectureService{
 	      */
 	      //한 페이지에 몇개씩 표시할 것인지
 	      final int PAGE_ROW_COUNT=10;
-
+	
 	      //보여줄 페이지의 시작 ROWNUM
 	      int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
 	      //보여줄 페이지의 끝 ROWNUM
 	      int endRowNum=pageNum*PAGE_ROW_COUNT;
-
+	
 	      //원글의 글번호를 이용해서 해당글에 달린 댓글 목록을 얻어온다.
 	      LectureReviewDto commentDto=new LectureReviewDto();
 	      commentDto.setRef_group(num);
 	      //1페이지에 해당하는 startRowNum 과 endRowNum 을 dto 에 담아서  
 	      commentDto.setStartRowNum(startRowNum);
 	      commentDto.setEndRowNum(endRowNum);
-
+	
 	      //pageNum에 해당하는 댓글 목록만 select 되도록 한다. 
 	      List<LectureReviewDto> commentList=reviewDao.getList(commentDto);
 	      //원글의 글번호를 이용해서 댓글 전체의 갯수를 얻어낸다.
 	      int totalRow=reviewDao.getCount(num);
 	      //댓글 전체 페이지의 갯수
 	      int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
-
+	
 	      //view page 에 필요한 값 request 에 담아주기
 	      request.setAttribute("commentList", commentList);
 	      request.setAttribute("num", num); //원글의 글번호
@@ -778,7 +778,11 @@ public class LectureServiceImpl implements LectureService{
 	}
 
 	@Override
-	public void lectureSignup(LectureStudentDto dto) {
+	public void lectureSignup(LectureStudentDto dto, HttpServletRequest request) {
+		String id  = (String)request.getSession().getAttribute("id");
+		int num=Integer.parseInt(request.getParameter("num"));
+		dto.setId(id);
+		dto.setNum(num);
 		studentDao.lectureSignup(dto);
 		
 	}

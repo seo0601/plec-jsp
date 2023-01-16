@@ -3,13 +3,18 @@
 <mapper namespace="lectureStudent">
 
   <select id="getList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
-    	SELECT num, id, complete
+    	SELECT num, id, complete, lectureSign
     	FROM LECTURE_STUDENT  
   </select>   
   
-  <insert id="lectureSignup">
-	  INSERT INTO LECTURE
-			(num, id, complete)
-			VALUES(LECTURE_seq.NEXTVAL, #{id}, #{complete})
+  <insert id="lectureSignup" parameterType="lectureStudentDto">
+	  INSERT INTO LECTURE_STUDENT
+			(num, id)
+			VALUES(#{num}, #{id})
    </insert>
+   
+   <select id="getSequence" resultType="int">
+      SELECT LECTURE_STUDENT_seq.NEXTVAL
+      FROM DUAL
+   </select>
 </mapper>

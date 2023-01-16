@@ -12,4 +12,6 @@ public interface LectureStudentDao {
 	
 	//수강 신청한 회원의 목록
 	public List<LectureStudentDto> getList(LectureStudentDto dto);
+	
+	public int getSequence();
 }

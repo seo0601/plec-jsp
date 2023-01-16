@@ -25,4 +25,9 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 		
 	}
 
+	@Override
+	public int getSequence() {
+		return session.selectOne("lectureStudent.getSequence");
+	}
+
 }

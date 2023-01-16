@@ -6,14 +6,16 @@ import org.apache.ibatis.type.Alias;
 public class LectureStudentDto {
 	private int num;
 	private String id;
+	private int lectureSign;
 	private String complete;
 	
 	public LectureStudentDto() {}
 
-	public LectureStudentDto(int num, String id, String complete) {
+	public LectureStudentDto(int num, String id, int lectureSign, String complete) {
 		super();
 		this.num = num;
 		this.id = id;
+		this.lectureSign = lectureSign;
 		this.complete = complete;
 	}
 
@@ -33,6 +35,14 @@ public class LectureStudentDto {
 		this.id = id;
 	}
 
+	public int getLectureSign() {
+		return lectureSign;
+	}
+
+	public void setLectureSign(int lectureSign) {
+		this.lectureSign = lectureSign;
+	}
+
 	public String getComplete() {
 		return complete;
 	}
@@ -40,6 +50,10 @@ public class LectureStudentDto {
 	public void setComplete(String complete) {
 		this.complete = complete;
 	}
+
+	
+
+	
 	
 	
 }
