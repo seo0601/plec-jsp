@@ -9,7 +9,8 @@
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
 </head>
 <body>
-	<div class="container">
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<div class="container mt-5">
 		
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
         <div class="gap-2 d-md-flex justify-content-md-end">
@@ -73,7 +74,7 @@
                     </script>
                 </div>
             </c:if>	
-            <a href="list.jsp" class="btn btn-secondary">목록</a>
+            <a href="${pageContext.request.contextPath}/notice/list" class="btn btn-secondary">목록</a>
         </div>
 	</div>
 
