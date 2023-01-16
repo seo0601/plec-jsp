@@ -7,20 +7,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/qna_board/insertform.jsp</title>
+<jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/qna_board/qna_board_insertform.css" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<div class="container">
-		<h3>새글 작성 폼입니다.</h3>
-	   	<form action="insert" method="post" id="insertForm">
+	   	<form class="mt-5" action="insert" method="post" id="insertForm">
 	      <div class="mb-3">
-	         <label for="title">제목</label>
-	         <input type="text" name="title" id="title"/>
+	         <label for="title" class="form=label">제목</label>
+	         <input type="text" name="title" id="title" class="form-control"/>
 	      </div>
 	      <div class="mb-3">
-	         <label for="content">내용</label>
+	         <label for="content" class="form-label">내용</label>
 	         <textarea name="content" id="content"></textarea>
 	      </div>
-	      <button type="submit" onclick="submitContents(this)">저장</button>
+	      <div class="d-flex justify-content-end">
+	      	<button class="btn me-3" type="submit" onclick="submitContents(this)">저장</button>
+		   </div>
 		</form>
 	</div>
 	
