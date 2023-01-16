@@ -9,7 +9,8 @@
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
 </head>
 <body>
-<div class="container">
+<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+<div class="container mt-5">
 	<h1 class="sr-only">글 수정 폼 입니다.</h1>
 	<form action="update" method="post">
 		<input type="hidden" name="num" value="${dto.num }" />
@@ -24,6 +25,7 @@
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
             <button type="submit" onclick="submitContents(this);" class="new-btn btn ">수정</button>
 		    <button type="reset" class="btn btn-danger">취소</button>
+		    <a href="${pageContext.request.contextPath}/notice/list" class="btn btn-secondary">목록</a>
         </div>
 		
 	</form>

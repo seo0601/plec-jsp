@@ -9,17 +9,52 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <style>
- .star_rating {font-size:0; letter-spacing:-4px;}
-.star_rating a {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#ccc;
-    text-decoration:none;
-}
-.star_rating a:first-child {margin-left:0;}
-.star_rating a.on {color:#777;}
+
+	.star-rating {
+	  display:flex;
+	  flex-direction: row-reverse;
+	  font-size:1em;
+	  justify-content:space-around;
+	  padding:0 .2em;
+	  text-align:center;
+	  width:5em;
+	}
+		
+	.star-rating input {
+	  display:none;
+	}
+	
+	.star-rating label {
+	  color:#ccc;
+	  cursor:pointer;
+	}
+	
+	.star-rating :checked ~ label {
+	  color:#f90;
+	}
+	
+	.star-rating label:hover,
+	.star-rating label:hover ~ label {
+	  color:#fc0;
+	}
+	
+	.star-rating2 {
+	  display:flex;
+	  flex-direction: row-reverse;
+	  font-size:1em;
+	  justify-content:space-around;
+	  padding:0 .2em;
+	  text-align:center;
+	  width:5em;
+	}
+		
+	.star-rating2 input {
+	  display:none;
+	}
+	
+	.star-rating2 label {
+	  color:#ccc;
+	}
 
    .content{
       border: 1px dotted gray;
@@ -153,17 +188,18 @@
          <input type="hidden" name="ref_group" value="${dto.num }"/>
          <!-- 원글의 작성자가 댓글의 대상자가 된다. -->
          <input type="hidden" name="target_id" value="${dto.writer }"/>
-         
-         <input type="hidden" name="star" id="star" value="0"/>
-         <fieldset class="star_rating" id="star">
-         	<a href="#">★</a>
-		    <a href="#">★</a>
-		    <a href="#">★</a>
-		    <a href="#">★</a>
-		    <a href="#">★</a>
-         </fieldset>
-     
-   		<br />
+         <div class="star-rating">
+			  <input type="radio" id="5-stars" name="star" value="5" />
+			  <label for="5-stars" class="star">&#9733;</label>
+			  <input type="radio" id="4-stars" name="star" value="4" />
+			  <label for="4-stars" class="star">&#9733;</label>
+			  <input type="radio" id="3-stars" name="star" value="3" />
+			  <label for="3-stars" class="star">&#9733;</label>
+			  <input type="radio" id="2-stars" name="star" value="2" />
+			  <label for="2-stars" class="star">&#9733;</label>
+			  <input type="radio" id="1-star" name="star" value="1" />
+			  <label for="1-star" class="star">&#9733;</label>
+		</div>
          <textarea name="content">${empty id ? '리뷰 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
          <button type="submit">등록</button>
       </form>
@@ -220,6 +256,20 @@
                                     <a data-num="${tmp.num }" class="delete-link" href="javascript:">삭제</a>
                                  </c:if>
                               </dt>
+                              <dd>
+                              	<span class="star-rating2">
+									  <input type="radio" id="5-stars" name="star" value="5" />
+									  <label style='<c:if test="${tmp.star > 4 }">color:#f90;</c:if>' for="5-stars" class="star">&#9733;</label>
+									  <input type="radio" id="4-stars" name="star" value="4" />
+									  <label style='<c:if test="${tmp.star > 3 }">color:#f90;</c:if>' for="4-stars" class="star">&#9733;</label>
+									  <input type="radio" id="3-stars" name="star" value="3" />
+									  <label style='<c:if test="${tmp.star > 2 }">color:#f90;</c:if>' for="3-stars" class="star">&#9733;</label>
+									  <input type="radio" id="2-stars" name="star" value="2" />
+									  <label style='<c:if test="${tmp.star > 1 }">color:#f90;</c:if>' for="2-stars" class="star">&#9733;</label>
+									  <input type="radio" id="1-star" name="star" value="1" />
+									  <label style='<c:if test="${tmp.star > 0 }">color:#f90;</c:if>' for="1-star" class="star">&#9733;</label>
+								 </span>
+                              </dd>
                               <dd>
                                  <pre id="pre${tmp.num }">${tmp.content }</pre>                  
                               </dd>
