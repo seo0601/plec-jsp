@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="header-blue">
-	<nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+	<nav class="navbar navbar-dark navbar-expand-md navigation-clean-search" style="background-color:#fff">
         <div class="container"><a class="navbar-brand" href="${pageContext.request.contextPath}/">logo</a><button class="navbar-toggler"
                 data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle
                     navigation</span><span class="navbar-toggler-icon ham-btn"></span></button>
