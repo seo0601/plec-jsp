@@ -3,18 +3,18 @@
 <mapper namespace="lectureReview">
 
 	<select id="getList" parameterType="lectureReviewDto" resultType="lectureReviewDto">
-    SELECT *
-		FROM
-			(SELECT result1.*, ROWNUM AS rnum
-			FROM
-				(SELECT num, writer, content, target_id, ref_group,
-					comment_group, deleted, board_cafe_comment.regdate, profile
-				FROM LECTURE_REVIEW
-				INNER JOIN users
-				ON LECTURE_REVIEW.writer=users.id
-				WHERE ref_group=#{ref_group}
-				ORDER BY comment_group ASC, num ASC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}	
+     SELECT *
+      FROM
+         (SELECT result1.*, ROWNUM AS rnum
+         FROM
+            (SELECT num, writer, content, target_id, ref_group, star,
+               comment_group, deleted, LECTURE_REVIEW.regdate, profile
+            FROM LECTURE_REVIEW
+            INNER JOIN users
+            ON LECTURE_REVIEW.writer=users.id
+            WHERE ref_group=#{ref_group}
+            ORDER BY comment_group ASC, num ASC) result1)
+      WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}   
    </select>   
   
    <update id="delete" parameterType="int">
@@ -25,8 +25,9 @@
  
    <insert id="insert" parameterType="lectureReviewDto">
        INSERT INTO LECTURE_REVIEW
-      (num, writer,title, content, regdate)
-      VALUES(#{num}, #{writer}, #{content}, SYSDATE)
+      (num, writer, content, target_id, ref_group, comment_group, regdate, star)
+      VALUES(#{num}, #{writer}, #{content}, #{target_id}, #{ref_group},
+         #{comment_group}, SYSDATE, #{star})
    </insert>
   
    <select id="getSequence" resultType="int">
@@ -36,12 +37,12 @@
    
    <update id="update" parameterType="lectureReviewDto">
       UPDATE LECTURE_REVIEW
-      SET content=#{content}
+      SET content=#{content}, star=#{star}
       WHERE num=#{num}
    </update>
    
    <select id="getData" parameterType="int" resultType="lectureReviewDto">
-      SELECT num,writer,content,ref_group,comment_group,deleted,regdate
+      SELECT num,writer,content,ref_group,comment_group,deleted,regdate,star
 		FROM LECTURE_REVIEW
 		WHERE num=#{num}
    </select>

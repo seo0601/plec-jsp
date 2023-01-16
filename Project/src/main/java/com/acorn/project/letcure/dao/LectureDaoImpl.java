@@ -101,5 +101,11 @@ public class LectureDaoImpl implements LectureDao{
 		
 	}
 
+	@Override
+	public void addViewCount(int num) {
+		session.update("lecture.addViewCount", num);
+		
+	}
+
 
 }

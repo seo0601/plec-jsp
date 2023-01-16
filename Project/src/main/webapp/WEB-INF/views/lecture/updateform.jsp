@@ -11,7 +11,7 @@
 	<div class="container">
 		<h3>글 수정 폼입니다.</h3>
 		<form action="${pageContext.request.contextPath}/lecture/update" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="lectureNum" value="${dto.lectureNum }" />
+			<input type="hidden" name="num" value="${dto.num }" />
 			<div>
 			  <label for="image">썸네일</label>
 			  <input type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG" >
