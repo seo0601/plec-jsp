@@ -28,7 +28,7 @@
 		<div class="container py-5">
 			<div style="width:100%; max-width:500px; margin:0 auto;">
 				<div class="d-grid gap-3">
-					<a href="#" class="btn new-btn">나의 강의실</a>
+					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()" class="btn new-btn">나의 강의실</a>
 					<div class="mypage-table-box py-3 border-top border-bottom">
 						<table style="width:100%">
 							<tr class="d-block mb-3">
@@ -40,7 +40,7 @@
 								<td><c:choose>
 										<c:when test="${empty dto.profile }">
 											<svg id="profileImage" xmlns="http://www.w3.org/2000/svg"
-												width="16" height="16" fill="currentColor"
+												width="100" height="100" fill="currentColor"
 												class="bi bi-person-circle" viewBox="0 0 16 16">
 			                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
 			                 <path fill-rule="evenodd"
