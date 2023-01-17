@@ -13,95 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/qna_board/qna_board_detail.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<style>
-   .content{
-      border: 1px dotted gray;
-   }
-   
-   /* 댓글 프로필 이미지를 작은 원형으로 만든다. */
-   .profile-image{
-      width: 50px;
-      height: 50px;
-      border: 1px solid #cecece;
-      border-radius: 50%;
-   }
-   /* ul 요소의 기본 스타일 제거 */
-   .comments ul{
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-   }
-   .comments dt{
-      margin-top: 5px;
-   }
-   .comments dd{
-      margin-left: 50px;
-   }
-   .comment-form textarea, .comment-form button{
-      float: left;
-   }
-   .comments li{
-      clear: left;
-   }
-   .comments ul li{
-      border-top: 1px solid #888;
-   }
-   .comment-form textarea{
-      width: 84%;
-      height: 100px;
-   }
-   .comment-form button{
-      width: 14%;
-      height: 100px;
-   }
-   /* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
-   .comments .comment-form{
-      display: none;
-   }
-   /* .reply_icon 을 li 요소를 기준으로 배치 하기 */
-   .comments li{
-      position: relative;
-   }
-   .comments .reply-icon{
-      position: absolute;
-      top: 1em;
-      left: 1em;
-      color: red;
-   }
-   pre {
-     display: block;
-     padding: 9.5px;
-     margin: 0 0 10px;
-     font-size: 13px;
-     line-height: 1.42857143;
-     color: #333333;
-     word-break: break-all;
-     word-wrap: break-word;
-     background-color: #f5f5f5;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-   }   
-   
-   .loader{
-      /* 로딩 이미지를 가운데 정렬하기 위해 */
-      text-align: center;
-      /* 일단 숨겨 놓기 */
-      display: none;
-   }   
-   
-   .loader svg{
-      animation: rotateAni 1s ease-out infinite;
-   }
-   
-   @keyframes rotateAni{
-      0%{
-         transform: rotate(0deg);
-      }
-      100%{
-         transform: rotate(360deg);
-      }
-   }
-</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
@@ -125,7 +36,7 @@
             <strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
          </p>
       </c:if>
-      <h1>${dto.title }</h1>
+      <h1 class="mb-3">${dto.title }</h1>
       <table>
          <tr>
             <th>글번호 </th>
@@ -147,8 +58,10 @@
       <div class="mainContent mt-3">${dto.content }</div>
              
       <c:if test="${sessionScope.id eq dto.writer }">
-         <a href="updateform?num=${dto.num }">수정</a>
-         <a href="javascript:" onclick="deleteConfirm()">삭제</a>
+      	 <div class="d-flex justify-content-end mt-3">
+      	 	<button class="btn btn-sm me-2 button" type="button" onclick="location.href='updateform?num=${dto.num }'">수정</button>
+         	<button class="btn btn-sm me-2 btn-danger" type="button" onclick="deleteConfirm()">삭제</button>
+      	 </div>
          <script>
             function deleteConfirm(){
                const isDelete=confirm("이 글을 삭제 하겠습니까?");
@@ -158,20 +71,20 @@
             }
          </script>
       </c:if>
-      <c:if test="${sessionScope.id eq 'admin'}">
+      <c:if test="${sessionScope.id eq 'admin' && empty commentList}">
       <p class="mt-4">댓글을 입력해주세요</p>
 	      <!-- 원글에 댓글을 작성할 폼 -->
 	      <form class="comment-form insert-form" action="comment_insert" method="post">
 	         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
 	         <input type="hidden" name="ref_group" value="${dto.num }"/>
 	         
-	         <textarea name="content"></textarea>
-	         <button class="button" type="submit">등록</button>
+	         <textarea name="content" class="me-3"></textarea>
+	         <button class="button btn" type="submit">등록</button>
 	      </form>
       </c:if>
       
       <!-- 댓글 목록 -->
-      <div class="comments">      
+      <div class="comments mt-3">      
       
          <ul>
             <c:forEach var="tmp" items="${commentList }">
@@ -219,22 +132,6 @@
    
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
-      
-      //클라이언트가 로그인 했는지 여부
-      let isLogin=${ not empty id };
-      
-      document.querySelector(".insert-form")
-         .addEventListener("submit", function(e){
-            //만일 로그인 하지 않았으면 
-            if(!isLogin){
-               //폼 전송을 막고 
-               e.preventDefault();
-               //로그인 폼으로 이동 시킨다.
-               location.href=
-                  "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna_board/detail?num=${dto.num}";
-            }
-         });
-      
       /*
          detail
           페이지 로딩 시점에 만들어진 1 페이지에 해당하는 
