@@ -1,0 +1,26 @@
+html,
+body{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.button{
+	background-color: #1EBD8E;
+	color:#ffffff;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.button:hover{
+	background-color: #46DEB1;
+	color:#ffffff;
+}
+
+textarea{
+	width:99%;
+	height:450px;
+
+}
+
+.reset{
+	color:grey;
+	text-decoration: underline;
+}
