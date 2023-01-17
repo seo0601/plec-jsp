@@ -20,7 +20,16 @@
 					<li>${tmp.content }</li>
 					<c:if test="${sessionScope.id eq 'admin'}">
 						<li>
-                     		<a href="detail?num=${tmp.num }">수정하기</a>
+                     		<a href="updateform?num=${tmp.num }">수정</a>
+                     		<a href="javascript:" onclick="deleteConfirm()">삭제</a>
+                     		<script>
+								function deleteConfirm(){
+									const isDelete=confirm("이 글을 삭제 하겠습니까?");
+									if(isDelete){
+										location.href="delete?num=${tmp.num}";
+									}
+								}
+							</script>	
                   		</li>
                   	</c:if>
 			</c:forEach>
