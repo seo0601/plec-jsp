@@ -24,17 +24,18 @@
    </update>
  
    <insert id="insert" parameterType="lectureReviewDto">
-<<<<<<< HEAD
       INSERT INTO LECTURE_REVIEW
       	(num, writer, content, target_id, ref_group, comment_group, regdate)
       	VALUES(#{num}, #{writer}, #{content}, #{target_id}, #{ref_group},
          	#{comment_group}, SYSDATE)
-=======
        INSERT INTO LECTURE_REVIEW
       (num, writer, content, target_id, ref_group, comment_group, regdate, star)
       VALUES(#{num}, #{writer}, #{content}, #{target_id}, #{ref_group},
          #{comment_group}, SYSDATE, #{star})
->>>>>>> branch 'master' of https://github.com/Acorn202210/ItProject.git
+       INSERT INTO LECTURE_REVIEW
+      (num, writer,title, content, regdate)
+      VALUES(#{num}, #{writer}, #{content}, SYSDATE)
+>>>>>>> parent of f0cf5fc (faq list에 수정,삭제 보이게함)
    </insert>
   
    <select id="getSequence" resultType="int">
@@ -57,6 +58,5 @@
    <select id="getCount" parameterType="int" resultType="int">
       SELECT NVL(MAX(ROWNUM), 0)
       FROM LECTURE_REVIEW
-      WHERE ref_group=#{ref_group}
    </select>   
 </mapper>
