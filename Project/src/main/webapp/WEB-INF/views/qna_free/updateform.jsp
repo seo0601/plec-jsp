@@ -11,26 +11,28 @@
 
 </head>
 <body>
-
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	<div class="container">
-		<form class="mt-3" action="update" method="post">
-			<!-- 수정반영할때 글번호도 필요하기 때문에 input type="hidden"으로 전송되도록 한다. -->
-			<input type="hidden" name="num" value="${dto.num }" />
-			<div class="mb-3">
-				<label for="title" class="form=label">제목</label>
-				<input type="text" name="title" id="title" value="${dto.title}" class="form-control" />
-			</div>
-			<div class="mb-3">
-				<label for="content" class="form-label">내용</label>				
-				<textarea name="content" id="content">${dto.content }</textarea>				
-			</div >
-			<div class="d-flex justify-content-end">
-				<button class="btn btn-sm button me-2" type="submit" onclick="submitContents(this)">수정확인</button>
-				<button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.num }'">취소</button>
-			</div>
-		</form>
-	</div>	
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<div class="container">
+			<form class="mt-3" action="update" method="post">
+				<!-- 수정반영할때 글번호도 필요하기 때문에 input type="hidden"으로 전송되도록 한다. -->
+				<input type="hidden" name="num" value="${dto.num }" />
+				<div class="mb-3">
+					<label for="title" class="form=label">제목</label>
+					<input type="text" name="title" id="title" value="${dto.title}" class="form-control" />
+				</div>
+				<div class="mb-3">
+					<label for="content" class="form-label">내용</label>				
+					<textarea name="content" id="content">${dto.content }</textarea>				
+				</div >
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-sm button me-2" type="submit" onclick="submitContents(this)">수정확인</button>
+					<button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.num }'">취소</button>
+				</div>
+			</form>
+		</div>	
+	</div>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 
 <!-- SmartEditor 에서 필요한 javascript 로딩  -->
 <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>

@@ -11,7 +11,7 @@
          (SELECT result1.*, ROWNUM AS rnum
          FROM
             (SELECT num, writer, content, ref_group, 
-            	comment_group, deleted, qna_free_answer.regdate, profile
+            	comment_group, deleted, qna_free_answer.regdate, profile, target_id
             FROM qna_free_answer
             INNER JOIN users
             ON qna_free_answer.writer=users.id

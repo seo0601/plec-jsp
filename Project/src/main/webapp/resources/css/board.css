@@ -62,8 +62,8 @@ textarea{
 .comments dd{
    margin-left: 50px;
 }
-.comment-form textarea, .comment-form button{
-   float: left;
+.comment-form textarea{
+   float:left;
 }
 .comments li{
    clear: left;

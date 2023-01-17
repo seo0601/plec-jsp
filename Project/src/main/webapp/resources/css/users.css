@@ -1,9 +1,9 @@
 html,
-body {
+.userform {
   height: 100%;
 }
 
-body {
+.userform {
   display: flex;
   padding-bottom: 40px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -39,13 +39,13 @@ body {
   
 }
 
-.btn{
+.button{
 	background: #1EBD8E;
 	color:#ffffff;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-.btn:hover{
+.button:hover{
 	background-color: #46DEB1;
 	color:#ffffff;
 }

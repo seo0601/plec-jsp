@@ -11,22 +11,25 @@
 <link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	<div class="container">
-	   	<form class="mt-3" action="insert" method="post" id="insertForm">
-	      <div class="mb-3">
-	         <label for="title" class="form=label">제목</label>
-	         <input type="text" name="title" id="title" class="form-control"/>
-	      </div>
-	      <div class="mb-3">
-	         <label for="content" class="form-label">내용</label>
-	         <textarea name="content" id="content"></textarea>
-	      </div>
-	      <div class="d-flex justify-content-end">
-	      	<button class="btn me-3 button" type="submit" onclick="submitContents(this)">저장</button>
-		   </div>
-		</form>
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<div class="container">
+		   	<form class="mt-3" action="insert" method="post" id="insertForm">
+		      <div class="mb-3">
+		         <label for="title" class="form=label">제목</label>
+		         <input type="text" name="title" id="title" class="form-control"/>
+		      </div>
+		      <div class="mb-3">
+		         <label for="content" class="form-label">내용</label>
+		         <textarea name="content" id="content"></textarea>
+		      </div>
+		      <div class="d-flex justify-content-end">
+		      	<button class="btn me-3 button" type="submit" onclick="submitContents(this)">저장</button>
+			   </div>
+			</form>
+		</div>
 	</div>
+   <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	
 	<!-- SmartEditor 에서 필요한 javascript -->
 	<script src="${pageContext.request.contextPath }/resources/SmartEditor/js/HuskyEZCreator.js"></script>

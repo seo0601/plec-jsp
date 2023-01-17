@@ -12,121 +12,122 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	<div class="container">
-	  <div class="d-flex justify-content-end mt-3">
-	  	  <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
-	      <c:if test="${dto.prevNum ne 0}">
-	         <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}'">이전글</button>
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<div class="container">
+		  <div class="d-flex justify-content-end mt-3">
+		  	  <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
+		      <c:if test="${dto.prevNum ne 0}">
+		         <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}'">이전글</button>
+		      </c:if>
+		      
+		      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
+		      <c:if test="${dto.nextNum ne 0 }">
+		        <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}'">다음글</button>
+		      </c:if>
+		  </div>
+	      
+	      <%-- 만일 검색 키워드가 있다면 --%>
+	      <c:if test="${not empty keyword }">
+	         <p>
+	            <strong>${condition }</strong> 조건 
+	            <strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
+	         </p>
+	      </c:if>
+	      <h1 class="mb-3">${dto.title }</h1>
+	      <table>
+	         <tr>
+	            <th>글번호 </th>
+	            <td>${dto.num }</td>
+	         </tr>
+	         <tr>
+	            <th>작성자 </th>
+	            <td>${dto.writer }</td>
+	         </tr>
+	         <tr>
+	            <th>조회수 </th>
+	            <td>${dto.viewCount }</td>   
+	         </tr>
+	         <tr>
+	            <th>작성일 </th>
+	            <td>${dto.regdate }</td>
+	         </tr>
+	      </table>
+	      <div class="mainContent mt-3">${dto.content }</div>
+	             
+	      <c:if test="${sessionScope.id eq dto.writer }">
+	      	 <div class="d-flex justify-content-end mt-2">
+	      	 	<button class="btn btn-sm button me-2" type="button" onclick="location.href='updateform?num=${dto.num }'">수정</button>
+	         	<button class="btn btn-sm btn-danger me-2" type="button" onclick="deleteConfirm()">삭제</button>
+	      	 </div>
+	         <script>
+	            function deleteConfirm(){
+	               const isDelete=confirm("이 글을 삭제 하겠습니까?");
+	               if(isDelete){
+	                  location.href="delete?num=${dto.num}";
+	               }
+	            }
+	         </script>
+	      </c:if>
+	      <c:if test="${sessionScope.id eq 'admin' && empty commentList}">
+	      <p class="mt-3">댓글을 입력해주세요</p>
+		      <!-- 원글에 댓글을 작성할 폼 -->
+		      <form class="comment-form insert-form" action="comment_insert" method="post">
+		         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
+		         <input type="hidden" name="ref_group" value="${dto.num }"/>
+		         <textarea name="content" class="me-3"></textarea>
+		         <button class="button btn mb-5" type="submit">등록</button>
+		      </form>
 	      </c:if>
 	      
-	      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
-	      <c:if test="${dto.nextNum ne 0 }">
-	        <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}'">다음글</button>
-	      </c:if>
-	  </div>
-      
-      <%-- 만일 검색 키워드가 있다면 --%>
-      <c:if test="${not empty keyword }">
-         <p>
-            <strong>${condition }</strong> 조건 
-            <strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
-         </p>
-      </c:if>
-      <h1 class="mb-3">${dto.title }</h1>
-      <table>
-         <tr>
-            <th>글번호 </th>
-            <td>${dto.num }</td>
-         </tr>
-         <tr>
-            <th>작성자 </th>
-            <td>${dto.writer }</td>
-         </tr>
-         <tr>
-            <th>조회수 </th>
-            <td>${dto.viewCount }</td>   
-         </tr>
-         <tr>
-            <th>작성일 </th>
-            <td>${dto.regdate }</td>
-         </tr>
-      </table>
-      <div class="mainContent mt-3">${dto.content }</div>
-             
-      <c:if test="${sessionScope.id eq dto.writer }">
-      	 <div class="d-flex justify-content-end mt-3">
-      	 	<button class="btn btn-sm me-2 button" type="button" onclick="location.href='updateform?num=${dto.num }'">수정</button>
-         	<button class="btn btn-sm me-2 btn-danger" type="button" onclick="deleteConfirm()">삭제</button>
-      	 </div>
-         <script>
-            function deleteConfirm(){
-               const isDelete=confirm("이 글을 삭제 하겠습니까?");
-               if(isDelete){
-                  location.href="delete?num=${dto.num}";
-               }
-            }
-         </script>
-      </c:if>
-      <c:if test="${sessionScope.id eq 'admin' && empty commentList}">
-      <p class="mt-4">댓글을 입력해주세요</p>
-	      <!-- 원글에 댓글을 작성할 폼 -->
-	      <form class="comment-form insert-form" action="comment_insert" method="post">
-	         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
-	         <input type="hidden" name="ref_group" value="${dto.num }"/>
-	         
-	         <textarea name="content" class="me-3"></textarea>
-	         <button class="button btn" type="submit">등록</button>
-	      </form>
-      </c:if>
-      
-      <!-- 댓글 목록 -->
-      <div class="comments mt-3">      
-      
-         <ul>
-            <c:forEach var="tmp" items="${commentList }">
-               <li id="reli${tmp.num }">
-               		<dl>
-                       <dt>
-                          <c:if test="${ empty tmp.profile }">
-                             <svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                             </svg>
-                          </c:if>
-                          <c:if test="${not empty tmp.profile }">
-                             <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
-                          </c:if>
-                          <span>${tmp.writer }</span>                          
-                          <span>${tmp.regdate }</span>
-                          
-                          <c:if test="${ (id ne null) and (tmp.writer eq id) }">
-                             <a data-num="${tmp.num }" class="update-link reset" href="javascript:">수정</a>                             
-                          </c:if>
-                       </dt>
-                       <dd>
-                          <pre id="pre${tmp.num }">${tmp.content }</pre>                  
-                       </dd>
-                    </dl>
-               		<c:if test="${tmp.writer eq id }">
-                      <form id="updateForm${tmp.num }" class="comment-form update-form" action="comment_update" method="post">
-                         <input type="hidden" name="num" value="${tmp.num }" />
-                         <textarea name="content">${tmp.content }</textarea>
-                         <button type="submit">수정</button>
-                      </form>
-                	</c:if>
-               </li>  
-            </c:forEach>
-         </ul>
-      </div>      
-      <div class="loader">
-         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-         </svg>
-      </div>      
+	      <!-- 댓글 목록 -->
+	      <div class="comments mt-3">      
+	      
+	         <ul>
+	            <c:forEach var="tmp" items="${commentList }">
+	               <li id="reli${tmp.num }">
+	               		<dl>
+	                       <dt>
+	                          <c:if test="${ empty tmp.profile }">
+	                             <svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+	                               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+	                               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+	                             </svg>
+	                          </c:if>
+	                          <c:if test="${not empty tmp.profile }">
+	                             <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
+	                          </c:if>
+	                          <span>${tmp.writer }</span>                          
+	                          <span>${tmp.regdate }</span>
+	                          
+	                          <c:if test="${ (id ne null) and (tmp.writer eq id) }">
+	                             <a data-num="${tmp.num }" class="update-link reset" href="javascript:">수정</a>                             
+	                          </c:if>
+	                       </dt>
+	                       <dd>
+	                          <pre id="pre${tmp.num }">${tmp.content }</pre>                  
+	                       </dd>
+	                    </dl>
+	               		<c:if test="${tmp.writer eq id }">
+	                      <form id="updateForm${tmp.num }" class="comment-form update-form" action="comment_update" method="post">
+	                         <input type="hidden" name="num" value="${tmp.num }" />
+	                         <textarea name="content">${tmp.content }</textarea>
+	                         <button type="submit">수정</button>
+	                      </form>
+	                	</c:if>
+	               </li>  
+	            </c:forEach>
+	         </ul>
+	      </div>      
+	      <div class="loader">
+	         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+	              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+	              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+	         </svg>
+	      </div>      
+		</div>
 	</div>
-   
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
       /*

@@ -7,31 +7,30 @@
 <meta charset="UTF-8">
 <title>/views/notice/insertform.jsp</title>
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<!-- <style>
-	textarea{
-		width: 768px;
-		height: 300px;
-	}
-</style> -->
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	<div class="container mt-5">
-		<h3 class="sr-only">새글 작성 폼입니다.</h3>
-		<form action="insert" method="post">
-			<div>
-				<label for="title" class="form-label">제목</label>
-				<input type="text" name="title" id="title" class="form-control" />
+	<div class="wrapper">
+		<div class="container">
+			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+			<div class="container mt-5">
+				<h3 class="sr-only">새글 작성 폼입니다.</h3>
+				<form action="insert" method="post">
+					<div>
+						<label for="title" class="form-label">제목</label>
+						<input type="text" name="title" id="title" class="form-control" />
+					</div>
+					<div class="mt-3">
+						<label for="content" class="form-label">내용</label>
+						<textarea name="content" id="content" rows="10" class="form-control" ></textarea>
+					</div>
+		            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+		                <button type="submit" onclick="submitContents(this)" class="new-btn btn ">등록</button>
+		            </div>
+				</form>
 			</div>
-			<div class="mt-3">
-				<label for="content" class="form-label">내용</label>
-				<textarea name="content" id="content" rows="10" class="form-control" ></textarea>
-			</div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-                <button type="submit" onclick="submitContents(this)" class="new-btn btn ">등록</button>
-            </div>
-		</form>
+		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="${pageContext.request.contextPath }/resources/SmartEditor/js/HuskyEZCreator.js"></script>
 	<script>
 		var oEditors = [];
