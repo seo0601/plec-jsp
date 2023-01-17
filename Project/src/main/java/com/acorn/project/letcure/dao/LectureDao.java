@@ -31,4 +31,6 @@ public interface LectureDao {
 	//게시글 수정
 	public void update(LectureDto dto);
 	
+	public void addViewCount(int num);
+	
 }

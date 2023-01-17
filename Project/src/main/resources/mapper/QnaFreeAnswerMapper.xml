@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qnaFreeAnswer">
-	<!-- 
-		댓글에 프로필 이미지도 같이 출력하기위해 users 테이블과 join을 한다.
-		댓글도 paging 처리가 필요하므로 select 할때 startRowNum과 endRowNum이 있어야 한다.	
-	 -->
+   <!-- 
+   		댓글에 프로필 이미지도 같이 출력하기 위해 users 테이블과 join 을 한다. 
+   		댓글도 paging 처리가 필요함으로 select 할때 startRowNum 과 endRowNum 이 있어야 한다.
+   -->
 	<select id="getList" parameterType="qnaFreeAnswerDto" resultType="qnaFreeAnswerDto">
       SELECT *
       FROM

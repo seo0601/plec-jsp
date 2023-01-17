@@ -4,7 +4,6 @@
 <c:forEach var="tmp" items="${commentList }">
 	<c:choose>
 		<c:when test="${tmp.deleted eq 'yes' }">
-			<li>삭제된 댓글 입니다.</li>
 		</c:when>
 		<c:otherwise>
 			<c:if test="${tmp.num eq tmp.comment_group }">
@@ -42,7 +41,7 @@
 							<pre id="pre${tmp.num }">${tmp.content }</pre>						
 						</dd>
 					</dl>
-					<form id="reForm${tmp.num }" class="animate__animated comment-form re-insert-form" action="comment_insert.do" method="post">
+					<form id="reForm${tmp.num }" class="animate__animated comment-form re-insert-form" action="lectureReview_insert" method="post">
 						<input type="hidden" name="ref_group" value="${num }"/>
 						<input type="hidden" name="target_id" value="${tmp.writer }"/>
 						<input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
@@ -50,7 +49,7 @@
 						<button type="submit">등록</button>
 					</form>
 				<c:if test="${tmp.writer eq id }">
-					<form id="updateForm${tmp.num }" class="comment-form update-form" action="comment_update.do" method="post">
+					<form id="updateForm${tmp.num }" class="comment-form update-form" action="lectureReview_update" method="post">
 						<input type="hidden" name="num" value="${tmp.num }" />
 						<textarea name="content">${tmp.content }</textarea>
 						<button type="submit">수정</button>

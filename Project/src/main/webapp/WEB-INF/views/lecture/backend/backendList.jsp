@@ -17,7 +17,7 @@
 		<c:forEach var="tmp" items="${list }">
 			<div>
 		   		<div>
-				   	  <a href="${pageContext.request.contextPath}/lecture/detail?num=${tmp.lectureNum}">
+				   	  <a href="${pageContext.request.contextPath}/lecture/detail?num=${tmp.num}">
 						<div>
 							<img style="width:100px; height:100px;" src="${pageContext.request.contextPath }/lecture/images/${tmp.imagePath}">
 						</div>

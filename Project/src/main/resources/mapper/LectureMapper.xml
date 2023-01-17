@@ -6,10 +6,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=1
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="jsList" parameterType="lectureDto" resultType="lectureDto">
@@ -17,10 +17,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=1 AND small_category=1
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="html_cssList" parameterType="lectureDto" resultType="lectureDto">
@@ -28,10 +28,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=1 AND small_category=2
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="reactList" parameterType="lectureDto" resultType="lectureDto">
@@ -39,10 +39,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=1 AND small_category=3
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="vueList" parameterType="lectureDto" resultType="lectureDto">
@@ -50,10 +50,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=1 AND small_category=4
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="jQueryList" parameterType="lectureDto" resultType="lectureDto">
@@ -61,10 +61,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=1 AND small_category=5
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="backEndList" parameterType="lectureDto" resultType="lectureDto">
@@ -72,10 +72,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, title, writer, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=2
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="javaList" parameterType="lectureDto" resultType="lectureDto">
@@ -83,10 +83,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=2 AND small_category=6
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="springList" parameterType="lectureDto" resultType="lectureDto">
@@ -94,10 +94,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=2 AND small_category=7
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="springbootList" parameterType="lectureDto" resultType="lectureDto">
@@ -105,10 +105,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=2 AND small_category=8
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="mobileList" parameterType="lectureDto" resultType="lectureDto">
@@ -116,10 +116,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=3
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="kotlinList" parameterType="lectureDto" resultType="lectureDto">
@@ -127,10 +127,10 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
 				FROM LECTURE
 				WHERE Large_category=3 AND small_category=9
-				ORDER BY lectureNum DESC) result1)
+				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	<select id="getCount" resultType="int">
@@ -140,28 +140,34 @@
 	
 	<insert id="insert" parameterType="lectureDto">
 		INSERT INTO LECTURE
-		(lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category)
-		VALUES(LECTURE_seq.NEXTVAL, #{teacher}, #{title}, #{describe},#{imagePath}, #{videoPath}, #{viewCount}, SYSDATE, #{Large_category}, #{small_category} )
+		(num, teacher, writer,title, describe, imagePath,
+		videoPath, viewCount, regdate, Large_category,small_category)
+		VALUES(LECTURE_seq.NEXTVAL, #{teacher}, #{writer}, #{title}, #{describe},#{imagePath}, #{videoPath}, #{viewCount}, SYSDATE, #{Large_category}, #{small_category} )
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="lectureDto">
 		SELECT *
 		FROM
-			(SELECT lectureNum, teacher, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category, 
-				LAG(lectureNum, 1, 0) OVER (ORDER BY lectureNum DESC) AS prevNum,
-				LEAD(lectureNum, 1, 0) OVER (ORDER BY lectureNum DESC) AS nextNum
+			(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category, 
+				LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
+				LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
 			FROM LECTURE
-			ORDER BY lectureNum DESC)
-		WHERE lectureNum = #{lectureNum}
+			ORDER BY num DESC)
+		WHERE num = #{num}
 	</select>
 		<delete id="delete" parameterType="int">
 		DELETE FROM LECTURE
-		WHERE lectureNum = #{lectureNum}				
+		WHERE num = #{num}				
 	</delete>
+	<update id="addViewCount" parameterType="int">
+		UPDATE LECTURE
+		SET viewCount=viewCount+1
+		WHERE num=#{num}
+	</update>
 	
 	<update id="update" parameterType="lectureDto">
 		UPDATE LECTURE
 		SET title= #{title}, teacher=#{teacher},imagePath=#{imagePath},describe=#{describe}, videoPath=#{videoPath}, Large_category=#{Large_category},small_category=#{small_category}
-		WHERE lectureNum = #{lectureNum}
+		WHERE num = #{num}
 	</update>
 </mapper>
