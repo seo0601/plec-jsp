@@ -795,7 +795,7 @@ public class LectureServiceImpl implements LectureService{
 		dto.setNum(seq);
 		dto.setId(id);
 		studentDao.lectureSignup(dto);
-		
+		request.setAttribute("num", dto.getNum());		
 	}
 
 	@Override
@@ -805,7 +805,6 @@ public class LectureServiceImpl implements LectureService{
 
 		LectureStudentDto dto=studentDao.getData(num);
 
-		request.setAttribute("dto", dto);	
 		
 	}
 

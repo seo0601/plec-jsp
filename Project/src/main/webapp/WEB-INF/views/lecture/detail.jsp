@@ -8,313 +8,187 @@
 <title>views/lecture/detail.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<style>
+<jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
+<link href="${pageContext.request.contextPath }/resources/css/lecture.css" rel="stylesheet">
 
-	.star-rating {
-	  display:flex;
-	  flex-direction: row-reverse;
-	  font-size:1em;
-	  justify-content:space-around;
-	  padding:0 .2em;
-	  text-align:center;
-	  width:5em;
-	}
-		
-	.star-rating input {
-	  display:none;
-	}
-	
-	.star-rating label {
-	  color:#ccc;
-	  cursor:pointer;
-	}
-	
-	.star-rating :checked ~ label {
-	  color:#f90;
-	}
-	
-	.star-rating label:hover,
-	.star-rating label:hover ~ label {
-	  color:#fc0;
-	}
-	
-	.star-rating2 {
-	  display:flex;
-	  flex-direction: row-reverse;
-	  font-size:1em;
-	  justify-content:space-around;
-	  padding:0 .2em;
-	  text-align:center;
-	  width:5em;
-	}
-		
-	.star-rating2 input {
-	  display:none;
-	}
-	
-	.star-rating2 label {
-	  color:#ccc;
-	}
-
-   .content{
-      border: 1px dotted gray;
-   }
-   
-   /* 댓글 프로필 이미지를 작은 원형으로 만든다. */
-   .profile-image{
-      width: 50px;
-      height: 50px;
-      border: 1px solid #cecece;
-      border-radius: 50%;
-   }
-   /* ul 요소의 기본 스타일 제거 */
-   .comments ul{
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-   }
-   .comments dt{
-      margin-top: 5px;
-   }
-   .comments dd{
-      margin-left: 50px;
-   }
-   .comment-form textarea, .comment-form button{
-      float: left;
-   }
-   .comments li{
-      clear: left;
-   }
-   .comments ul li{
-      border-top: 1px solid #888;
-   }
-   .comment-form textarea{
-      width: 84%;
-      height: 100px;
-   }
-   .comment-form button{
-      width: 14%;
-      height: 100px;
-   }
-   /* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
-   .comments .comment-form{
-      display: none;
-   }
-   /* .reply_icon 을 li 요소를 기준으로 배치 하기 */
-   .comments li{
-      position: relative;
-   }
-   .comments .reply-icon{
-      position: absolute;
-      top: 1em;
-      left: 1em;
-      color: red;
-   }
-   pre {
-     display: block;
-     padding: 9.5px;
-     margin: 0 0 10px;
-     font-size: 13px;
-     line-height: 1.42857143;
-     color: #333333;
-     word-break: break-all;
-     word-wrap: break-word;
-     background-color: #f5f5f5;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-   }   
-   
-   .loader{
-      /* 로딩 이미지를 가운데 정렬하기 위해 */
-      text-align: center;
-      /* 일단 숨겨 놓기 */
-      display: none;
-   }   
-   
-   .loader svg{
-      animation: rotateAni 1s ease-out infinite;
-   }
-   
-   @keyframes rotateAni{
-      0%{
-         transform: rotate(0deg);
-      }
-      100%{
-         transform: rotate(360deg);
-      }
-   }
-</style>
 </head>
 <body>
-	<div class="container">
-		<a href="${pageContext.request.contextPath}/lecture/updateform?num=${dto.num }">수정</a>
-        <a href="javascript:" onclick="deleteConfirm()">삭제</a>
-        <script>
-            function deleteConfirm(){
-               const isDelete=confirm("이 글을 삭제 하겠습니까?");
-               if(isDelete){
-                  location.href="${pageContext.request.contextPath}/lecture/delete?num=${dto.num}";
-               }
-            }
-        </script>
-		<div>
-			<img style="width:100px; height:100px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
-		
-		
-		<div>					   
-	    	<p>${dto.describe}</p>
-  	    </div>
-  	    <form action="">
-  	    <input type="text" />
-  	    <label for="">${dto.num}</label>
-  	    <label for="">${lsDto.ref_group}</label>
-  	  
-  	    </form>
-  	    
-  	    <div>
-
-   		<form action="lectureSignup" method="post">
-			<input type="hidden" name="ref_group" value="${dto.num }"/>
-			<button onclick="lectureSignupConfirm()">수강 신청</button>
-		</form>	
-
-  	    	<a href="${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}">강의 보기</a>
-   
-  	  
-		<a href="${pageContext.request.contextPath}/qna_board/list"  target="_blank">1:1 문의</a>	
-  	 	</div>
-  	 	
-  	 	<script>
-            function lectureSignupConfirm(){
-               const isSignup=confirm("강의를 신청하시겠습니까?");
-               if(isSignup){
-                  location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
-               }
-            }
-       	</script>
-	<br/>
-	
-	<h4>수강 후기를 작성해주세요</h4>
-      <!-- 원글에 댓글을 작성할 폼 -->
-      <form class="comment-form insert-form" action="lectureReview_insert" method="post" name="myform" id="myform">
-         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
-         <input type="hidden" name="ref_group" value="${dto.num }"/>
-         <!-- 원글의 작성자가 댓글의 대상자가 된다. -->
-         <input type="hidden" name="target_id" value="${dto.writer }"/>
-         <div class="star-rating">
-			  <input type="radio" id="5-stars" name="star" value="5" />
-			  <label for="5-stars" class="star">&#9733;</label>
-			  <input type="radio" id="4-stars" name="star" value="4" />
-			  <label for="4-stars" class="star">&#9733;</label>
-			  <input type="radio" id="3-stars" name="star" value="3" />
-			  <label for="3-stars" class="star">&#9733;</label>
-			  <input type="radio" id="2-stars" name="star" value="2" />
-			  <label for="2-stars" class="star">&#9733;</label>
-			  <input type="radio" id="1-star" name="star" value="1" />
-			  <label for="1-star" class="star">&#9733;</label>
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<div class="container">
+			<div class="box">
+				<div class="box1">
+				<div class="d-flex justify-content-end mt-3">
+				      <c:if test="${id eq 'admin'}">
+				         <button class="btn btn-secondary btn-sm me-2 mb-3" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/updateform?num=${dto.num }'">수정</button>
+				      	 <button class="btn btn-danger btn-sm me-2 mb-3" type="button" onclick="deleteConfirm()">삭제</button>
+				      </c:if>
+				  </div>
+			        <script>
+			            function deleteConfirm(){
+			               const isDelete=confirm("이 글을 삭제 하겠습니까?");
+			               if(isDelete){
+			                  location.href="${pageContext.request.contextPath}/lecture/delete?num=${dto.num}";
+			               }
+			            }
+			        </script>
+					<div>
+						<img style="width:500px; height:350px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
+					
+					
+					<div>					   
+				    	<p>${dto.describe}</p>
+			  	    </div>
+			  	    
+			  	 	
+			  	 	<script>
+			            function lectureSignupConfirm(){
+			               const isSignup=confirm("강의를 신청하시겠습니까?");
+			               if(isSignup){
+			                  location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
+			               }
+			            }
+			       	</script>
+				<br/>
+				
+				<h4>수강 후기를 작성해주세요</h4>
+			      <!-- 원글에 댓글을 작성할 폼 -->
+			      <form class="comment-form insert-form" action="lectureReview_insert" method="post" name="myform" id="myform">
+			         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
+			         <input type="hidden" name="ref_group" value="${dto.num }"/>
+			         <!-- 원글의 작성자가 댓글의 대상자가 된다. -->
+			         <input type="hidden" name="target_id" value="${dto.writer }"/>
+			         <div class="star-rating">
+						  <input type="radio" id="5-stars" name="star" value="5" />
+						  <label for="5-stars" class="star">&#9733;</label>
+						  <input type="radio" id="4-stars" name="star" value="4" />
+						  <label for="4-stars" class="star">&#9733;</label>
+						  <input type="radio" id="3-stars" name="star" value="3" />
+						  <label for="3-stars" class="star">&#9733;</label>
+						  <input type="radio" id="2-stars" name="star" value="2" />
+						  <label for="2-stars" class="star">&#9733;</label>
+						  <input type="radio" id="1-star" name="star" value="1" />
+						  <label for="1-star" class="star">&#9733;</label>
+					</div>
+			         <textarea name="content" class="me-3">${empty id ? '수강 후기 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
+			         <button type="submit" class="button btn mb-5">등록</button>
+			      </form>
+			      
+			      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+			      <script>
+			      	$( ".star_rating a" ).click(function() {
+			    	     $(this).parent().children("a").removeClass("on");
+			    	     $(this).addClass("on").prevAll("a").addClass("on");
+			    	     let starCount=$(".star_rating .on").length;
+			    	     $("input[name=star]").val(starCount);
+			    	     return false;
+			    	});
+			      </script>
+			      
+			      <!-- 댓글 목록 -->
+			      <div class="comments">      
+			      
+			         <ul>
+			            <c:forEach var="tmp" items="${commentList }">
+			               <c:choose>
+			                  <c:when test="${tmp.deleted eq 'yes' }">
+			                     <li>삭제된 댓글 입니다.</li>
+			                  </c:when>
+			                  <c:otherwise>
+			                     <c:if test="${tmp.num eq tmp.comment_group }">
+			                        <li id="reli${tmp.num }">
+			                     </c:if>
+			                     <c:if test="${tmp.num ne tmp.comment_group }">
+			                        <li id="reli${tmp.num }" style="padding-left:50px;">
+			                           <svg class="reply-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+			                                <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+			                           </svg>
+			                     </c:if>
+			                           <dl>
+			                              <dt>
+			                                 <c:if test="${ empty tmp.profile }">
+			                                    <svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+			                                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+			                                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+			                                    </svg>
+			                                 </c:if>
+			                                 <c:if test="${not empty tmp.profile }">
+			                                    <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
+			                                 </c:if>
+			                                 <span>${tmp.writer }</span>
+			                                 <c:if test="${tmp.num ne tmp.comment_group }">
+			                                    @<i>${tmp.target_id }</i>
+			                                 </c:if>
+			                                 <span>${tmp.regdate }</span>
+			                                 
+			                                 <c:if test="${ (id ne null) and (tmp.writer eq id) }">
+			                                    <a data-num="${tmp.num }" class="update-link" href="javascript:">수정</a>
+			                                    <a data-num="${tmp.num }" class="delete-link" href="javascript:">삭제</a>
+			                                 </c:if>
+			                              </dt>
+			                              <dd>
+			                              	<span class="star-rating2">
+												  <input type="radio" id="5-stars" name="star" value="5" />
+												  <label style='<c:if test="${tmp.star > 4 }">color:#f90;</c:if>' for="5-stars" class="star">&#9733;</label>
+												  <input type="radio" id="4-stars" name="star" value="4" />
+												  <label style='<c:if test="${tmp.star > 3 }">color:#f90;</c:if>' for="4-stars" class="star">&#9733;</label>
+												  <input type="radio" id="3-stars" name="star" value="3" />
+												  <label style='<c:if test="${tmp.star > 2 }">color:#f90;</c:if>' for="3-stars" class="star">&#9733;</label>
+												  <input type="radio" id="2-stars" name="star" value="2" />
+												  <label style='<c:if test="${tmp.star > 1 }">color:#f90;</c:if>' for="2-stars" class="star">&#9733;</label>
+												  <input type="radio" id="1-star" name="star" value="1" />
+												  <label style='<c:if test="${tmp.star > 0 }">color:#f90;</c:if>' for="1-star" class="star">&#9733;</label>
+											 </span>
+			                              </dd>
+			                              <dd>
+			                                 <pre id="pre${tmp.num }">${tmp.content }</pre>                  
+			                              </dd>
+			                           </dl>
+			                           <form id="reForm${tmp.num }" class="animate__animated comment-form re-insert-form" action="lectureReview_insert" method="post">
+			                              <input type="hidden" name="ref_group" value="${dto.num }"/>
+			                              <input type="hidden" name="target_id" value="${tmp.writer }"/>
+			                              <input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
+			                              <textarea name="content"></textarea>
+			                              <button type="submit">등록</button>
+			                           </form>
+			                        <c:if test="${tmp.writer eq id }">
+			                           <form id="updateForm${tmp.num }" class="comment-form update-form" action="lectureReview_update" method="post">
+			                              <input type="hidden" name="num" value="${tmp.num }" />
+			                              <textarea name="content">${tmp.content }</textarea>
+			                              <button type="submit">수정</button>
+			                           </form>
+			                        </c:if>
+			                        </li>      
+			                  </c:otherwise>
+			               </c:choose>
+			            </c:forEach>
+			         </ul>
+			      </div>      
+			      <div class="loader">
+			         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+			              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+			              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+			         </svg>
+			      </div>      
+				</div>
+			</div>
+			<div class="box2">
+		   		<form action="lectureSignup" class= "mt-5 mb-3 d-flex justify-content-center" method="post">
+					<input type="hidden" name="ref_group" value="${dto.num }"/>
+					<button class="button" onclick="lectureSignupConfirm()">수강 신청</button>
+				</form>	
+				<div class="d-flex justify-content-center mb-3">
+		        	<button type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>		   
+		  	    </div>
+		  	    <div class="d-flex justify-content-center">
+		        	<button type="button" onclick="location.href='${pageContext.request.contextPath}/qna_board/list'">1:1문의</button>		   
+		  	    </div>
+	  	 	</div>
 		</div>
-         <textarea name="content">${empty id ? '수강 후기 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
-         <button type="submit">등록</button>
-      </form>
-      
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-      <script>
-      	$( ".star_rating a" ).click(function() {
-    	     $(this).parent().children("a").removeClass("on");
-    	     $(this).addClass("on").prevAll("a").addClass("on");
-    	     let starCount=$(".star_rating .on").length;
-    	     $("input[name=star]").val(starCount);
-    	     return false;
-    	});
-      </script>
-      
-      <!-- 댓글 목록 -->
-      <div class="comments">      
-      
-         <ul>
-            <c:forEach var="tmp" items="${commentList }">
-               <c:choose>
-                  <c:when test="${tmp.deleted eq 'yes' }">
-                     <li>삭제된 댓글 입니다.</li>
-                  </c:when>
-                  <c:otherwise>
-                     <c:if test="${tmp.num eq tmp.comment_group }">
-                        <li id="reli${tmp.num }">
-                     </c:if>
-                     <c:if test="${tmp.num ne tmp.comment_group }">
-                        <li id="reli${tmp.num }" style="padding-left:50px;">
-                           <svg class="reply-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
-                           </svg>
-                     </c:if>
-                           <dl>
-                              <dt>
-                                 <c:if test="${ empty tmp.profile }">
-                                    <svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                    </svg>
-                                 </c:if>
-                                 <c:if test="${not empty tmp.profile }">
-                                    <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
-                                 </c:if>
-                                 <span>${tmp.writer }</span>
-                                 <c:if test="${tmp.num ne tmp.comment_group }">
-                                    @<i>${tmp.target_id }</i>
-                                 </c:if>
-                                 <span>${tmp.regdate }</span>
-                                 
-                                 <c:if test="${ (id ne null) and (tmp.writer eq id) }">
-                                    <a data-num="${tmp.num }" class="update-link" href="javascript:">수정</a>
-                                    <a data-num="${tmp.num }" class="delete-link" href="javascript:">삭제</a>
-                                 </c:if>
-                              </dt>
-                              <dd>
-                              	<span class="star-rating2">
-									  <input type="radio" id="5-stars" name="star" value="5" />
-									  <label style='<c:if test="${tmp.star > 4 }">color:#f90;</c:if>' for="5-stars" class="star">&#9733;</label>
-									  <input type="radio" id="4-stars" name="star" value="4" />
-									  <label style='<c:if test="${tmp.star > 3 }">color:#f90;</c:if>' for="4-stars" class="star">&#9733;</label>
-									  <input type="radio" id="3-stars" name="star" value="3" />
-									  <label style='<c:if test="${tmp.star > 2 }">color:#f90;</c:if>' for="3-stars" class="star">&#9733;</label>
-									  <input type="radio" id="2-stars" name="star" value="2" />
-									  <label style='<c:if test="${tmp.star > 1 }">color:#f90;</c:if>' for="2-stars" class="star">&#9733;</label>
-									  <input type="radio" id="1-star" name="star" value="1" />
-									  <label style='<c:if test="${tmp.star > 0 }">color:#f90;</c:if>' for="1-star" class="star">&#9733;</label>
-								 </span>
-                              </dd>
-                              <dd>
-                                 <pre id="pre${tmp.num }">${tmp.content }</pre>                  
-                              </dd>
-                           </dl>
-                           <form id="reForm${tmp.num }" class="animate__animated comment-form re-insert-form" action="lectureReview_insert" method="post">
-                              <input type="hidden" name="ref_group" value="${dto.num }"/>
-                              <input type="hidden" name="target_id" value="${tmp.writer }"/>
-                              <input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
-                              <textarea name="content"></textarea>
-                              <button type="submit">등록</button>
-                           </form>
-                        <c:if test="${tmp.writer eq id }">
-                           <form id="updateForm${tmp.num }" class="comment-form update-form" action="lectureReview_update" method="post">
-                              <input type="hidden" name="num" value="${tmp.num }" />
-                              <textarea name="content">${tmp.content }</textarea>
-                              <button type="submit">수정</button>
-                           </form>
-                        </c:if>
-                        </li>      
-                  </c:otherwise>
-               </c:choose>
-            </c:forEach>
-         </ul>
-      </div>      
-      <div class="loader">
-         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-         </svg>
-      </div>      
+		</div>
 	</div>
-   
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
       
