@@ -2,19 +2,215 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lectureStudent">
 
-  <select id="getList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
-    	SELECT num, id, complete, lectureSign
-    	FROM LECTURE_STUDENT  
-  </select>   
+<select id="frontendList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+  SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
+				FROM users 
+				JOIN LECTURE_STUDENT
+				ON users.id=LECTURE_STUDENT.id
+				JOIN LECTURE 
+				on LECTURE.num=LECTURE_STUDENT.ref_group
+				WHERE Large_category = 1
+				ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+
+<select id="jsList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+  SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 1 AND small_category=1
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+<select id="htmlsssList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+  SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 1 AND small_category=2
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+
+<select id="reactList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+  SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 1 AND small_category=3
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+
+<select id="vueList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+  SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 1 AND small_category=4
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>  
+
+<select id="jQueryList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+  SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 1 AND small_category=5
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+
+<select id="backendList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+	SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 2
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+
+<select id="javaList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+	SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 2 AND small_category=6
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+<select id="springList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+	SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 2 AND small_category=7
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>   
+
+<select id="springbootList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+	SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 2 AND small_category=8
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>  
+
+<select id="moblieList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+	SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 3
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>  
+
+<select id="kotlinList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+	SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT birth, phone, email, regdate, Large_category, small_category
+				 FROM users 
+				 JOIN LECTURE_STUDENT
+				 ON users.id=LECTURE_STUDENT.id
+				 JOIN LECTURE 
+				 ON LECTURE.num=LECTURE_STUDENT.ref_group
+				 WHERE Large_category = 3 AND small_category=9
+				 ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>  
   
   <insert id="lectureSignup" parameterType="lectureStudentDto">
 	  INSERT INTO LECTURE_STUDENT
-			(num, id)
-			VALUES(#{num}, #{id})
+			(num, id, ref_group)
+			VALUES(#{num}, #{id}, #{ref_group})
    </insert>
+   
+   <select id="getData" parameterType="int" resultType="lectureStudentDto">
+		SELECT num, id, ref_group 		
+		FROM LECTURE_STUDENT
+		WHERE num = #{num}
+	</select>
    
    <select id="getSequence" resultType="int">
       SELECT LECTURE_STUDENT_seq.NEXTVAL
       FROM DUAL
    </select>
+   
+   	<select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM LECTURE_STUDENT
+	</select>
 </mapper>

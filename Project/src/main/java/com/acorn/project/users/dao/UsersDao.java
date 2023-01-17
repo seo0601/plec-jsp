@@ -21,4 +21,5 @@ public interface UsersDao {
 	//전체 회원 정보 메소드
 	public List<UsersDto> getList(UsersDto dto);
 	
+
 }

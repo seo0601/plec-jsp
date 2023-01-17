@@ -143,7 +143,7 @@ CREATE SEQUENCE LECTURE_REVIEW_seq;
 CREATE TABLE LECTURE_STUDENT(
     num NUMBER PRIMARY KEY,
     id VARCHAR2(50),
-	lectureSign NUMBER,
+    ref_group NUMBER,
     complete CHAR(3) DEFAULT 'no'
 );
 

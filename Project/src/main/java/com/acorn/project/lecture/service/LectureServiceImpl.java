@@ -23,12 +23,14 @@ import com.acorn.project.letcure.dao.LectureStudentDao;
 
 
 
+
 @Service
 public class LectureServiceImpl implements LectureService{
 
 	@Autowired LectureDao lectureDao;
 	@Autowired LectureReviewDao reviewDao;
 	@Autowired LectureStudentDao studentDao;
+
 	
 	@Value("${file.location}")
 	private String fileLocation;
@@ -536,7 +538,7 @@ public class LectureServiceImpl implements LectureService{
 			keyword="";
 			condition=""; 
 		}
-		//CafeDto 객체를 생성해서 
+		//LectureDto 객체를 생성해서 
 		LectureDto dto=new LectureDto();
 		//자세히 보여줄 글번호를 넣어준다. 
 		dto.setNum(num);
@@ -577,6 +579,13 @@ public class LectureServiceImpl implements LectureService{
 		//댓글 전체 페이지의 갯수
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 		
+		//LectureStudentDto의 ref_group 
+		LectureStudentDto lsDto = studentDao.getData(num);
+
+		
+		
+		
+		
 		//request scope 에 글 하나의 정보 담기
 		request.setAttribute("dto", resultDto);
 		request.setAttribute("condition", condition);
@@ -585,6 +594,7 @@ public class LectureServiceImpl implements LectureService{
 		request.setAttribute("totalRow", totalRow);
 		request.setAttribute("commentList", commentList);
 		request.setAttribute("totalPageCount", totalPageCount);
+		request.setAttribute("lsDto",lsDto );
 		
 	}
 
@@ -672,11 +682,11 @@ public class LectureServiceImpl implements LectureService{
 
 	@Override
 	public void getData(HttpServletRequest request) {
-		//수정할 글번호
+
 		int num=Integer.parseInt(request.getParameter("num"));
-		//수정할 글의 정보 얻어와서
+
 		LectureDto dto=lectureDao.getData(num);
-		//request에 담아준다.
+
 		request.setAttribute("dto", dto);	
 		
 	}
@@ -780,10 +790,466 @@ public class LectureServiceImpl implements LectureService{
 	@Override
 	public void lectureSignup(LectureStudentDto dto, HttpServletRequest request) {
 		String id  = (String)request.getSession().getAttribute("id");
-		int num=Integer.parseInt(request.getParameter("num"));
+		int ref_group=Integer.parseInt(request.getParameter("ref_group"));
+		int seq=reviewDao.getSequence();
+		dto.setNum(seq);
 		dto.setId(id);
-		dto.setNum(num);
 		studentDao.lectureSignup(dto);
+		
+	}
+
+	@Override
+	public void lectureGetData(HttpServletRequest request) {
+
+		int num=Integer.parseInt(request.getParameter("num"));
+
+		LectureStudentDto dto=studentDao.getData(num);
+
+		request.setAttribute("dto", dto);	
+		
+	}
+
+	@Override
+	public void lectureFrontEndList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.frontEndList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureJsList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.jsList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureHtml_cssList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.html_cssList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureReactList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.reactList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureVueList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.vueList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lecturejQueryList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.jQueryList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureBackEndList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.backEndList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureJavaList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.javaList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureSpringList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.springList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureSpringbootList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.springbootList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureMobileList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.mobileList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
+		
+	}
+
+	@Override
+	public void lectureKotlinList(HttpServletRequest request) {
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		LectureStudentDto dto = new LectureStudentDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+	   
+		List<LectureStudentDto> list = studentDao.kotlinList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = studentDao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
 		
 	}
 

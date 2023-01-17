@@ -10,8 +10,25 @@ public interface LectureStudentDao {
 	public void lectureSignup (LectureStudentDto dto);
 	//수강 신청 취소
 	
-	//수강 신청한 회원의 목록
-	public List<LectureStudentDto> getList(LectureStudentDto dto);
+	//프론트엔드 리스트
+	public List<LectureStudentDto> frontEndList(LectureStudentDto dto);
+	public List<LectureStudentDto> jsList(LectureStudentDto dto);
+	public List<LectureStudentDto> html_cssList(LectureStudentDto dto);
+	public List<LectureStudentDto> reactList(LectureStudentDto dto);
+	public List<LectureStudentDto> vueList(LectureStudentDto dto);
+	public List<LectureStudentDto> jQueryList(LectureStudentDto dto);
+	//백엔드 리스트
+	public List<LectureStudentDto> backEndList(LectureStudentDto dto);
+	public List<LectureStudentDto> javaList(LectureStudentDto dto);
+	public List<LectureStudentDto> springList(LectureStudentDto dto);
+	public List<LectureStudentDto> springbootList(LectureStudentDto dto);
+	//모바일 리스트
+	public List<LectureStudentDto> mobileList(LectureStudentDto dto);
+	public List<LectureStudentDto> kotlinList(LectureStudentDto dto);
 	
 	public int getSequence();
+	
+	public LectureStudentDto getData(int num);
+	
+	public int getCount();
 }

@@ -13,6 +13,9 @@ public class LectureDto {
 	private String videoPath;
 	private String imagePath;
 	private String regdate;
+	private String email;
+	private String phone;
+	private String birth;
 	private int viewCount;
 	private int Large_category;
 	private int small_category;
@@ -25,8 +28,9 @@ public class LectureDto {
 	public LectureDto() {}
 
 	public LectureDto(int num, String teacher, String writer, String title, String describe, String videoPath,
-			String imagePath, String regdate, int viewCount, int large_category, int small_category, int startRowNum,
-			int endRowNum, int prevNum, int nextNum, MultipartFile image) {
+			String imagePath, String regdate, String email, String phone, String birth, int viewCount,
+			int large_category, int small_category, int startRowNum, int endRowNum, int prevNum, int nextNum,
+			MultipartFile image) {
 		super();
 		this.num = num;
 		this.teacher = teacher;
@@ -36,6 +40,9 @@ public class LectureDto {
 		this.videoPath = videoPath;
 		this.imagePath = imagePath;
 		this.regdate = regdate;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
 		this.viewCount = viewCount;
 		Large_category = large_category;
 		this.small_category = small_category;
@@ -110,6 +117,30 @@ public class LectureDto {
 		this.regdate = regdate;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
 	public int getViewCount() {
 		return viewCount;
 	}
@@ -174,7 +205,6 @@ public class LectureDto {
 		this.image = image;
 	}
 
-	
 	
 
 	

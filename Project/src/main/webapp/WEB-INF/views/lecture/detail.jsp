@@ -159,27 +159,40 @@
         </script>
 		<div>
 			<img style="width:100px; height:100px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
-		</div>
-		<div>
-			<button  value="1" onclick="lectureSignupConfirm()">수강 신청</button>
-			<script>
-	            function lectureSignupConfirm(){
-	               const isSignup=confirm("강의를 신청하시겠습니까?");
-	               if(isSignup){
-	                  location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
-	               }
-	            }
-        	</script>
-			<a href="${pageContext.request.contextPath}/qna_board/list"  target="_blank">1:1 문의</a>	
-		</div>
+		
 		
 		<div>					   
 	    	<p>${dto.describe}</p>
   	    </div>
-  	   
-		<a href="${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}">강의 보기</a>
-	</div>
-	<br />
+  	    <form action="">
+  	    <input type="text" />
+  	    <label for="">${dto.num}</label>
+  	    <label for="">${lsDto.ref_group}</label>
+  	  
+  	    </form>
+  	    
+  	    <div>
+
+   		<form action="lectureSignup" method="post">
+			<input type="hidden" name="ref_group" value="${dto.num }"/>
+			<button onclick="lectureSignupConfirm()">수강 신청</button>
+		</form>	
+
+  	    	<a href="${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}">강의 보기</a>
+   
+  	  
+		<a href="${pageContext.request.contextPath}/qna_board/list"  target="_blank">1:1 문의</a>	
+  	 	</div>
+  	 	
+  	 	<script>
+            function lectureSignupConfirm(){
+               const isSignup=confirm("강의를 신청하시겠습니까?");
+               if(isSignup){
+                  location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
+               }
+            }
+       	</script>
+	<br/>
 	
 	<h4>수강 후기를 작성해주세요</h4>
       <!-- 원글에 댓글을 작성할 폼 -->
@@ -200,7 +213,7 @@
 			  <input type="radio" id="1-star" name="star" value="1" />
 			  <label for="1-star" class="star">&#9733;</label>
 		</div>
-         <textarea name="content">${empty id ? '리뷰 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
+         <textarea name="content">${empty id ? '수강 후기 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
          <button type="submit">등록</button>
       </form>
       

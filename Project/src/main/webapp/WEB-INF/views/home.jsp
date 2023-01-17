@@ -28,6 +28,29 @@
 		        </div>
 		    </div>
 	    </div>
+	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/frontendList">수강신청 프론트엔드리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/html_cssList">수강신청 html/css리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/jQueryList">수강신청 jQurey리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/jsList">수강신청 js리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/reactList">수강신청 react리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/backend/vueList">수강신청 vue리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/backend/backendList">수강신청 백엔드리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/backend/javaList">수강신청 자바리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/backend/springList">수강신청 스프링리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/backend/springbootList">수강신청 스프링부트리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/mobile/mobileList">수강신청 모바일리스트</a>
+	    <br />
+	    <a href="${pageContext.request.contextPath}/studentLecture/mobile/kotlinList">수강신청 코틀린리스트</a>
 	</div><!-- visual-bg -->
 	
 	

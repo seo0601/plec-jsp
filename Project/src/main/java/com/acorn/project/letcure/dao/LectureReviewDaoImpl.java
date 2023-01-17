@@ -49,8 +49,8 @@ public class LectureReviewDaoImpl implements LectureReviewDao{
 	}
 
 	@Override
-	public int getCount(int ref_group) {
-		return session.selectOne("lectureReview.getCount", ref_group);
+	public int getCount(int num) {
+		return session.selectOne("lectureReview.getCount", num);
 	}
 
 }
