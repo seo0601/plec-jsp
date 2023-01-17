@@ -73,12 +73,12 @@
 	
 	<delete id="delete" parameterType="int">
 		DELETE FROM QNA_FREE_QUESTION
-		WHERE num=#{num}				
+      WHERE num=#{num}		
 	</delete>
 	
 	<update id="update" parameterType="QnaFreeDto">
 		UPDATE QNA_FREE_QUESTION
-		SET title=#{title}, content='${content}'
+		SET title=#{title}, content=#{content}
 		WHERE num=#{num}
 	</update>
 </mapper>
