@@ -347,20 +347,20 @@ public class LectureController {
 		return "studentLecture/backend/springbootList";
 	}
 	//수강 신청 모바일 리스트
-	@RequestMapping(value = "/studentLecture/moblie/moblieList")
+	@RequestMapping(value = "/studentLecture/mobile/mobileList")
 	public String lectureMobileList(HttpServletRequest request) {
 		//view 페이지에 사용될 데이터는 request 영역에 담는다.
 		service.lectureMobileList(request);
 		
-		return "studentLecture/moblie/moblieList";
+		return "studentLecture/mobile/mobileList";
 	}
 	//수강 신청 코틀린 리스트
-	@RequestMapping(value = "/studentLecture/moblie/kotlinList")
+	@RequestMapping(value = "/studentLecture/mobile/kotlinList")
 	public String lectureKotlinList(HttpServletRequest request) {
 		//view 페이지에 사용될 데이터는 request 영역에 담는다.
 		service.lectureKotlinList(request);
 		
-		return "studentLecture/moblie/kotlinList";
+		return "studentLecture/mobile/kotlinList";
 	}
 
 }

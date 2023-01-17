@@ -40,7 +40,7 @@
 	    <br />
 	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/reactList">수강신청 react리스트</a>
 	    <br />
-	    <a href="${pageContext.request.contextPath}/studentLecture/backend/vueList">수강신청 vue리스트</a>
+	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/vueList">수강신청 vue리스트</a>
 	    <br />
 	    <a href="${pageContext.request.contextPath}/studentLecture/backend/backendList">수강신청 백엔드리스트</a>
 	    <br />

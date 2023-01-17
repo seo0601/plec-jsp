@@ -23,7 +23,7 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
 				 FROM users 
 				 JOIN LECTURE_STUDENT
 				 ON users.id=LECTURE_STUDENT.id
@@ -38,7 +38,7 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
 				 FROM users 
 				 JOIN LECTURE_STUDENT
 				 ON users.id=LECTURE_STUDENT.id
@@ -54,7 +54,7 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
 				 FROM users 
 				 JOIN LECTURE_STUDENT
 				 ON users.id=LECTURE_STUDENT.id
@@ -70,7 +70,7 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
 				 FROM users 
 				 JOIN LECTURE_STUDENT
 				 ON users.id=LECTURE_STUDENT.id
@@ -86,7 +86,7 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
 				 FROM users 
 				 JOIN LECTURE_STUDENT
 				 ON users.id=LECTURE_STUDENT.id
@@ -102,14 +102,14 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
-				 FROM users 
-				 JOIN LECTURE_STUDENT
-				 ON users.id=LECTURE_STUDENT.id
-				 JOIN LECTURE 
-				 ON LECTURE.num=LECTURE_STUDENT.ref_group
-				 WHERE Large_category = 2
-				 ORDER BY users.id DESC) result1)
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
+				FROM users 
+				JOIN LECTURE_STUDENT
+				ON users.id=LECTURE_STUDENT.id
+				JOIN LECTURE 
+				on LECTURE.num=LECTURE_STUDENT.ref_group
+				WHERE Large_category = 2
+				ORDER BY users.id DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>   
 
@@ -118,14 +118,14 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
-				 FROM users 
-				 JOIN LECTURE_STUDENT
-				 ON users.id=LECTURE_STUDENT.id
-				 JOIN LECTURE 
-				 ON LECTURE.num=LECTURE_STUDENT.ref_group
-				 WHERE Large_category = 2 AND small_category=6
-				 ORDER BY users.id DESC) result1)
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
+				FROM users 
+				JOIN LECTURE_STUDENT
+				ON users.id=LECTURE_STUDENT.id
+				JOIN LECTURE 
+				on LECTURE.num=LECTURE_STUDENT.ref_group
+				WHERE Large_category = 2 And small_category = 6
+				ORDER BY users.id DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>   
 <select id="springList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
@@ -133,14 +133,14 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
-				 FROM users 
-				 JOIN LECTURE_STUDENT
-				 ON users.id=LECTURE_STUDENT.id
-				 JOIN LECTURE 
-				 ON LECTURE.num=LECTURE_STUDENT.ref_group
-				 WHERE Large_category = 2 AND small_category=7
-				 ORDER BY users.id DESC) result1)
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
+				FROM users 
+				JOIN LECTURE_STUDENT
+				ON users.id=LECTURE_STUDENT.id
+				JOIN LECTURE 
+				on LECTURE.num=LECTURE_STUDENT.ref_group
+				WHERE Large_category = 2 And small_category = 7
+				ORDER BY users.id DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>   
 
@@ -149,14 +149,14 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
-				 FROM users 
-				 JOIN LECTURE_STUDENT
-				 ON users.id=LECTURE_STUDENT.id
-				 JOIN LECTURE 
-				 ON LECTURE.num=LECTURE_STUDENT.ref_group
-				 WHERE Large_category = 2 AND small_category=8
-				 ORDER BY users.id DESC) result1)
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
+				FROM users 
+				JOIN LECTURE_STUDENT
+				ON users.id=LECTURE_STUDENT.id
+				JOIN LECTURE 
+				on LECTURE.num=LECTURE_STUDENT.ref_group
+				WHERE Large_category = 2 And small_category = 8
+				ORDER BY users.id DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>  
 
@@ -165,30 +165,30 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
-				 FROM users 
-				 JOIN LECTURE_STUDENT
-				 ON users.id=LECTURE_STUDENT.id
-				 JOIN LECTURE 
-				 ON LECTURE.num=LECTURE_STUDENT.ref_group
-				 WHERE Large_category = 3
-				 ORDER BY users.id DESC) result1)
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
+				FROM users 
+				JOIN LECTURE_STUDENT
+				ON users.id=LECTURE_STUDENT.id
+				JOIN LECTURE 
+				on LECTURE.num=LECTURE_STUDENT.ref_group
+				WHERE Large_category = 3
+				ORDER BY users.id DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>  
 
 <select id="kotlinList" parameterType="lectureStudentDto" resultType="lectureStudentDto">
-	SELECT *
+	 SELECT *
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT birth, phone, email, regdate, Large_category, small_category
-				 FROM users 
-				 JOIN LECTURE_STUDENT
-				 ON users.id=LECTURE_STUDENT.id
-				 JOIN LECTURE 
-				 ON LECTURE.num=LECTURE_STUDENT.ref_group
-				 WHERE Large_category = 3 AND small_category=9
-				 ORDER BY users.id DESC) result1)
+				(SELECT users.id,birth, phone, email, regdate, Large_category, small_category
+				FROM users 
+				JOIN LECTURE_STUDENT
+				ON users.id=LECTURE_STUDENT.id
+				JOIN LECTURE 
+				on LECTURE.num=LECTURE_STUDENT.ref_group
+				WHERE Large_category = 3 AND small_category=9
+				ORDER BY users.id DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>  
   
