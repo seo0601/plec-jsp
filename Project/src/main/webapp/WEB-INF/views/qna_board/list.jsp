@@ -47,16 +47,14 @@
 		               		${tmp.writer }	               		
 		               </td>               
 		               <td>${tmp.regdate }</td>
-		               <td>
-		               		<c:choose>               		             		
-				                  <c:when test="${tmp.answered eq 'yes' }">
-				                     답변완료
-				                  </c:when>
-				                  <c:otherwise>  
-				                     답변대기    
-				                  </c:otherwise>
-		                     </c:choose>              
-		               </td>
+	               		<c:choose>               		             		
+			                  <c:when test="${tmp.answered eq 'yes' }">
+			                     <td>답변완료</td>>
+			                  </c:when>
+			                  <c:otherwise>  
+			                     <td style="color:red">답변대기</td>    
+			                  </c:otherwise>
+	                     </c:choose>     
 		            </tr>
 	            </c:forEach>          
 	         </tbody>
@@ -111,7 +109,7 @@
 	      </form>
 	  
       <c:if test="${not empty condition }">
-         <p>
+         <p style=" text-align: center;">
             <strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
             <a href="list" class="reset">리셋</a>
          </p>

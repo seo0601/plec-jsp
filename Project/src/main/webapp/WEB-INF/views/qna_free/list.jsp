@@ -93,7 +93,7 @@
 	  	</div>
       </form>
       <c:if test="${not empty condition }">
-         <p>
+         <p style=" text-align: center;">
             <strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
             <a href="list" class="reset">리셋</a>
          </p>
