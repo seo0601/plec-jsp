@@ -25,26 +25,35 @@
             </tr>
          </thead>
          <tbody>
-         <c:forEach var="tmp" items="${list }">
-            <tr>
-               <td>${tmp.num }</td>               
-               <td>
-               	<a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK }">${tmp.title }</a>
-               </td> 
-               <td>${tmp.writer }</td>               
-               <td>${tmp.regdate }</td>
-               <td>
-               		<c:choose>               		             		
-		                  <c:when test="${tmp.answered eq 'yes' }">
-		                     답변완료
-		                  </c:when>
-		                  <c:otherwise>  
-		                     답변대기    
-		                  </c:otherwise>
-                     </c:choose>              
-               </td>
-            </tr>
-         </c:forEach>
+           <c:forEach var="tmp" items="${list }" >
+	            <tr>
+	               <td>${tmp.num }</td>               
+	               <td>
+	               		<c:choose>
+	               			<c:when test="${tmp.writer eq sessionScope.id || sessionScope.id eq 'admin' }">
+	               				<a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK }">${tmp.title }</a>
+	               			</c:when>
+	               			<c:otherwise>	               		
+	               		 		<a href="javascript:userAlert()">${tmp.title }</a>
+	               			</c:otherwise>
+	               		</c:choose>
+	               </td> 
+	               <td>    
+	               		${tmp.writer }	               		
+	               </td>               
+	               <td>${tmp.regdate }</td>
+	               <td>
+	               		<c:choose>               		             		
+			                  <c:when test="${tmp.answered eq 'yes' }">
+			                     답변완료
+			                  </c:when>
+			                  <c:otherwise>  
+			                     답변대기    
+			                  </c:otherwise>
+	                     </c:choose>              
+	               </td>
+	            </tr>
+            </c:forEach>          
          </tbody>
       </table>
       <nav>
@@ -57,12 +66,13 @@
                <li class="page-item">
                   <a class="page-link" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
                </li>
-            </c:if>
-            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-               <li class="page-item ${pageNum eq i ? 'active' : '' }">
-                  <a class="page-link" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-               </li>
-            </c:forEach>
+            </c:if>            
+	            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }" varStatus="status">            
+	               <li class="page-item ${pageNum eq i ? 'active' : '' }">
+	                  <a class="page-link" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+	               </li>
+	            </c:forEach>		        
+            
             <%--
                마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
              --%>
@@ -73,7 +83,7 @@
             </c:if>
          </ul>
       </nav>
-      <c:if test="${sessionScope.id eq 'admin' }">
+      
 	      <!-- 검색 폼 -->
 	      <form action="list" method="get">
 	         <label for="condition">검색조건</label>   
@@ -85,7 +95,7 @@
 	         <input type="text" name="keyword" placeholder="검색어..." value="${keyword }"/>
 	         <button type="submit">검색</button>
 	      </form>
-	  </c:if>
+	  
       <c:if test="${not empty condition }">
          <p>
             <strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
@@ -100,6 +110,11 @@
          if(isDelete){
             location.href="delete?num="+num;
          }
+      }
+   </script>
+   <script>
+      function userAlert(){
+         alert("본인의 글만 열람할 수 있습니다.");         
       }
    </script>		
 
