@@ -11,21 +11,23 @@
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	<div class="visual-bg">
-		<div class="container hero">
-		    <div class="row">
-		        <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
-		            <h1>The revolution is here.</h1>
-		            <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque
-		                quis sapien viverra convallis. In non tempus lorem. </p><button
-		                class="btn btn-light btn-lg action-button" type="button">Learn More</button>
-		        </div>
-		        <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none phone-holder">
-		            <div class="iphone-mockup"><img src="assets/img/iphone.svg" class="device">
-		                <div class="screen"></div>
-		            </div>
-		        </div>
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<div class="visual-bg">
+			<div class="container hero">
+			    <div class="row">
+			        <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
+			            <h1>The revolution is here.</h1>
+			            <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque
+			                quis sapien viverra convallis. In non tempus lorem. </p><button
+			                class="btn btn-light btn-lg action-button" type="button">Learn More</button>
+			        </div>
+			        <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none phone-holder">
+			            <div class="iphone-mockup"><img src="assets/img/iphone.svg" class="device">
+			                <div class="screen"></div>
+			            </div>
+			        </div>
+			    </div>
 		    </div>
 	    </div>
 	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/frontendList">수강신청 프론트엔드리스트</a>
@@ -54,5 +56,10 @@
 	</div><!-- visual-bg -->
 	
 	
+
+		</div>
+	</div>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+>>>>>>> branch 'master' of https://github.com/Acorn202210/ItProject.git
 </body>
 </html>

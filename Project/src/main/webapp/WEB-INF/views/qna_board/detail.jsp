@@ -8,233 +8,128 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/qna_board/detail.jsp</title>
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/css/qna_board/qna_board_detail.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<style>
-   .content{
-      border: 1px dotted gray;
-   }
-   
-   /* 댓글 프로필 이미지를 작은 원형으로 만든다. */
-   .profile-image{
-      width: 50px;
-      height: 50px;
-      border: 1px solid #cecece;
-      border-radius: 50%;
-   }
-   /* ul 요소의 기본 스타일 제거 */
-   .comments ul{
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-   }
-   .comments dt{
-      margin-top: 5px;
-   }
-   .comments dd{
-      margin-left: 50px;
-   }
-   .comment-form textarea, .comment-form button{
-      float: left;
-   }
-   .comments li{
-      clear: left;
-   }
-   .comments ul li{
-      border-top: 1px solid #888;
-   }
-   .comment-form textarea{
-      width: 84%;
-      height: 100px;
-   }
-   .comment-form button{
-      width: 14%;
-      height: 100px;
-   }
-   /* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
-   .comments .comment-form{
-      display: none;
-   }
-   /* .reply_icon 을 li 요소를 기준으로 배치 하기 */
-   .comments li{
-      position: relative;
-   }
-   .comments .reply-icon{
-      position: absolute;
-      top: 1em;
-      left: 1em;
-      color: red;
-   }
-   pre {
-     display: block;
-     padding: 9.5px;
-     margin: 0 0 10px;
-     font-size: 13px;
-     line-height: 1.42857143;
-     color: #333333;
-     word-break: break-all;
-     word-wrap: break-word;
-     background-color: #f5f5f5;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-   }   
-   
-   .loader{
-      /* 로딩 이미지를 가운데 정렬하기 위해 */
-      text-align: center;
-      /* 일단 숨겨 놓기 */
-      display: none;
-   }   
-   
-   .loader svg{
-      animation: rotateAni 1s ease-out infinite;
-   }
-   
-   @keyframes rotateAni{
-      0%{
-         transform: rotate(0deg);
-      }
-      100%{
-         transform: rotate(360deg);
-      }
-   }
-</style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	<div class="container">
-	  <div class="d-flex justify-content-end mt-3">
-	  	  <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
-	      <c:if test="${dto.prevNum ne 0}">
-	         <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}'">이전글</button>
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<div class="container">
+		  <div class="d-flex justify-content-end mt-3">
+		  	  <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
+		      <c:if test="${dto.prevNum ne 0}">
+		         <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}'">이전글</button>
+		      </c:if>
+		      
+		      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
+		      <c:if test="${dto.nextNum ne 0 }">
+		        <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}'">다음글</button>
+		      </c:if>
+		  </div>
+	      
+	      <%-- 만일 검색 키워드가 있다면 --%>
+	      <c:if test="${not empty keyword }">
+	         <p>
+	            <strong>${condition }</strong> 조건 
+	            <strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
+	         </p>
+	      </c:if>
+	      <h1 class="mb-3">${dto.title }</h1>
+	      <table>
+	         <tr>
+	            <th>글번호 </th>
+	            <td>${dto.num }</td>
+	         </tr>
+	         <tr>
+	            <th>작성자 </th>
+	            <td>${dto.writer }</td>
+	         </tr>
+	         <tr>
+	            <th>조회수 </th>
+	            <td>${dto.viewCount }</td>   
+	         </tr>
+	         <tr>
+	            <th>작성일 </th>
+	            <td>${dto.regdate }</td>
+	         </tr>
+	      </table>
+	      <div class="mainContent mt-3">${dto.content }</div>
+	             
+	      <c:if test="${sessionScope.id eq dto.writer }">
+	      	 <div class="d-flex justify-content-end mt-2">
+	      	 	<button class="btn btn-sm button me-2" type="button" onclick="location.href='updateform?num=${dto.num }'">수정</button>
+	         	<button class="btn btn-sm btn-danger me-2" type="button" onclick="deleteConfirm()">삭제</button>
+	      	 </div>
+	         <script>
+	            function deleteConfirm(){
+	               const isDelete=confirm("이 글을 삭제 하겠습니까?");
+	               if(isDelete){
+	                  location.href="delete?num=${dto.num}";
+	               }
+	            }
+	         </script>
+	      </c:if>
+	      <c:if test="${sessionScope.id eq 'admin' && empty commentList}">
+	      <p class="mt-3">댓글을 입력해주세요</p>
+		      <!-- 원글에 댓글을 작성할 폼 -->
+		      <form class="comment-form insert-form" action="comment_insert" method="post">
+		         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
+		         <input type="hidden" name="ref_group" value="${dto.num }"/>
+		         <textarea name="content" class="me-3"></textarea>
+		         <button class="button btn mb-5" type="submit">등록</button>
+		      </form>
 	      </c:if>
 	      
-	      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
-	      <c:if test="${dto.nextNum ne 0 }">
-	        <button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}'">다음글</button>
-	      </c:if>
-	  </div>
-      
-      <%-- 만일 검색 키워드가 있다면 --%>
-      <c:if test="${not empty keyword }">
-         <p>
-            <strong>${condition }</strong> 조건 
-            <strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
-         </p>
-      </c:if>
-      <h1>${dto.title }</h1>
-      <table>
-         <tr>
-            <th>글번호 </th>
-            <td>${dto.num }</td>
-         </tr>
-         <tr>
-            <th>작성자 </th>
-            <td>${dto.writer }</td>
-         </tr>
-         <tr>
-            <th>조회수 </th>
-            <td>${dto.viewCount }</td>   
-         </tr>
-         <tr>
-            <th>작성일 </th>
-            <td>${dto.regdate }</td>
-         </tr>
-      </table>
-      <div class="mainContent mt-3">${dto.content }</div>
-             
-      <c:if test="${sessionScope.id eq dto.writer }">
-         <a href="updateform?num=${dto.num }">수정</a>
-         <a href="javascript:" onclick="deleteConfirm()">삭제</a>
-         <script>
-            function deleteConfirm(){
-               const isDelete=confirm("이 글을 삭제 하겠습니까?");
-               if(isDelete){
-                  location.href="delete?num=${dto.num}";
-               }
-            }
-         </script>
-      </c:if>
-      <c:if test="${sessionScope.id eq 'admin'}">
-      <p class="mt-4">댓글을 입력해주세요</p>
-	      <!-- 원글에 댓글을 작성할 폼 -->
-	      <form class="comment-form insert-form" action="comment_insert" method="post">
-	         <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
-	         <input type="hidden" name="ref_group" value="${dto.num }"/>
-	         
-	         <textarea name="content"></textarea>
-	         <button class="button" type="submit">등록</button>
-	      </form>
-      </c:if>
-      
-      <!-- 댓글 목록 -->
-      <div class="comments">      
-      
-         <ul>
-            <c:forEach var="tmp" items="${commentList }">
-               <li id="reli${tmp.num }">
-               		<dl>
-                       <dt>
-                          <c:if test="${ empty tmp.profile }">
-                             <svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                             </svg>
-                          </c:if>
-                          <c:if test="${not empty tmp.profile }">
-                             <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
-                          </c:if>
-                          <span>${tmp.writer }</span>                          
-                          <span>${tmp.regdate }</span>
-                          
-                          <c:if test="${ (id ne null) and (tmp.writer eq id) }">
-                             <a data-num="${tmp.num }" class="update-link" href="javascript:">수정</a>                             
-                          </c:if>
-                       </dt>
-                       <dd>
-                          <pre id="pre${tmp.num }">${tmp.content }</pre>                  
-                       </dd>
-                    </dl>
-               		<c:if test="${tmp.writer eq id }">
-                      <form id="updateForm${tmp.num }" class="comment-form update-form" action="comment_update" method="post">
-                         <input type="hidden" name="num" value="${tmp.num }" />
-                         <textarea name="content">${tmp.content }</textarea>
-                         <button type="submit">수정</button>
-                      </form>
-                	</c:if>
-               </li>  
-            </c:forEach>
-         </ul>
-      </div>      
-      <div class="loader">
-         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-         </svg>
-      </div>      
+	      <!-- 댓글 목록 -->
+	      <div class="comments mt-3">      
+	      
+	         <ul>
+	            <c:forEach var="tmp" items="${commentList }">
+	               <li id="reli${tmp.num }">
+	               		<dl>
+	                       <dt>
+	                          <c:if test="${ empty tmp.profile }">
+	                             <svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+	                               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+	                               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+	                             </svg>
+	                          </c:if>
+	                          <c:if test="${not empty tmp.profile }">
+	                             <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
+	                          </c:if>
+	                          <span>${tmp.writer }</span>                          
+	                          <span>${tmp.regdate }</span>
+	                          
+	                          <c:if test="${ (id ne null) and (tmp.writer eq id) }">
+	                             <a data-num="${tmp.num }" class="update-link reset" href="javascript:">수정</a>                             
+	                          </c:if>
+	                       </dt>
+	                       <dd>
+	                          <pre id="pre${tmp.num }">${tmp.content }</pre>                  
+	                       </dd>
+	                    </dl>
+	               		<c:if test="${tmp.writer eq id }">
+	                      <form id="updateForm${tmp.num }" class="comment-form update-form" action="comment_update" method="post">
+	                         <input type="hidden" name="num" value="${tmp.num }" />
+	                         <textarea name="content">${tmp.content }</textarea>
+	                         <button type="submit">수정</button>
+	                      </form>
+	                	</c:if>
+	               </li>  
+	            </c:forEach>
+	         </ul>
+	      </div>      
+	      <div class="loader">
+	         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+	              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+	              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+	         </svg>
+	      </div>      
+		</div>
 	</div>
-   
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
-      
-      //클라이언트가 로그인 했는지 여부
-      let isLogin=${ not empty id };
-      
-      document.querySelector(".insert-form")
-         .addEventListener("submit", function(e){
-            //만일 로그인 하지 않았으면 
-            if(!isLogin){
-               //폼 전송을 막고 
-               e.preventDefault();
-               //로그인 폼으로 이동 시킨다.
-               location.href=
-                  "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna_board/detail?num=${dto.num}";
-            }
-         });
-      
       /*
          detail
           페이지 로딩 시점에 만들어진 1 페이지에 해당하는 

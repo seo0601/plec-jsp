@@ -726,7 +726,7 @@ public class LectureServiceImpl implements LectureService{
 			dto.setComment_group(Integer.parseInt(comment_group));
 		}
 		//댓글 정보를 DB 에 저장하기
-		reviewDao.insert(dto);		
+		reviewDao.insert(dto);	
 		
 	}
 

@@ -17,14 +17,12 @@ import com.acorn.project.qna_free.service.QnaFreeService;
 
 @Controller
 public class QnaFreeController {
-
 	@Autowired
 	private QnaFreeService service;
 	
 	@RequestMapping("/qna_free/list")
 	public String list(HttpServletRequest request) {
 		service.getList(request);
-		
 		return "qna_free/list";
 	}
 	
@@ -81,7 +79,7 @@ public class QnaFreeController {
       		
 		//테스트를 위해 시간 지연시키기
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +88,16 @@ public class QnaFreeController {
       
 		return "qna_free/ajax_comment_list";
 	}
-	
+	//댓글 삭제 요청 처리
+	@RequestMapping("/qna_free/comment_delete")
+	@ResponseBody
+	public Map<String, Object> commentDelete(HttpServletRequest request) {
+		service.deleteComment(request);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
 	//댓글 수정 요청처리 (JSON 으로 응답하도록 한다)
 	@RequestMapping("/qna_free/comment_update")
 	@ResponseBody

@@ -1,51 +1,57 @@
 html,
-body {
+.userform {
   height: 100%;
 }
 
-body {
+.userform {
   display: flex;
   padding-bottom: 40px;
   font-family: 'Noto Sans KR', sans-serif;
 }
 
 
-.form-signup {
+.form-signin {
   max-width: 500px;
   padding: 10px;
 }
 
-.form-signup .form-floating:focus-within {
+.form-signin .form-floating:focus-within {
   z-index: 2;
 }
 
-.form-signup #floatingId {
+.form-signin #floatingId {
   margin-top: 50px;
 }
 
-.form-signup input[type="password"] {
+.form-signin input[type="password"] {
   margin-top: 10px;
   
 }
 
-.form-signup #floatingPhone, #floatingBirth{
+.form-signin #floatingPhone, #floatingBirth{
   margin-top: 10px;
   
 }
 
-.form-signup #floatingEmail {
+.form-signin #floatingEmail {
   margin-top: 10px;
   margin-bottom : 30px
   
 }
 
-.btn{
+.button{
 	background: #1EBD8E;
 	color:#ffffff;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-.btn:hover{
+.button:hover{
 	background-color: #46DEB1;
 	color:#ffffff;
+}
+
+.main{
+	color : #1EBD8E;
+	font-family: 'Noto Sans', sans-serif;
+	margin-top:150px;
 }

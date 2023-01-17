@@ -24,7 +24,7 @@
                         <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item" role="presentation" href="${pageContext.request.contextPath}/notice/list">공지사항</a>
                             <a class="dropdown-item" role="presentation" href="${pageContext.request.contextPath}/faq/list">자주묻는질문</a>
-                            <a class="dropdown-item" role="presentation" href="${pageContext.request.contextPath}/qna_board/list">1:1답변</a>
+                            <a class="dropdown-item" role="presentation" href="${pageContext.request.contextPath}/qna_board/list">1:1 문의</a>
                         </div>
                     </li>
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle new-nav-link"
@@ -52,10 +52,10 @@
 	                        <p>
 								<c:choose>
 									<c:when test="${sessionScope.id eq 'admin'}">
-										<a href="${pageContext.request.contextPath }/users/list" class="login">회원 목록</a>
+										<a href="${pageContext.request.contextPath }/users/list" class="login" style="vertical-align: middle;">회원 목록</a>
 									</c:when>
 									<c:otherwise>
-										<span class="navbar-text"><a href="${pageContext.request.contextPath}/users/info" class="login">${sessionScope.id }</a> 로그인중... </span>
+										<span class="navbar-text"><a href="${pageContext.request.contextPath}/users/info" class="login" style="vertical-align: middle;">${sessionScope.id }</a> 로그인중... </span>
 									</c:otherwise>
 								</c:choose>
 	                            <a href="${pageContext.request.contextPath}/users/logout" class="btn btn-light action-button" role="button" >로그아웃</a>

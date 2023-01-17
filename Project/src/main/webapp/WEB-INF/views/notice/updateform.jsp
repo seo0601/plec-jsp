@@ -9,27 +9,31 @@
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-<div class="container mt-5">
-	<h1 class="sr-only">글 수정 폼 입니다.</h1>
-	<form action="update" method="post">
-		<input type="hidden" name="num" value="${dto.num }" />
-		<div>
-			<label for="title" class="form-label">제목</label>
-			<input type="text" name="title" id="title" value="${dto.title }"  class="form-control"/>
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<div class="container mt-5">
+			<h1 class="sr-only">글 수정 폼 입니다.</h1>
+			<form action="update" method="post">
+				<input type="hidden" name="num" value="${dto.num }" />
+				<div>
+					<label for="title" class="form-label">제목</label>
+					<input type="text" name="title" id="title" value="${dto.title }"  class="form-control"/>
+				</div>
+				<div class="mt-3">
+					<label for="content" class="form-label">내용</label>
+					<textarea name="content" id="content" rows="10" class="form-control textarea-h">${dto.content }</textarea>
+				</div>
+		        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+		            <button type="submit" onclick="submitContents(this);" class="new-btn btn ">수정</button>
+				    <button type="reset" class="btn btn-danger">취소</button>
+				    <a href="${pageContext.request.contextPath}/notice/list" class="btn btn-secondary">목록</a>
+		        </div>
+				
+			</form>
 		</div>
-		<div class="mt-3">
-			<label for="content" class="form-label">내용</label>
-			<textarea name="content" id="content" rows="10" class="form-control textarea-h">${dto.content }</textarea>
-		</div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-            <button type="submit" onclick="submitContents(this);" class="new-btn btn ">수정</button>
-		    <button type="reset" class="btn btn-danger">취소</button>
-		    <a href="${pageContext.request.contextPath}/notice/list" class="btn btn-secondary">목록</a>
-        </div>
-		
-	</form>
-</div>
+	</div>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+
 <!-- SmartEditor 에서 필요한 javascript 로딩  -->
 <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 <script>

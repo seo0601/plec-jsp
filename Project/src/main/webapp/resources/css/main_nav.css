@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.wrapper {
+  min-height: calc(100vh - 70px);
+}
+.footer {
+  height: 50px;
+}
+
+
 .header-blue {
   font-family:'Source Sans Pro', sans-serif;
   border-bottom: 1px solid #1EBD8E;
@@ -220,7 +228,7 @@
 
 
 /* 메인 header */
-.navbar-text{color:#000}
+.navbar-text{color:#000; vertical-align: middle;}
 .new-nav-link {color:#000}
 .new-nav-link:hover, 
 .new-nav-link:focus,
@@ -228,6 +236,9 @@
 .navbar-nav .show>.new-nav-link{color:#000; font-weight:700}
 .ham-btn{background-image:url(../images/Hamburger_Icon.png);}
 
+
+/*reset*/
+a {color:inherit; text-decoration: none}
 
 
 
