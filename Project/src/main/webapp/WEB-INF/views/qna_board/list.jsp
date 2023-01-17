@@ -8,20 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/qna_board/list.jsp</title>
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/css/qna_board/qna_board_list.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	
 	<div class="sub-tit-box">
 		<div class="container">
 			<h3 class="sub-tit">1:1문의</h3>
 		</div>
 	</div>
 	<div class="container">
-      <c:if test="${sessionScope.id ne 'admin' }">
-      	<a href="${pageContext.request.contextPath }/qna_board/insertform">새글 작성</a>
-      </c:if>
       <div class="table-responsive table-top">
 	      <table class="table table-hover align-middle">
 	         <thead style="text-align: center;">
@@ -65,7 +61,13 @@
 	            </c:forEach>          
 	         </tbody>
 	      </table>
+	     
 	   </div>
+	   <c:if test="${sessionScope.id ne 'admin' }">
+        	<div class="d-flex justify-content-end">
+        		<button class="btn btn-secondary btn-sm me-2 " type="button" onclick="location.href='${pageContext.request.contextPath }/qna_board/insertform'">새글작성</button>
+        	</div>
+	   </c:if>
       <nav aria-label="Page navigation" class="page-btn">
          <ul class="pagination justify-content-center">
             <%--

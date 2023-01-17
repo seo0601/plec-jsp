@@ -6,108 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>/views/qna_free/detail.jsp</title>
+<jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
+<link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<style>
-   .content{
-      border: 1px dotted gray;
-   }
-   
-   /* 댓글 프로필 이미지를 작은 원형으로 만든다. */
-   .profile-image{
-      width: 50px;
-      height: 50px;
-      border: 1px solid #cecece;
-      border-radius: 50%;
-   }
-   /* ul 요소의 기본 스타일 제거 */
-   .comments ul{
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-   }
-   .comments dt{
-      margin-top: 5px;
-   }
-   .comments dd{
-      margin-left: 50px;
-   }
-   .comment-form textarea, .comment-form button{
-      float: left;
-   }
-   .comments li{
-      clear: left;
-   }
-   .comments ul li{
-      border-top: 1px solid #888;
-   }
-   .comment-form textarea{
-      width: 84%;
-      height: 100px;
-   }
-   .comment-form button{
-      width: 14%;
-      height: 100px;
-   }
-   /* 댓글에 댓글을 다는 폼과 수정폼은 일단 숨긴다. */
-   .comments .comment-form{
-      display: none;
-   }
-   /* .reply_icon 을 li 요소를 기준으로 배치 하기 */
-   .comments li{
-      position: relative;
-   }
-   .comments .reply-icon{
-      position: absolute;
-      top: 1em;
-      left: 1em;
-      color: red;
-   }
-   pre {
-     display: block;
-     padding: 9.5px;
-     margin: 0 0 10px;
-     font-size: 13px;
-     line-height: 1.42857143;
-     color: #333333;
-     word-break: break-all;
-     word-wrap: break-word;
-     background-color: #f5f5f5;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-   }   
-   
-   .loader{
-      /* 로딩 이미지를 가운데 정렬하기 위해 */
-      text-align: center;
-      /* 일단 숨겨 놓기 */
-      display: none;
-   }   
-   
-   .loader svg{
-      animation: rotateAni 1s ease-out infinite;
-   }
-   
-   @keyframes rotateAni{
-      0%{
-         transform: rotate(0deg);
-      }
-      100%{
-         transform: rotate(360deg);
-      }
-   }
-</style>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<div class="container">
-	  <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
-      <c:if test="${dto.prevNum ne 0}">
-         <a href="detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
-      </c:if>
-      
-      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
-      <c:if test="${dto.nextNum ne 0 }">
-         <a href="detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
-      </c:if>
+		<div class="d-flex justify-content-end mt-3">
+			  <%-- 만일 이전글(더 옛날글)의 글번호가 0 가 아니라면(이전글이 존재 한다면) --%>
+		      <c:if test="${dto.prevNum ne 0}">
+		      	<button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}'">이전글</button>
+		      </c:if>
+		      
+		      <%-- 만일 다음글(더 최신글)의 글번호가 0 가 아니라면(다음글이 존재 한다면) --%>
+		      <c:if test="${dto.nextNum ne 0 }">
+		      	<button class="btn btn-secondary btn-sm me-2" type="button" onclick="location.href='detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}'">다음글</button>
+		      </c:if>
+		 </div>
       
       <%-- 만일 검색 키워드가 있다면 --%>
       <c:if test="${not empty keyword }">
@@ -116,7 +32,7 @@
             <strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
          </p>
       </c:if>
-      <h3>글 상세 보기</h3>
+      <h1 class="mb-3">${dto.title }</h1>
       <table>
          <tr>
             <th>글번호</th>
@@ -127,10 +43,6 @@
             <td>${dto.writer }</td>
          </tr>
          <tr>
-            <th>제목</th>
-            <td>${dto.title }</td>
-         </tr>
-         <tr>
             <th>조회수</th>
             <td>${dto.viewCount }</td>   
          </tr>
@@ -138,15 +50,15 @@
             <th>작성일</th>
             <td>${dto.regdate }</td>
          </tr>
-         <tr>
-            <td colspan="2">
-               <div>${dto.content }</div>
-            </td>
-         </tr>   
       </table>
+      <div class="mainContent mt-3">${dto.content }</div>
+      
       <c:if test="${sessionScope.id eq dto.writer }">
-         <a href="updateform?num=${dto.num }">수정</a>
-         <a href="javascript:" onclick="deleteConfirm()">삭제</a>
+      	<div class="d-flex justify-content-end mt-3">
+      		<button class="btn btn-sm me-2 button" type="button" onclick="location.href='updateform?num=${dto.num }'">수정</button>
+         	<button class="btn btn-sm me-2 btn-danger" type="button" onclick="deleteConfirm()">삭제</button>
+      	</div>
+         
          <script>
             function deleteConfirm(){
                const isDelete=confirm("이 글을 삭제 하겠습니까?");
@@ -156,7 +68,7 @@
             }
          </script>
       </c:if>
-      <h4>댓글을 입력해주세요</h4>
+      <p class="mt-4">댓글을 입력해주세요</p>
 	  <!-- 원글에 댓글을 작성할 폼 -->
 	  <form class="comment-form insert-form" action="comment_insert" method="post">
 	     <!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
@@ -164,8 +76,8 @@
 	     <!-- 원글의 작성자가 댓글의 대상자가 된다. -->
 	  	 <input type="hidden" name="target_id" value="${dto.writer }"/>	
 	  	 
-	     <textarea name="content">${empty id ? '댓글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
-	     <button type="submit">등록</button>
+	     <textarea name="content" class="me-3">${empty id ? '댓글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
+	     <button class="button btn" type="submit">등록</button>
 	  </form>
       
       <!-- 댓글 목록 -->
@@ -202,10 +114,10 @@
                                     @<i>${tmp.target_id }</i>
                                  </c:if>
                                  <span>${tmp.regdate }</span>
-                                 <a data-num="${tmp.num }" href="javascript:" class="reply-link">답글</a>
+                                 <a data-num="${tmp.num }" href="javascript:" class="reply-link reset">답글</a>
                                  <c:if test="${ (id ne null) and (tmp.writer eq id) }">
-                                    <a data-num="${tmp.num }" class="update-link" href="javascript:">수정</a>
-                                    <a data-num="${tmp.num }" class="delete-link" href="javascript:">삭제</a>
+                                    <a data-num="${tmp.num }" class="update-link reset" href="javascript:">수정</a>
+                                    <a data-num="${tmp.num }" class="delete-link del" href="javascript:">삭제</a>
                                  </c:if>
                               </dt>
                               <dd>
@@ -216,17 +128,16 @@
                               <input type="hidden" name="ref_group" value="${dto.num }"/>
                               <input type="hidden" name="target_id" value="${tmp.writer }"/>
                               <input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
-                              <textarea name="content"></textarea>
-                              <button type="submit">등록</button>
+                              <textarea name="content" class="me-3"></textarea>
+                              <button type="submit" class="button btn">등록</button>
                            </form>
                         <c:if test="${tmp.writer eq id }">
                            <form id="updateForm${tmp.num }" class="comment-form update-form" action="comment_update" method="post">
                               <input type="hidden" name="num" value="${tmp.num }" />
-                              <textarea name="content">${tmp.content }</textarea>
-                              <button type="submit">수정</button>
+                              <textarea name="content" class=" me-3">${tmp.content }</textarea>
+                              <button type="submit" class="button btn">수정</button>
                            </form>
                         </c:if>
-                        </li>      
                   </c:otherwise>
                </c:choose>
             </c:forEach>

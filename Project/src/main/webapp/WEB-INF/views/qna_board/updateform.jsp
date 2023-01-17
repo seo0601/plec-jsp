@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/qna_board/updateform.jsp</title>
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/css/qna_board/qna_board_updateform.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>

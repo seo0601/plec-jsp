@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/qna_board/detail.jsp</title>
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/css/qna_board/qna_board_detail.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
@@ -101,7 +101,7 @@
                           <span>${tmp.regdate }</span>
                           
                           <c:if test="${ (id ne null) and (tmp.writer eq id) }">
-                             <a data-num="${tmp.num }" class="update-link" href="javascript:">수정</a>                             
+                             <a data-num="${tmp.num }" class="update-link reset" href="javascript:">수정</a>                             
                           </c:if>
                        </dt>
                        <dd>

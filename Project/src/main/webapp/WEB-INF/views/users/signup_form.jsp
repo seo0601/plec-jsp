@@ -9,12 +9,12 @@
 <title>/views/users/signup_form.jsp</title>
 
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/css/users/signup-form.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/users.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-		<main class="form-signup w-100 m-auto mt-5">
+		<main class="form-signin w-100 m-auto mt-5">
 		   <h3 class="text-center mb-3 fw-normal">환영합니다</h3>
 		   <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
 		  	  <div class="form-floating">

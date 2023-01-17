@@ -9,6 +9,11 @@ body{
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+.button:hover{
+	background-color: #46DEB1;
+	color:#ffffff;
+}
+
 .mainContent{
 	width:99%;
 	height:450px;
@@ -16,6 +21,23 @@ body{
 	border-radius: 10px;
 	padding:10px 20px;
 }
+
+textarea{
+	width:99%;
+	height:450px;
+
+}
+
+.reset{
+	color:grey;
+	text-decoration: underline;
+}
+
+.del{
+	color:red;
+	text-decoration: underline;
+}
+
 
 .content{
       border: 1px dotted gray;
@@ -102,3 +124,4 @@ pre {
       transform: rotate(360deg);
    }
 }
+

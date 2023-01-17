@@ -7,20 +7,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/qna_free/insertform.jsp</title>
+<jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
+<link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<div class="container">
-		<h3>새글 작성 폼입니다.</h3>
-	   	<form action="insert" method="post" id="insertForm">
+	   	<form class="mt-3" action="insert" method="post" id="insertForm">
 	      <div class="mb-3">
-	         <label for="title">제목</label>
-	         <input type="text" name="title" id="title"/>
+	         <label for="title" class="form=label">제목</label>
+	         <input type="text" name="title" id="title" class="form-control"/>
 	      </div>
 	      <div class="mb-3">
-	         <label for="content">내용</label>
+	         <label for="content" class="form-label">내용</label>
 	         <textarea name="content" id="content"></textarea>
 	      </div>
-	      <button type="submit" onclick="submitContents(this)">저장</button>
+	      <div class="d-flex justify-content-end">
+	      	<button class="btn me-3 button" type="submit" onclick="submitContents(this)">저장</button>
+		   </div>
 		</form>
 	</div>
 	

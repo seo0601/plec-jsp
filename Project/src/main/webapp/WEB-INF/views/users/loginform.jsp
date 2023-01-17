@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/users/loginform.jsp</title>
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/css/users/login-form.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/users.css" rel="stylesheet">
 <style>
 	
 </style>
@@ -29,7 +29,7 @@
 	        </c:choose>
 		    <h1 class="mb-3 fw-normal main">login</h1>
 		    <div class="form-floating">
-		      <input type="text" class="form-control" id="floatingInput" name="id" placeholder="id" value="${savedId}">
+		      <input type="text" class="form-control" id="floatingId" name="id" placeholder="id" value="${savedId}">
 		      <label for="floatingInput">id</label>
 		    </div>
 		    <div class="form-floating">

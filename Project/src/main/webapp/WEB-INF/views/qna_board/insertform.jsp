@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/qna_board/insertform.jsp</title>
 <jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/css/qna_board/qna_board_insertform.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/board.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
@@ -23,7 +23,7 @@
 	         <textarea name="content" id="content"></textarea>
 	      </div>
 	      <div class="d-flex justify-content-end">
-	      	<button class="btn me-3" type="submit" onclick="submitContents(this)">저장</button>
+	      	<button class="btn me-3 button" type="submit" onclick="submitContents(this)">저장</button>
 		   </div>
 		</form>
 	</div>
