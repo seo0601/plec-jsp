@@ -1,0 +1,21 @@
+html,
+body{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.btn{
+	background-color: #1EBD8E;
+	color:#ffffff;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.btn:hover{
+	background-color: #46DEB1;
+	color:#ffffff;
+}
+
+textarea{
+	width:99%;
+	height:450px;
+
+}

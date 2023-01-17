@@ -5,8 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Alias("lectureDto")
 public class LectureDto {
-	private int lectureNum;
+	private int num;
 	private String teacher;
+	private String writer;
 	private String title;
 	private String describe;
 	private String videoPath;
@@ -23,12 +24,13 @@ public class LectureDto {
 	
 	public LectureDto() {}
 
-	public LectureDto(int lectureNum, String teacher, String title, String describe, String videoPath, String imagePath,
-			String regdate, int viewCount, int large_category, int small_category, int startRowNum, int endRowNum,
-			int prevNum, int nextNum, MultipartFile image) {
+	public LectureDto(int num, String teacher, String writer, String title, String describe, String videoPath,
+			String imagePath, String regdate, int viewCount, int large_category, int small_category, int startRowNum,
+			int endRowNum, int prevNum, int nextNum, MultipartFile image) {
 		super();
-		this.lectureNum = lectureNum;
+		this.num = num;
 		this.teacher = teacher;
+		this.writer = writer;
 		this.title = title;
 		this.describe = describe;
 		this.videoPath = videoPath;
@@ -44,12 +46,12 @@ public class LectureDto {
 		this.image = image;
 	}
 
-	public int getLectureNum() {
-		return lectureNum;
+	public int getNum() {
+		return num;
 	}
 
-	public void setLectureNum(int lectureNum) {
-		this.lectureNum = lectureNum;
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getTeacher() {
@@ -58,6 +60,14 @@ public class LectureDto {
 
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	public String getTitle() {
@@ -164,6 +174,7 @@ public class LectureDto {
 		this.image = image;
 	}
 
+	
 	
 
 	

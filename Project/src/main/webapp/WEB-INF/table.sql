@@ -16,8 +16,8 @@ CREATE TABLE QNA_BOARD_QUESTION(
     title VARCHAR2(50) NOT NULL, --제목
     content CLOB, --글 내용
     viewCount NUMBER, -- 조회수
-    regdate DATE --글 작성일
-    answered CHAR(3) DEFAULT 'no', -- 답변여부
+    regdate DATE, --글 작성일
+    answered CHAR(3) DEFAULT 'no' -- 답변여부
 );
 -- QNA_BOARD_QUESTION 시퀀스
 CREATE SEQUENCE QNA_BOARD_QUESTION_seq; 
@@ -101,14 +101,15 @@ CREATE SEQUENCE NOTICE_seq;
 CREATE TABLE FAQ(
     num NUMBER PRIMARY KEY, --글번호
     question CLOB, -- 질문
-    content CLOB, --글 내용
+    content CLOB --글 내용
 );
 -- FAQ 시퀀스
 CREATE SEQUENCE FAQ_seq;
 
 -- LECTURE 테이블 
 CREATE TABLE LECTURE(
-    lectureNum NUMBER PRIMARY KEY, --글번호
+    num NUMBER PRIMARY KEY, --글번호
+    writer VARCHAR2(50) NOT NULL,
     teacher VARCHAR2(50) NOT NULL, --선생님
     title VARCHAR2(50) NOT NULL, --제목
     describe CLOB, --강의 설명
@@ -121,3 +122,29 @@ CREATE TABLE LECTURE(
 );
 -- LECTURE 시퀀스
 CREATE SEQUENCE LECTURE_seq;
+
+-- 강의 후기
+CREATE TABLE LECTURE_REVIEW(
+   num NUMBER PRIMARY KEY, --댓글의 글번호
+    writer VARCHAR2(100), --댓글 작성자의 아이디
+    content VARCHAR2(500), --댓글 내용
+    target_id VARCHAR2(100), --댓글의 대상자 아이디
+    ref_group NUMBER,
+    comment_group NUMBER,
+    deleted CHAR(3) DEFAULT 'no',
+    star NUMBER, --별점    
+    regdate DATE
+);
+
+-- 강의 후기의 글번호를 얻어낼 시퀀스
+CREATE SEQUENCE LECTURE_REVIEW_seq;
+
+-- 강의 수강생
+CREATE TABLE LECTURE_STUDENT(
+    num NUMBER PRIMARY KEY,
+    id VARCHAR2(50),
+	lectureSign NUMBER,
+    complete CHAR(3) DEFAULT 'no'
+);
+
+CREATE SEQUENCE LECTURE_STUDENT_seq;

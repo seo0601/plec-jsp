@@ -34,18 +34,18 @@
 				
 				<c:if test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link" href="list?pageNum=${startPageNum-1 }">Prev</a>
+						<a class="page-link" href="${pageContext.request.contextPath}/lecture/mobile/kotlinList?pageNum=${startPageNum-1 }">Prev</a>
 					</li>
 				</c:if>
 				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 					<li class="page-item ${pageNum eq i ? 'active' : '' }">
-						<a class="page-link" href="list?pageNum=${i }">${i }</a>
+						<a class="page-link" href="${pageContext.request.contextPath}/lecture/mobile/kotlinList?pageNum=${i }">${i }</a>
 					</li>
 				</c:forEach>
 				
 				<c:if test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-						<a class="page-link" href="list?pageNum=${endPageNum+1 }">Next</a>
+						<a class="page-link" href="${pageContext.request.contextPath}/lecture/mobile/kotlinList?pageNum=${endPageNum+1 }">Next</a>
 					</li>
 				</c:if>				
 			</ul>

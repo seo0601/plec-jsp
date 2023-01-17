@@ -7,59 +7,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/home.jsp</title>
+<jsp:include page="/WEB-INF/views/include/bootCss.jsp"></jsp:include>
 </head>
 
 <body>
-	<div class="container">
-		<c:choose>
-			<c:when test="${ empty sessionScope.id}">
-				<a href="${pageContext.request.contextPath}/users/loginform">로그인</a>
-				<a href="${pageContext.request.contextPath}/users/signup_form">회원가입</a>
-			</c:when>
-			<c:otherwise>
-				<p>
-					<a href="${pageContext.request.contextPath}/users/info">${sessionScope.id }</a> 로그인중... 
-					<a href="${pageContext.request.contextPath}/users/logout">로그아웃</a>
-				</p>
-			</c:otherwise>
-		</c:choose>	
-		
-		<ul>
-			<c:if test="${sessionScope.id eq 'admin'}">
-				<li><a href="${pageContext.request.contextPath }/users/list">회원 목록</a></li>
-			</c:if>
-			<li><a href="lecture/frontend/frontendList">프론트</a></li>
-			<li><a href="lecture/frontend/jsList">javascript</a></li>
-			<li><a href="lecture/frontend/html_cssList">html/css</a></li>
-			<li><a href="lecture/frontend/reactList">react</a></li>
-			<li><a href="lecture/frontend/vueList">vue.js</a></li>
-			<li><a href="lecture/frontend/jQueryList">jQuery</a></li>
-			
-		</ul>
-		
-		<ul>
-			<li><a href="lecture/backend/backendList">백엔드</a></li>
-			<li><a href="lecture/backend/javaList">Java</a></li>
-			<li><a href="lecture/backend/springList">Spring</a></li>
-			<li><a href="lecture/backend/springbootList">Spring Boot</a></li>
-		</ul>
-		
-		<ul>
-			<li><a href="lecture/mobile/mobileList">모바일</a></li>
-			<li><a href="lecture/mobile/kotlinList">코틀린</a></li>                      
-		</ul>
-		
-		<ul>
-			<li><a href="notice/list">공지사항</a></li>
-			<li><a href="faq/list">자주묻는질문</a></li>
-			<li><a href="qna_board/list">1:1답변</a></li>
-		</ul>
-		
-		<ul>
-			<li><a href="qna_users/list">질문답변</a></li>
-			<li><a href="qna_free/list">자유게시판</a></li>
-		</ul>
-	</div>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<div class="visual-bg">
+		<div class="container hero">
+		    <div class="row">
+		        <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
+		            <h1>The revolution is here.</h1>
+		            <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque
+		                quis sapien viverra convallis. In non tempus lorem. </p><button
+		                class="btn btn-light btn-lg action-button" type="button">Learn More</button>
+		        </div>
+		        <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none phone-holder">
+		            <div class="iphone-mockup"><img src="assets/img/iphone.svg" class="device">
+		                <div class="screen"></div>
+		            </div>
+		        </div>
+		    </div>
+	    </div>
+	</div><!-- visual-bg -->
 	
 	
 </body>

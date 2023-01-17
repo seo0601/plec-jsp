@@ -29,7 +29,7 @@
 			<button type="submit" onclick="submitContents(this)">저장</button>
 		</form>
 	</div>
-	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/SmartEditor/js/HuskyEZCreator.js"></script>
 	<script>
 		var oEditors = [];
 		
@@ -39,7 +39,7 @@
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
 			elPlaceHolder: "content",
-			sSkinURI: "${pageContext.request.contextPath}/SmartEditor/SmartEditor2Skin.html",	
+			sSkinURI: "${pageContext.request.contextPath}/resources/SmartEditor/SmartEditor2Skin.html",	
 			htParams : {
 				bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 				bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -83,6 +83,6 @@
 			var nFontSize = 24;
 			oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 		}
-	</script>	
+	</script>
 </body>
 </html>
