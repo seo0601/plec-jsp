@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -262,105 +263,18 @@ public class LectureController {
       // {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
 	      return map;
 		}
-	//수강 신청 프론트엔드 리스트
-	@RequestMapping(value = "/studentLecture/frontend/frontendList")
-	public String lecturefrontEndList(HttpServletRequest request) {
+	
+	//수강 신청 전체 리스트
+	@RequestMapping(value = "/studentLecture/list")
+	public String studentLIst(HttpServletRequest request) {
 		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureFrontEndList(request);
-		
-		return "/studentLecture/frontend/frontendList";
+		service.studentList(request);	
+		return "studentLecture/list";
 	}
 	
 	
-	//수강 신청 js 리스트
-	@RequestMapping(value = "/studentLecture/frontend/jsList")
-	public String lecturejsList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureJsList(request);
-		
-		return "/studentLecture/frontend/jsList";
-	}
-	//수강 신청 html_css 리스트
-	@RequestMapping(value = "/studentLecture/frontend/html_cssList")
-	public String lecturehtml_cssList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureHtml_cssList(request);
-		
-		return "/studentLecture/frontend/html_cssList";
-	}
-	//수강 신청 react 리스트
-	@RequestMapping(value = "/studentLecture/frontend/reactList")
-	public String lectureReactList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureReactList(request);
-		
-		return "/studentLecture/frontend/reactList";
-	}
-	//수강 신청 vue 리스트
-	@RequestMapping(value = "/studentLecture/frontend/vueList")
-	public String lectureVueList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureVueList(request);
-		
-		return "/studentLecture/frontend/vueList";
-	}
-	//수강 신청 제이쿼리 리스트
-	@RequestMapping(value = "/studentLecture/frontend/jQueryList")
-	public String lecturejQueryList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lecturejQueryList(request);
-		
-		return "/studentLecture/frontend/jQueryList";
-	}
 	
 	
-	//수강 신청 백엔드 리스트
-	@RequestMapping(value = "/studentLecture/backend/backendList")
-	public String lectureBackEndList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureBackEndList(request);
-		
-		return "studentLecture/backend/backendList";
-	}
-	//수강 신청 자바 리스트
-	@RequestMapping(value = "/studentLecture/backend/javaList")
-	public String lectureJavaList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureJavaList(request);
-		
-		return "studentLecture/backend/javaList";
-	}
-	//수강 신청 스프링 리스트
-	@RequestMapping(value = "/studentLecture/backend/springList")
-	public String lectureSpringList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureSpringList(request);
-		
-		return "studentLecture/backend/springList";
-	}
-	//수강 신청 스프링 부트 리스트
-	@RequestMapping(value = "/studentLecture/backend/springbootList")
-	public String lectureSpringBootList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureSpringbootList(request);
-		
-		return "studentLecture/backend/springbootList";
-	}
-	//수강 신청 모바일 리스트
-	@RequestMapping(value = "/studentLecture/mobile/mobileList")
-	public String lectureMobileList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureMobileList(request);
-		
-		return "studentLecture/mobile/mobileList";
-	}
-	//수강 신청 코틀린 리스트
-	@RequestMapping(value = "/studentLecture/mobile/kotlinList")
-	public String lectureKotlinList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.lectureKotlinList(request);
-		
-		return "studentLecture/mobile/kotlinList";
-	}
+
 
 }

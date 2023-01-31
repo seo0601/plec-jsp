@@ -13,6 +13,8 @@ public class UsersDto {
 	private String birth;
 	private String newPwd;
 	private String isSave;
+	private int Large_category;
+	private int small_category;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum;
@@ -21,7 +23,8 @@ public class UsersDto {
 	public UsersDto() {}
 
 	public UsersDto(String id, String pwd, String email, String profile, String regdate, String phone, String birth,
-			String newPwd, String isSave, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+			String newPwd, String isSave, int large_category, int small_category, int startRowNum, int endRowNum,
+			int prevNum, int nextNum) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -32,6 +35,8 @@ public class UsersDto {
 		this.birth = birth;
 		this.newPwd = newPwd;
 		this.isSave = isSave;
+		this.Large_category = large_category;
+		this.small_category = small_category;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
@@ -110,6 +115,22 @@ public class UsersDto {
 		this.isSave = isSave;
 	}
 
+	public int getLarge_category() {
+		return Large_category;
+	}
+
+	public void setLarge_category(int large_category) {
+		Large_category = large_category;
+	}
+
+	public int getSmall_category() {
+		return small_category;
+	}
+
+	public void setSmall_category(int small_category) {
+		this.small_category = small_category;
+	}
+
 	public int getStartRowNum() {
 		return startRowNum;
 	}
@@ -142,6 +163,8 @@ public class UsersDto {
 		this.nextNum = nextNum;
 	}
 
+	
+	
 	
 	
 }

@@ -13,6 +13,7 @@ public class LectureDto {
 	private String videoPath;
 	private String imagePath;
 	private String regdate;
+	private String id;
 	private String email;
 	private String phone;
 	private String birth;
@@ -28,7 +29,7 @@ public class LectureDto {
 	public LectureDto() {}
 
 	public LectureDto(int num, String teacher, String writer, String title, String describe, String videoPath,
-			String imagePath, String regdate, String email, String phone, String birth, int viewCount,
+			String imagePath, String regdate, String id, String email, String phone, String birth, int viewCount,
 			int large_category, int small_category, int startRowNum, int endRowNum, int prevNum, int nextNum,
 			MultipartFile image) {
 		super();
@@ -40,6 +41,7 @@ public class LectureDto {
 		this.videoPath = videoPath;
 		this.imagePath = imagePath;
 		this.regdate = regdate;
+		this.id = id;
 		this.email = email;
 		this.phone = phone;
 		this.birth = birth;
@@ -115,6 +117,14 @@ public class LectureDto {
 
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -206,7 +216,6 @@ public class LectureDto {
 	}
 
 	
-
 	
 	
 	

@@ -34,64 +34,11 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 		return session.selectOne("lecture.getCount");
 	}
 
-	@Override
-	public List<LectureStudentDto> frontEndList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.frontendList", dto);
-	}
 
 	@Override
-	public List<LectureStudentDto> jsList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.jsList", dto);
+	public List<LectureStudentDto> studentList(LectureStudentDto dto) {
+		return session.selectList("lectureStudent.studentList", dto);
 	}
 
-	@Override
-	public List<LectureStudentDto> html_cssList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.htmlsssList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> reactList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.reactList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> vueList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.vueList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> jQueryList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.jQueryList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> backEndList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.backendList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> javaList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.javaList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> springList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.springList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> springbootList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.springbootList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> mobileList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.moblieList", dto);
-	}
-
-	@Override
-	public List<LectureStudentDto> kotlinList(LectureStudentDto dto) {
-		return session.selectList("lectureStudent.kotlinList", dto);
-	}
 
 }

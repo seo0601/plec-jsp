@@ -12,6 +12,8 @@ public class LectureStudentDto {
 	private String phone;
 	private String birth;
 	private String regdate;
+	private int Large_category;
+	private int small_category;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum; 
@@ -20,7 +22,8 @@ public class LectureStudentDto {
 	public LectureStudentDto() {}
 
 	public LectureStudentDto(int num, String id, int ref_group, String complete, String email, String phone,
-			String birth, String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+			String birth, String regdate, int large_category, int small_category, int startRowNum, int endRowNum,
+			int prevNum, int nextNum) {
 		super();
 		this.num = num;
 		this.id = id;
@@ -30,6 +33,8 @@ public class LectureStudentDto {
 		this.phone = phone;
 		this.birth = birth;
 		this.regdate = regdate;
+		this.Large_category = large_category;
+		this.small_category = small_category;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
@@ -100,6 +105,22 @@ public class LectureStudentDto {
 		this.regdate = regdate;
 	}
 
+	public int getLarge_category() {
+		return Large_category;
+	}
+
+	public void setLarge_category(int large_category) {
+		Large_category = large_category;
+	}
+
+	public int getSmall_category() {
+		return small_category;
+	}
+
+	public void setSmall_category(int small_category) {
+		this.small_category = small_category;
+	}
+
 	public int getStartRowNum() {
 		return startRowNum;
 	}
@@ -132,6 +153,7 @@ public class LectureStudentDto {
 		this.nextNum = nextNum;
 	}
 
+	
 	
 	
 	
