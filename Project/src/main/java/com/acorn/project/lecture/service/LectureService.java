@@ -1,5 +1,7 @@
 package com.acorn.project.lecture.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -10,6 +12,7 @@ import com.acorn.project.lecture.dto.LectureStudentDto;
 
 
 public interface LectureService {
+	
 	//프론트엔드 리스트 가져오기
 	public void frontEndList(HttpServletRequest request);
 	//자바스크립트 리스트 가져오기
@@ -51,30 +54,10 @@ public interface LectureService {
 	public void lectureSignup(LectureStudentDto dto, HttpServletRequest request);
 	//강의 신청한 사람의 정보 가져오기
 	public void lectureGetData(HttpServletRequest request);
-	//강의 신청 프론트 엔드
-	public void lectureFrontEndList(HttpServletRequest request);
-	//강의 신청 자바스크립트 리스트 가져오기
-	public void lectureJsList(HttpServletRequest request);
-	//강의 신청한 html_css 리스트 가져오기
-	public void lectureHtml_cssList(HttpServletRequest request);
-	//강의 신청한 react 리스트 가져오기
-	public void lectureReactList(HttpServletRequest request);
-	//강의 신청한 vue.js 리스트 가져오기
-	public void lectureVueList(HttpServletRequest request);
-	//강의 신청한 jQuery 리스트 가져오기
-	public void lecturejQueryList(HttpServletRequest request);
-	//강의 신청한 백엔드 리스트 가져오기
-	public void lectureBackEndList(HttpServletRequest request);
-	//강의 신청한 리스트 가져오기
-	public void lectureJavaList(HttpServletRequest request);
-	//강의 신청한 리스트 가져오기
-	public void lectureSpringList(HttpServletRequest request);	
-	//강의 신청한 boot 리스트 가져오기
-	public void lectureSpringbootList(HttpServletRequest request);
-	//강의 신청한 리스트 가져오기
-	public void lectureMobileList(HttpServletRequest request);
-	//강의 신청한 리스트 가져오기
-	public void lectureKotlinList(HttpServletRequest request);
+
+	//강의 신청 리스트
+	public void studentList(HttpServletRequest request);
+	
 	
 	//후기 저장
 	public void saveReview(HttpServletRequest request); 

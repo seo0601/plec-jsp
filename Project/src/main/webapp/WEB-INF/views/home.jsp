@@ -29,6 +29,7 @@
 			    </div>
 		    </div>
 	    </div>
+
 	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/frontendList">수강신청 프론트엔드리스트</a>
 	    <br />
 	    <a href="${pageContext.request.contextPath}/studentLecture/frontend/html_cssList">수강신청 html/css리스트</a>
@@ -53,6 +54,10 @@
 	    <br />
 	    <a href="${pageContext.request.contextPath}/studentLecture/mobile/kotlinList">수강신청 코틀린리스트</a>
 	</div>
+
+	    <a href="${pageContext.request.contextPath}/studentLecture/list?Large_category=1&small_category=1">수강신청 리스트</a>
+	   
+	
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
