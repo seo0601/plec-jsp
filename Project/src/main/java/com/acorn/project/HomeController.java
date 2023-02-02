@@ -15,6 +15,13 @@ public class HomeController {
       return "home";
    }
    
+   @GetMapping("/qna_users/list")
+   public String qna_user(HttpServletRequest request) {
+      
+      
+      return "qna_user/list";
+   }
+   
 }
 
 
