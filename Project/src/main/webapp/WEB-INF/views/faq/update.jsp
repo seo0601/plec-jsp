@@ -11,7 +11,7 @@
 <body>
 	<script>
 		alert("${id} 님 글을 수정 했습니다.")
-		location.href="${pageContext.request.contextPath}/faq/detail?num=${param.num}";
+		location.href="${pageContext.request.contextPath}/faq/list";
 	</script>
 </body>
 </html>

@@ -7,6 +7,8 @@ import com.acorn.project.faq.dto.FaqDto;
 public interface FaqDao {
 	//글목록
 	public List<FaqDto> getList(FaqDto dto);
+	//글의 갯수
+	public int getCount(FaqDto dto);
 	//글 추가
 	public void insert(FaqDto dto);
 	//글 삭제

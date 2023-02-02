@@ -10,21 +10,55 @@
 </head>
 <body>
 	<div class="container">
+		<h3>자주 묻는 질문</h3>
+		<table>
+			<c:forEach var="tmp" items="${list }">	
+					<thead>
+						<tr>
+							<th>${tmp.question }</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>${tmp.content }</th>
+							<th>
+								<c:if test="${sessionScope.id eq 'admin'}">
+			                     		<a href="detail?num=${tmp.num }">수정</a>
+			                  	</c:if>
+		                  	</th>
+                  		</tr>
+                  	</tbody>
+			</c:forEach>
+		</table>
 		<c:if test="${sessionScope.id eq 'admin'}">
 			<a href="${pageContext.request.contextPath}/faq/insertform">새글 작성</a>
 		</c:if>
-		<h3>자주 묻는 질문</h3>
-		<ul>
-			<c:forEach var="tmp" items="${list }">	
-					<li>${tmp.question }</li>
-					<li>${tmp.content }</li>
-					<c:if test="${sessionScope.id eq 'admin'}">
-						<li>
-                     		<a href="detail?num=${tmp.num }">수정하기</a>
-                  		</li>
-                  	</c:if>
-			</c:forEach>
-		</ul>		
+		<nav>
+			<ul>
+				<%--
+					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+					&condition=${condition}&keyword=${encodedK}
+				 --%>
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item ${pageNum eq i ? 'active' : '' }">
+						<a class="page-link" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+					</li>
+				</c:forEach>
+				<%--
+					마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+				 --%>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+					</li>
+				</c:if>				
+			</ul>
+		</nav>		
 	</div>
 </body>
 </html>
