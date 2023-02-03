@@ -169,7 +169,7 @@
 			<div class="box2">
 				<c:choose>
 					<c:when test="${lsDto2.id == null}">
-						<form action="${pageContext.request.contextPath}/lecture/lectureSignup" class= "mt-5 mb-3 d-flex justify-content-center" method="post" id="signForm">
+						<form action="${pageContext.request.contextPath}/lecture/lectureSignup" class= "mt-4 mb-3 d-flex justify-content-center" method="post" id="signForm">
 							<input type="hidden" name="ref_group" value="${dto.num }"/>
 							<input type="hidden" name="num" value="${dto.num }"/>
 							<button class="button" type="submit">수강 신청</button>
