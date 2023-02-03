@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,21 +34,11 @@
 			        </script>
 					<div>
 						<img style="width:500px; height:350px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
-					
-					
+		
 					<div>					   
 				    	<p>${dto.describe}</p>
 			  	    </div>
 			  	    
-			  	 	
-			  	 	<script>
-			            function lectureSignupConfirm(){
-			               const isSignup=confirm("강의를 신청하시겠습니까?");
-			               if(isSignup){
-			                  location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
-			               }
-			            }
-			       	</script>
 				<br/>
 				
 				<h4>수강 후기를 작성해주세요</h4>
@@ -173,13 +163,19 @@
 				</div>
 			</div>
 			<div class="box2">
-		   		<form action="lectureSignup" class= "mt-5 mb-3 d-flex justify-content-center" method="post">
-					<input type="hidden" name="ref_group" value="${dto.num }"/>
-					<button class="button" onclick="lectureSignupConfirm()">수강 신청</button>
-				</form>	
-				<div class="d-flex justify-content-center mb-3">
-		        	<button type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>		   
-		  	    </div>
+				<c:choose>
+					<c:when test="${lsDto2.id == null}">
+						<form action="lectureSignup" class= "mt-5 mb-3 d-flex justify-content-center" method="post">
+							<input type="hidden" name="ref_group" value="${dto.num }"/>
+							<button class="button" onclick="lectureSignupConfirm()">수강 신청</button>
+						</form>	
+					</c:when>
+					<c:otherwise>
+						<div class="d-flex justify-content-center mb-3">
+				        	<button type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>		   
+				  	    </div>
+					</c:otherwise>
+				</c:choose>  	
 		  	    <div class="d-flex justify-content-center">
 		        	<button type="button" onclick="location.href='${pageContext.request.contextPath}/qna_board/list'">1:1문의</button>		   
 		  	    </div>
@@ -187,6 +183,14 @@
 		</div>
 		</div>
 	</div>
+	<script>
+       function lectureSignupConfirm(){
+          const isSignup=confirm("강의를 신청하시겠습니까?");
+          if(isSignup){
+             location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
+          }
+       }
+  	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>

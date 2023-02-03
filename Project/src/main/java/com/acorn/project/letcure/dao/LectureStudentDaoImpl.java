@@ -25,7 +25,7 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 	}
 
 	@Override
-	public LectureStudentDto getData(int ref_group) {
+	public LectureStudentDto delete(int ref_group) {
 		return session.selectOne("lectureStudent.getData", ref_group);
 	}
 
@@ -38,6 +38,11 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 	@Override
 	public List<LectureStudentDto> studentList(LectureStudentDto dto) {
 		return session.selectList("lectureStudent.studentList", dto);
+	}
+
+	@Override
+	public LectureStudentDto getData(LectureStudentDto dto) {
+		return session.selectOne("lectureStudent.getList", dto);
 	}
 
 
