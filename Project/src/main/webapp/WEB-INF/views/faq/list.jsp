@@ -23,8 +23,9 @@
 							<th>${tmp.content }</th>
 							<th>
 								<c:if test="${sessionScope.id eq 'admin'}">
-			                     		<a href="detail?num=${tmp.num }">수정</a>
-			                  	</c:if>
+                                    <a href="${pageContext.request.contextPath}/faq/updateform?num=${tmp.num }">수정</a>
+                                    <a href="javascript:" onclick="deleteConfirm(${tmp.num})">삭제</a>
+                                </c:if>
 		                  	</th>
                   		</tr>
                   	</tbody>
@@ -60,5 +61,13 @@
 			</ul>
 		</nav>		
 	</div>
+	<script>
+      	function deleteConfirm(num){
+         	const isDelete=confirm("이 글을 삭제 하겠습니까?");
+         	if(isDelete){
+            	location.href="delete?num="+num;
+         	}
+      	}
+   	</script>
 </body>
 </html>
