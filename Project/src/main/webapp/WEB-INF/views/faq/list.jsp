@@ -63,7 +63,7 @@
 		</nav>		
 	</div>
 	<script>
-<<<<<<< HEAD
+
 		function deleteConfirm(num){
 			const isDelete=confirm("이 글을 삭제 하겠습니까?");
 			if(isDelete){
@@ -71,14 +71,6 @@
 			}
 		}
 	</script>
-=======
-      	function deleteConfirm(num){
-         	const isDelete=confirm("이 글을 삭제 하겠습니까?");
-         	if(isDelete){
-            	location.href="delete?num="+num;
-         	}
-      	}
-   	</script>
->>>>>>> refs/remotes/origin/master
+
 </body>
 </html>
