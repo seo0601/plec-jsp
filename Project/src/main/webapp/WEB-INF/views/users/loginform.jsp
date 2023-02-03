@@ -30,11 +30,11 @@
 		        </c:choose>
 			    <h1 class="mb-3 fw-normal main">login</h1>
 			    <div class="form-floating">
-			      <input type="text" class="form-control" id="floatingId" name="id" placeholder="id" value="${savedId}">
+			      <input type="text" class="form-control" id="floatingId" name="id" placeholder="id" value="${cookie.savedId.value}">
 			      <label for="floatingInput">id</label>
 			    </div>
 			    <div class="form-floating">
-			      <input type="password" class="form-control" id="floatingPassword" name="pwd" placeholder="Password" value="${savedPwd}">
+			      <input type="password" class="form-control" id="floatingPassword" name="pwd" placeholder="Password" value="${cookie.savedPwd.value}">
 			      <label for="floatingPassword">Password</label>
 			    </div>
 			

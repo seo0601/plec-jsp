@@ -18,6 +18,10 @@
 				</div>
 			</div>
 			<div class="container">
+				<div class="mb-4">
+					<a href="${pageContext.request.contextPath}/users/list" class="fw-bold">전체회원목록</a>
+					<a href="${pageContext.request.contextPath}/studentLecture/list?Large_category=1&small_category=1">강의별 회원목록</a>
+				</div>
 				<div class="table-responsive table-top">
 					<table class="table table-hover align-middle">
 						<thead>
