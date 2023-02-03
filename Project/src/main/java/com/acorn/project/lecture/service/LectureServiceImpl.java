@@ -59,6 +59,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "backend");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -96,6 +97,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "java");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -133,6 +135,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "spring");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -170,6 +173,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "springboot");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -223,6 +227,7 @@ public class LectureServiceImpl implements LectureService{
 		}
 		
 		//request 영역에 담아주기
+		request.setAttribute("selectLecture", "frontend");
 		request.setAttribute("list", list);	//gallery list
 		request.setAttribute("startPageNum", startPageNum);	//시작 페이지 번호
 		request.setAttribute("endPageNum", endPageNum);	//끝 페이지 번호
@@ -260,6 +265,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "js");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -297,6 +303,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "html");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -334,6 +341,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "react");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -371,6 +379,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "vue");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -408,6 +417,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "jQuery");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	
@@ -461,6 +471,7 @@ public class LectureServiceImpl implements LectureService{
 		}
 		
 		//request 영역에 담아주기
+		request.setAttribute("selectLecture", "mobile");
 		request.setAttribute("list", list);	//gallery list
 		request.setAttribute("startPageNum", startPageNum);	//시작 페이지 번호
 		request.setAttribute("endPageNum", endPageNum);	//끝 페이지 번호
@@ -498,6 +509,7 @@ public class LectureServiceImpl implements LectureService{
 			endPageNum = totalPageCount;  
 		}
 		
+		request.setAttribute("selectLecture", "kotlin");
 		request.setAttribute("list", list);	
 		request.setAttribute("startPageNum", startPageNum);	
 		request.setAttribute("endPageNum", endPageNum);	

@@ -18,28 +18,21 @@
 		<div class="container">
 			<div class="box">
 				<div class="box1">
-				<div class="d-flex justify-content-end mt-3">
-				      <c:if test="${id eq 'admin'}">
-				         <button class="btn btn-secondary btn-sm me-2 mb-3" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/updateform?num=${dto.num }'">수정</button>
-				      	 <button class="btn btn-danger btn-sm me-2 mb-3" type="button" onclick="deleteConfirm()">삭제</button>
-				      </c:if>
-				  </div>
-			        <script>
-			            function deleteConfirm(){
-			               const isDelete=confirm("이 글을 삭제 하겠습니까?");
-			               if(isDelete){
-			                  location.href="${pageContext.request.contextPath}/lecture/delete?num=${dto.num}";
-			               }
-			            }
-			        </script>
-					<div>
-						<img style="width:500px; height:350px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
-		
-					<div>					   
-				    	<p>${dto.describe}</p>
-			  	    </div>
-			  	    
-				<br/>
+					<h3 class="lecture-detail-tit">${ dto.title}</h3>
+					<div class="d-flex justify-content-end mt-3">
+					      <c:if test="${id eq 'admin'}">
+					         <button class="btn btn-secondary btn-sm me-2 mb-3" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/updateform?num=${dto.num }'">수정</button>
+					      	 <button class="btn btn-danger btn-sm me-2 mb-3" type="button" onclick="deleteConfirm()">삭제</button>
+					      </c:if>
+					  </div>
+						<div>
+							<img style="width:500px; height:350px;" src="${pageContext.request.contextPath }/lecture/images/${dto.imagePath}">
+			
+						<div>					   
+					    	<p>${dto.describe}</p>
+				  	    </div>
+				  	    
+					<br/>
 				
 				<h4>수강 후기를 작성해주세요</h4>
 			      <!-- 원글에 댓글을 작성할 폼 -->
@@ -63,6 +56,15 @@
 			         <textarea name="content" class="me-3">${empty id ? '수강 후기 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
 			         <button type="submit" class="button btn mb-5">등록</button>
 			      </form>
+			      
+			      <script>
+				            function deleteConfirm(){
+				               const isDelete=confirm("이 글을 삭제 하겠습니까?");
+				               if(isDelete){
+				                  location.href="${pageContext.request.contextPath}/lecture/delete?num=${dto.num}";
+				               }
+				            }
+				  </script>
 			      
 			      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 			      <script>
@@ -155,24 +157,26 @@
 			         </ul>
 			      </div>      
 			      <div class="loader">
-			         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+			         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
 			              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
 			              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
 			         </svg>
 			      </div>      
 				</div>
 			</div>
+			
+			<!-- 오른쪽 박스 -->
 			<div class="box2">
 				<c:choose>
 					<c:when test="${lsDto2.id == null}">
-						<form action="lectureSignup" class= "mt-5 mb-3 d-flex justify-content-center" method="post">
+						<form action="lectureSignup" class= "mt-4 mb-3 d-flex justify-content-center" method="post">
 							<input type="hidden" name="ref_group" value="${dto.num }"/>
 							<button class="button" onclick="lectureSignupConfirm()">수강 신청</button>
 						</form>	
 					</c:when>
 					<c:otherwise>
-						<div class="d-flex justify-content-center mb-3">
-				        	<button type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>		   
+						<div class="mt-4 d-flex justify-content-center mb-3">
+				        	<button class="button" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>		   
 				  	    </div>
 					</c:otherwise>
 				</c:choose>  	

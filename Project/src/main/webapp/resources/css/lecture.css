@@ -4,6 +4,10 @@ body{
 	
 }
 
+.selectedLecture{
+	color:#1EBD8E;
+}
+
 .reset{
 	color:grey;
 	text-decoration: underline;
@@ -17,20 +21,20 @@ body{
 .box{
 	display: flex;
 	 justify-content: space-around;
-  flex-flow: row wrap;
-  align-items: stretch;
+   flex-flow: row wrap;
+   align-items: stretch;
   
 }
 
 .box1{
-  flex-grow: 3;
+  flex-grow: 4;
 }
 
 .box2{
  flex-grow: 1;
   border: 2px solid rgba(0,0,0,.2);
   position:sticky;
-  height:230px;
+  height:140px;
   position: -webkit-sticky;
   top:0;
   margin-left:20px;
