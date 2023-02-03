@@ -529,6 +529,7 @@ public class LectureServiceImpl implements LectureService{
 	public void getDetail(HttpServletRequest request) {
 		//자세히 보여줄 글번호를 읽어온다. 
 		int num=Integer.parseInt(request.getParameter("num"));
+		String id = (String)request.getSession().getAttribute("id");
 		//조회수 올리기
 		lectureDao.addViewCount(num);
 		
@@ -536,6 +537,7 @@ public class LectureServiceImpl implements LectureService{
 			[ 검색 키워드에 관련된 처리 ]
 			-검색 키워드가 파라미터로 넘어올수도 있고 안넘어 올수도 있다.		
 		*/
+		
 		String keyword=request.getParameter("keyword");
 		String condition=request.getParameter("condition");
 		//만일 키워드가 넘어오지 않는다면 
@@ -549,8 +551,7 @@ public class LectureServiceImpl implements LectureService{
 		LectureDto dto=new LectureDto();
 		//자세히 보여줄 글번호를 넣어준다. 
 		dto.setNum(num);
-		
-		
+
 		//글하나의 정보를 얻어온다.
 		LectureDto resultDto=lectureDao.getData(num);
 		
@@ -577,22 +578,21 @@ public class LectureServiceImpl implements LectureService{
 		//1페이지에 해당하는 startRowNum 과 endRowNum 을 dto 에 담아서  
 		commentDto.setStartRowNum(startRowNum);
 		commentDto.setEndRowNum(endRowNum);
-	
+		
 		//1페이지에 해당하는 댓글 목록만 select 되도록 한다. 
 		List<LectureReviewDto> commentList=reviewDao.getList(commentDto);
-	
+		
 		//원글의 글번호를 이용해서 댓글 전체의 갯수를 얻어낸다.
 		int totalRow=reviewDao.getCount(num);
 		//댓글 전체 페이지의 갯수
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 				
 		int ref_group = Integer.parseInt(request.getParameter("num"));
-		String id = (String)request.getSession().getAttribute("id");
 		LectureStudentDto lsDto = new LectureStudentDto();
 		lsDto.setId(id);
 		lsDto.setRef_group(ref_group);
 		
-		LectureStudentDto lsDto2  = studentDao.getData(lsDto);
+		LectureStudentDto lsDto2  = studentDao.studentData(lsDto);
 		
 		//request scope 에 글 하나의 정보 담기
 		request.setAttribute("dto", resultDto);
@@ -640,7 +640,7 @@ public class LectureServiceImpl implements LectureService{
 	
 		dto.setImagePath(saveFileName);
 		
-		//GalleryDao 를 이용해서 DB 에 저장하기
+		
 		lectureDao.insert(dto);
 
 	}
@@ -694,7 +694,7 @@ public class LectureServiceImpl implements LectureService{
 		int num=Integer.parseInt(request.getParameter("num"));
 
 		LectureDto dto=lectureDao.getData(num);
-
+		
 		request.setAttribute("dto", dto);	
 		
 	}
@@ -795,6 +795,7 @@ public class LectureServiceImpl implements LectureService{
 		
 	}
 
+	//수강신청
 	@Override
 	public void lectureSignup(LectureStudentDto dto, HttpServletRequest request) {
 		String id  = (String)request.getSession().getAttribute("id");
@@ -852,6 +853,6 @@ public class LectureServiceImpl implements LectureService{
 		
 	}
 
-
+	
 
 }

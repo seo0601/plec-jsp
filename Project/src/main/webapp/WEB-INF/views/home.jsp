@@ -29,7 +29,7 @@
 			    </div>
 		    </div>
 	    </div>
-	    <a href="${pageContext.request.contextPath}/studentLecture/list?Large_category=1&small_category=1">수강신청 리스트</a>
+	    <!-- <a href="${pageContext.request.contextPath}/studentLecture/list?Large_category=1&small_category=1">수강신청 리스트</a> -->
 	</div>
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

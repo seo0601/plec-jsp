@@ -14,7 +14,7 @@ public interface LectureStudentDao {
 	//수강 신청 리스트
 	public List<LectureStudentDto> studentList(LectureStudentDto dto);
 
-	public LectureStudentDto getData(LectureStudentDto dto);
+	public LectureStudentDto studentData(LectureStudentDto dto);
 	
 	public int getSequence();
 	

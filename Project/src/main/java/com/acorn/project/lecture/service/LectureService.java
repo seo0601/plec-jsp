@@ -56,7 +56,7 @@ public interface LectureService {
 
 	//강의 신청 리스트
 	public void studentList(HttpServletRequest request);
-	
+
 	//후기 저장
 	public void saveReview(HttpServletRequest request); 
 	//후기 삭제

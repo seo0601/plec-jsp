@@ -26,6 +26,7 @@
                                     <a href="${pageContext.request.contextPath}/faq/updateform?num=${tmp.num }">수정</a>
                                     <a href="javascript:" onclick="deleteConfirm(${tmp.num})">삭제</a>
                               	</c:if>
+
 		                  	</th>
                   		</tr>
                   	</tbody>
@@ -62,6 +63,7 @@
 		</nav>		
 	</div>
 	<script>
+<<<<<<< HEAD
 		function deleteConfirm(num){
 			const isDelete=confirm("이 글을 삭제 하겠습니까?");
 			if(isDelete){
@@ -69,5 +71,14 @@
 			}
 		}
 	</script>
+=======
+      	function deleteConfirm(num){
+         	const isDelete=confirm("이 글을 삭제 하겠습니까?");
+         	if(isDelete){
+            	location.href="delete?num="+num;
+         	}
+      	}
+   	</script>
+>>>>>>> refs/remotes/origin/master
 </body>
 </html>

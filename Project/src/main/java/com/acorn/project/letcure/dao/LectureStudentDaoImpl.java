@@ -41,8 +41,8 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 	}
 
 	@Override
-	public LectureStudentDto getData(LectureStudentDto dto) {
-		return session.selectOne("lectureStudent.getList", dto);
+	public LectureStudentDto studentData(LectureStudentDto dto) {
+		return session.selectOne("lectureStudent.getData", dto);
 	}
 
 

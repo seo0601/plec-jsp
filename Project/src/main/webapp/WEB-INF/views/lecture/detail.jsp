@@ -169,9 +169,10 @@
 			<div class="box2">
 				<c:choose>
 					<c:when test="${lsDto2.id == null}">
-						<form action="lectureSignup" class= "mt-4 mb-3 d-flex justify-content-center" method="post">
+						<form action="${pageContext.request.contextPath}/lecture/lectureSignup" class= "mt-5 mb-3 d-flex justify-content-center" method="post" id="signForm">
 							<input type="hidden" name="ref_group" value="${dto.num }"/>
-							<button class="button" onclick="lectureSignupConfirm()">수강 신청</button>
+							<input type="hidden" name="num" value="${dto.num }"/>
+							<button class="button" type="submit">수강 신청</button>
 						</form>	
 					</c:when>
 					<c:otherwise>
@@ -188,12 +189,24 @@
 		</div>
 	</div>
 	<script>
+	//폼에 submit 이벤트가 일어 났을때 실행할 함수 등록
+	document.querySelector("#signForm").addEventListener("submit", function(e){
+		const isSignup=confirm("강의를 신청하시겠습니까?");
+		if(isSignup == false){
+			//폼 제출 막기
+			e.preventDefault();
+		}
+	});
+	
+	/*
        function lectureSignupConfirm(){
           const isSignup=confirm("강의를 신청하시겠습니까?");
           if(isSignup){
              location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
           }
        }
+	*/
+	
   	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	
