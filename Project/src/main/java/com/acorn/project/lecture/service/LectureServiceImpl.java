@@ -573,13 +573,14 @@ public class LectureServiceImpl implements LectureService{
 		int totalRow=reviewDao.getCount(num);
 		//댓글 전체 페이지의 갯수
 		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+				
+		int ref_group = Integer.parseInt(request.getParameter("num"));
+		String id = (String)request.getSession().getAttribute("id");
+		LectureStudentDto lsDto = new LectureStudentDto();
+		lsDto.setId(id);
+		lsDto.setRef_group(ref_group);
 		
-		//LectureStudentDto의 ref_group 
-		LectureStudentDto lsDto = studentDao.getData(num);
-
-		
-		
-		
+		LectureStudentDto lsDto2  = studentDao.getData(lsDto);
 		
 		//request scope 에 글 하나의 정보 담기
 		request.setAttribute("dto", resultDto);
@@ -589,7 +590,7 @@ public class LectureServiceImpl implements LectureService{
 		request.setAttribute("totalRow", totalRow);
 		request.setAttribute("commentList", commentList);
 		request.setAttribute("totalPageCount", totalPageCount);
-		request.setAttribute("lsDto",lsDto );
+		request.setAttribute("lsDto2", lsDto2);
 		
 	}
 
@@ -785,7 +786,6 @@ public class LectureServiceImpl implements LectureService{
 	@Override
 	public void lectureSignup(LectureStudentDto dto, HttpServletRequest request) {
 		String id  = (String)request.getSession().getAttribute("id");
-		int ref_group=Integer.parseInt(request.getParameter("ref_group"));
 		int seq=reviewDao.getSequence();
 		dto.setNum(seq);
 		dto.setId(id);
@@ -793,15 +793,7 @@ public class LectureServiceImpl implements LectureService{
 		request.setAttribute("num", dto.getNum());		
 	}
 
-	@Override
-	public void lectureGetData(HttpServletRequest request) {
-
-		int num=Integer.parseInt(request.getParameter("num"));
-
-		LectureStudentDto dto=studentDao.getData(num);
-
-		
-	}
+	
 
 
 	@Override

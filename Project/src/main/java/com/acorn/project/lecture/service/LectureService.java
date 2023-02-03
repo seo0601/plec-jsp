@@ -52,12 +52,10 @@ public interface LectureService {
 	
 	//강의 신청
 	public void lectureSignup(LectureStudentDto dto, HttpServletRequest request);
-	//강의 신청한 사람의 정보 가져오기
-	public void lectureGetData(HttpServletRequest request);
+	
 
 	//강의 신청 리스트
 	public void studentList(HttpServletRequest request);
-	
 	
 	//후기 저장
 	public void saveReview(HttpServletRequest request); 
