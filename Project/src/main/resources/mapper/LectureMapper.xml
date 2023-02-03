@@ -146,13 +146,8 @@
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="lectureDto">
-		SELECT *
-		FROM
-			(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category, 
-				LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
-				LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
-			FROM LECTURE
-			ORDER BY num DESC)
+		SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+		FROM LECTURE
 		WHERE num = #{num}
 	</select>
 		<delete id="delete" parameterType="int">
