@@ -273,7 +273,11 @@ public class LectureController {
 	}
 	
 	
-	
+	@RequestMapping("/studentLecture/lectureComplete")
+	public String update(LectureStudentDto dto, HttpServletRequest request) {
+		service.lectureComplete(dto, request);
+		return "studentLecture/lectureComplete";
+	}
 	
 
 

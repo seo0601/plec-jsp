@@ -593,6 +593,7 @@ public class LectureServiceImpl implements LectureService{
 		lsDto.setRef_group(ref_group);
 		
 		LectureStudentDto lsDto2  = studentDao.studentData(lsDto);
+
 		
 		//request scope 에 글 하나의 정보 담기
 		request.setAttribute("dto", resultDto);
@@ -850,6 +851,14 @@ public class LectureServiceImpl implements LectureService{
 		request.setAttribute("totalPageCount", totalPageCount);	
 		request.setAttribute("Large_category", Large_category);
 		request.setAttribute("small_category", small_category);
+		
+	}
+
+	@Override
+	public void lectureComplete(LectureStudentDto dto, HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");
+		dto.setId(id);
+		studentDao.lectureComplete(dto);
 		
 	}
 

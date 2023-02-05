@@ -25,6 +25,6 @@ public interface UsersService {
 	public void deleteUser(HttpSession session, ModelAndView mView);
 	public void forceDelete(String id, HttpServletRequest request);
 	public void getList(HttpServletRequest request);
-	
+	public void myLectureList(HttpServletRequest request);
 
 }

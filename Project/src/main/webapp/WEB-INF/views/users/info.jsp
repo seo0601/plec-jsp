@@ -28,7 +28,7 @@
 		<div class="container py-5">
 			<div style="width:100%; max-width:500px; margin:0 auto;">
 				<div class="d-grid gap-3">
-					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()" class="btn new-btn">나의 강의실</a>
+					<a href="${pageContext.request.contextPath}/users/myLectureList" onfocus="this.blur()" class="btn new-btn">나의 강의실</a>
 					<div class="mypage-table-box py-3 border-top border-bottom">
 						<table style="width:100%">
 							<tr class="d-block mb-3">

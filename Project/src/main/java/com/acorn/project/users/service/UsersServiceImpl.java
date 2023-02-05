@@ -200,7 +200,7 @@ public class UsersServiceImpl implements UsersService{
 		//글 목록 얻어오기 
 		List<UsersDto> list=dao.getList(dto);
 		//전체글의 갯수
-		int totalRow=dao.getCount(dto);
+		int totalRow=dao.getCount();
 		
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
@@ -252,6 +252,45 @@ public class UsersServiceImpl implements UsersService{
 		}
 		mView.addObject("isSuccess", isValid);
 		mView.addObject("id", id);		
+		
+	}
+	@Override
+	public void myLectureList(HttpServletRequest request) {
+		String id  = (String)request.getSession().getAttribute("id");
+		final int PAGE_ROW_COUNT=8;
+		final int PAGE_DISPLAY_COUNT=5;
+	   
+		int pageNum=1;
+		String strPageNum = request.getParameter("pageNum");
+		if(strPageNum != null){
+			pageNum=Integer.parseInt(strPageNum);
+		}
+	   
+		int startRowNum = 1 + (pageNum-1) * PAGE_ROW_COUNT;
+		int endRowNum = pageNum * PAGE_ROW_COUNT;
+	   
+		UsersDto dto = new UsersDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
+		dto.setId(id);
+		
+		List<UsersDto> list = dao.myLectureList(dto);
+	   
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
+		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+	   
+		int totalRow = dao.getCount();
+		int totalPageCount = (int)Math.ceil(totalRow / (double)PAGE_ROW_COUNT);
+		if(endPageNum > totalPageCount){
+			endPageNum = totalPageCount;  
+		}
+		
+		request.setAttribute("dto", dto);	
+		request.setAttribute("list", list);	
+		request.setAttribute("startPageNum", startPageNum);	
+		request.setAttribute("endPageNum", endPageNum);	
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("totalPageCount", totalPageCount);	
 		
 	}
 	

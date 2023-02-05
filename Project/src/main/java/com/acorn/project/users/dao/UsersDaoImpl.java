@@ -42,13 +42,17 @@ public class UsersDaoImpl implements UsersDao{
 		return session.selectList("users.getList", dto);
 	}
 	@Override
-	public int getCount(UsersDto dto) {
-		return session.selectOne("users.getCount", dto);
+	public int getCount() {
+		return session.selectOne("users.getCount");
 	}
 	@Override
 	public void updatePwd(UsersDto dto) {
 		session.update("users.updatePwd", dto);
 		
+	}
+	@Override
+	public List<UsersDto> myLectureList(UsersDto dto) {
+		return session.selectList("users.myLectureList", dto);
 	}
 
 }

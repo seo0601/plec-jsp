@@ -13,6 +13,8 @@ public class UsersDto {
 	private String birth;
 	private String newPwd;
 	private String isSave;
+	private String imagePath;
+	private String complete;
 	private int Large_category;
 	private int small_category;
 	private int startRowNum;
@@ -23,8 +25,8 @@ public class UsersDto {
 	public UsersDto() {}
 
 	public UsersDto(String id, String pwd, String email, String profile, String regdate, String phone, String birth,
-			String newPwd, String isSave, int large_category, int small_category, int startRowNum, int endRowNum,
-			int prevNum, int nextNum) {
+			String newPwd, String isSave, String imagePath, String complete, int large_category, int small_category,
+			int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -35,7 +37,9 @@ public class UsersDto {
 		this.birth = birth;
 		this.newPwd = newPwd;
 		this.isSave = isSave;
-		this.Large_category = large_category;
+		this.imagePath = imagePath;
+		this.complete = complete;
+		Large_category = large_category;
 		this.small_category = small_category;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
@@ -115,6 +119,22 @@ public class UsersDto {
 		this.isSave = isSave;
 	}
 
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public String getComplete() {
+		return complete;
+	}
+
+	public void setComplete(String complete) {
+		this.complete = complete;
+	}
+
 	public int getLarge_category() {
 		return Large_category;
 	}
@@ -163,8 +183,6 @@ public class UsersDto {
 		this.nextNum = nextNum;
 	}
 
-	
-	
 	
 	
 }

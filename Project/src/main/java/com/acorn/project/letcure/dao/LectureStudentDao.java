@@ -16,6 +16,8 @@ public interface LectureStudentDao {
 
 	public LectureStudentDto studentData(LectureStudentDto dto);
 	
+	public void lectureComplete(LectureStudentDto dto);
+	
 	public int getSequence();
 	
 	

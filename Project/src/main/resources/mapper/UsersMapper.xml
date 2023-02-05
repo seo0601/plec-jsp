@@ -20,6 +20,21 @@
 			</when>
 		</choose>
 	</sql>
+	<select id="myLectureList" parameterType="usersDto" resultType="usersDto">
+		SELECT *
+		FROM	
+			(SELECT result1.*, ROWNUM as rnum
+			FROM
+				(SELECT imagePath, complete
+					FROM users 
+					JOIN LECTURE_STUDENT
+					ON users.id=LECTURE_STUDENT.id
+					JOIN LECTURE 
+					on LECTURE.num=LECTURE_STUDENT.ref_group
+					WHERE users.id = #{id}
+					ORDER BY users.id DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
 	<select id="getList" parameterType="usersDto" resultType="usersDto">
 		SELECT *
 		FROM

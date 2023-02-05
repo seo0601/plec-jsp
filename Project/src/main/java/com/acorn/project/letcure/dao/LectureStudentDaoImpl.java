@@ -45,5 +45,11 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 		return session.selectOne("lectureStudent.studentData", dto);
 	}
 
+	@Override
+	public void lectureComplete(LectureStudentDto dto) {
+		session.update("lectureStudent.lectureComplete", dto);
+		
+	}
+
 
 }

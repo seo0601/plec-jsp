@@ -177,7 +177,12 @@
 					</c:when>
 					<c:otherwise>
 						<div class="mt-4 d-flex justify-content-center mb-3">
-				        	<button class="button" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>		   
+				        	<button class="button" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>
+				        	<br />
+				        	<form action="${pageContext.request.contextPath}/studentLecture/lectureComplete" id="completeForm">
+				        		<input type="hidden" name="complete"  value="y" />
+				        		<button class="button" type="submit">강의완료</button>	
+				        	</form>    		   
 				  	    </div>
 					</c:otherwise>
 				</c:choose>  	
@@ -189,7 +194,18 @@
 		</div>
 	</div>
 	<script>
-	//폼에 submit 이벤트가 일어 났을때 실행할 함수 등록
+	//강의 완료 
+	document.querySelector("#completeForm").addEventListener("submit", function(e){
+		const isSignup=confirm("다 수강하셨습니까?");
+		if(isSignup == false){
+			//폼 제출 막기
+			e.preventDefault();
+		}
+	});
+  	</script>
+  	
+  	<script>
+	//강의신청
 	document.querySelector("#signForm").addEventListener("submit", function(e){
 		const isSignup=confirm("강의를 신청하시겠습니까?");
 		if(isSignup == false){
@@ -197,16 +213,6 @@
 			e.preventDefault();
 		}
 	});
-	
-	/*
-       function lectureSignupConfirm(){
-          const isSignup=confirm("강의를 신청하시겠습니까?");
-          if(isSignup){
-             location.href="${pageContext.request.contextPath}/lecture/lectureSignup?num=${dto.num}";
-          }
-       }
-	*/
-	
   	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	
