@@ -1,0 +1,30 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /project
+  error:
+    path: /error
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: scott
+    password: tiger
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.acorn.project.**
+
+
+
+file:
+  location: C:\data
