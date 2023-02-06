@@ -18,7 +18,7 @@ public class LectureDto {
 	private String phone;
 	private String birth;
 	private int viewCount;
-	private int Large_category;
+	private int large_category;
 	private int small_category;
 	private int startRowNum;
 	private int endRowNum;
@@ -46,7 +46,7 @@ public class LectureDto {
 		this.phone = phone;
 		this.birth = birth;
 		this.viewCount = viewCount;
-		Large_category = large_category;
+		this.large_category = large_category;
 		this.small_category = small_category;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
@@ -160,11 +160,11 @@ public class LectureDto {
 	}
 
 	public int getLarge_category() {
-		return Large_category;
+		return large_category;
 	}
 
 	public void setLarge_category(int large_category) {
-		Large_category = large_category;
+		this.large_category = large_category;
 	}
 
 	public int getSmall_category() {
@@ -214,6 +214,7 @@ public class LectureDto {
 	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
+
 
 	
 	

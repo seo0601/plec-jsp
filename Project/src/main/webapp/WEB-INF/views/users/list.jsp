@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="mb-4">
 					<a href="${pageContext.request.contextPath}/users/list" class="fw-bold">전체회원목록</a>
-					<a href="${pageContext.request.contextPath}/studentLecture/list?Large_category=1&small_category=1">강의별 회원목록</a>
+					<a href="${pageContext.request.contextPath}/studentLecture/list?large_category=1&small_category=1">강의별 회원목록</a>
 				</div>
 				<div class="table-responsive table-top">
 					<table class="table table-hover align-middle">
@@ -50,58 +50,58 @@
 						</tbody>
 					</table>
 				</div>
-				<nav aria-label="Page navigation" class="page-btn">
-					<ul class="pagination justify-content-center">
-						<%--
-							startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-							&condition=${condition}&keyword=${encodedK}
-						 --%>
-						<c:if test="${startPageNum ne 1 }">
-							<li class="page-item">
-								<a class="page-link new-page-link" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">
-									<span aria-hidden="true"></span>
-								</a>
-							</li>
-						</c:if>
-						<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-							<li class="page-item ${pageNum eq i ? 'active' : '' }">
-								<a class="page-link new-page-link" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-							</li>
-						</c:forEach>
-						<%--
-							마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-						 --%>
-						<c:if test="${endPageNum lt totalPageCount }">
-							<li class="page-item">
-								<a class="page-link new-page-link" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">
-									<span aria-hidden="true"></span>
-								</a>
-							</li>
-						</c:if>				
-					</ul>
-				</nav>
+	<nav aria-label="Page navigation" class="page-btn">
+		<ul class="pagination justify-content-center">
+			<%--
+				startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+				&condition=${condition}&keyword=${encodedK}
+			 --%>
+			<c:if test="${startPageNum ne 1 }">
+				<li class="page-item">
+					<a class="page-link new-page-link" href="list?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">
+						<span aria-hidden="true"></span>
+					</a>
+				</li>
+			</c:if>
+			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+				<li class="page-item ${pageNum eq i ? 'active' : '' }">
+					<a class="page-link new-page-link" href="list?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+				</li>
+			</c:forEach>
+			<%--
+				마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+			 --%>
+			<c:if test="${endPageNum lt totalPageCount }">
+				<li class="page-item">
+					<a class="page-link new-page-link" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">
+						<span aria-hidden="true"></span>
+					</a>
+				</li>
+			</c:if>				
+		</ul>
+	</nav>
 	
-				<!-- 검색 폼 -->
-				<form action="list" method="get">
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end table-search-box">
-						<label for="condition" class="sr-only">검색조건</label>	
-						<select name="condition" id="condition" class="form-select" aria-label="Default select">
-							<option value="id" ${condition eq 'id' ? 'selected' : '' }>아이디</option>
-							<option value="birth" ${condition eq 'birth' ? 'selected' : '' }>생일</option>
-							<option value="email" ${condition eq 'email' ? 'selected' : '' }>이메일</option>
-							<option value="phone" ${condition eq 'phone' ? 'selected' : '' }>핸드폰 번호</option>
-							<option value="regdate" ${condition eq 'regdate' ? 'selected' : '' }>가입일</option>
-						</select>
-						<input type="text" name="keyword" placeholder="검색어..." value="${keyword }" class="form-control"/>
-						<button type="submit" class="table-search-btn new-btn-black btn">검색</button>
-					</div>
-				</form>
-				<c:if test="${not empty condition }">
-					<p style=" text-align: center;">
-						<strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
-						<a href="list" style="text-decoration: underline;">리셋</a>
-					</p>
-				</c:if>
+	<!-- 검색 폼 -->
+	<form action="list" method="get">
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end table-search-box">
+			<label for="condition" class="sr-only">검색조건</label>	
+			<select name="condition" id="condition" class="form-select" aria-label="Default select">
+				<option value="id" ${condition eq 'id' ? 'selected' : '' }>아이디</option>
+				<option value="birth" ${condition eq 'birth' ? 'selected' : '' }>생일</option>
+				<option value="email" ${condition eq 'email' ? 'selected' : '' }>이메일</option>
+				<option value="phone" ${condition eq 'phone' ? 'selected' : '' }>핸드폰 번호</option>
+				<option value="regdate" ${condition eq 'regdate' ? 'selected' : '' }>가입일</option>
+			</select>
+			<input type="text" name="keyword" placeholder="검색어..." value="${keyword }" class="form-control"/>
+			<button type="submit" class="table-search-btn new-btn-black btn">검색</button>
+		</div>
+	</form>
+	<c:if test="${not empty condition }">
+		<p style=" text-align: center;">
+			<strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
+			<a href="list" style="text-decoration: underline;">리셋</a>
+		</p>
+	</c:if>
 			</div>
 		</div>	
 	</div>

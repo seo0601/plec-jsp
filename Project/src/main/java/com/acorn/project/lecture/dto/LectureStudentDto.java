@@ -12,7 +12,7 @@ public class LectureStudentDto {
 	private String phone;
 	private String birth;
 	private String regdate;
-	private int Large_category;
+	private int large_category;
 	private int small_category;
 	private int startRowNum;
 	private int endRowNum;
@@ -33,7 +33,7 @@ public class LectureStudentDto {
 		this.phone = phone;
 		this.birth = birth;
 		this.regdate = regdate;
-		this.Large_category = large_category;
+		this.large_category = large_category;
 		this.small_category = small_category;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
@@ -106,11 +106,11 @@ public class LectureStudentDto {
 	}
 
 	public int getLarge_category() {
-		return Large_category;
+		return large_category;
 	}
 
 	public void setLarge_category(int large_category) {
-		Large_category = large_category;
+		this.large_category = large_category;
 	}
 
 	public int getSmall_category() {

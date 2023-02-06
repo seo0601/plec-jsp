@@ -812,7 +812,7 @@ public class LectureServiceImpl implements LectureService{
 
 	@Override
 	public void studentList(HttpServletRequest request) {
-		int Large_category=Integer.parseInt(request.getParameter("Large_category"));
+		int large_category=Integer.parseInt(request.getParameter("large_category"));
 		int small_category=Integer.parseInt(request.getParameter("small_category"));
 		final int PAGE_ROW_COUNT=8;
 		final int PAGE_DISPLAY_COUNT=5;
@@ -829,7 +829,7 @@ public class LectureServiceImpl implements LectureService{
 		LectureStudentDto dto = new LectureStudentDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
-		dto.setLarge_category(Large_category);
+		dto.setLarge_category(large_category);
 		dto.setSmall_category(small_category);
 	   
 		List<LectureStudentDto> list = studentDao.studentList(dto);
@@ -849,7 +849,7 @@ public class LectureServiceImpl implements LectureService{
 		request.setAttribute("endPageNum", endPageNum);	
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("totalPageCount", totalPageCount);	
-		request.setAttribute("Large_category", Large_category);
+		request.setAttribute("large_category", large_category);
 		request.setAttribute("small_category", small_category);
 		
 	}

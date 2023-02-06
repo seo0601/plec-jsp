@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lectureStudent">
-<select id="studentData" parameterType="lectureStudentDto" resultType="lectureStudentDto">
-	SELECT * FROM LECTURE_STUDENT
-	WHERE id=#{id, jdbcType=VARCHAR} AND ref_group=#{ref_group}
-</select>
+	<sql id="searchCondition">
+		<choose>
+			<when test="id != null">
+				WHERE id LIKE '%'||#{id}||'%'
+			</when>
+			<when test="birth != null">
+				WHERE birth LIKE '%'||#{birth}||'%'
+			</when>
+			<when test="phone != null">
+				WHERE phone LIKE '%'||#{phone}||'%'
+			</when>
+			<when test="email != null">
+				WHERE email LIKE '%'||#{email}||'%'
+			</when>
+			<when test="regdate != null">
+				WHERE regdate LIKE '%'||#{regdate}||'%'
+			</when>
+		</choose>
+	</sql>
+
+	<select id="studentData" parameterType="lectureStudentDto" resultType="lectureStudentDto">
+		SELECT * FROM LECTURE_STUDENT
+		WHERE id=#{id, jdbcType=VARCHAR} AND ref_group=#{ref_group}
+	</select>
 
 	<update id="lectureComplete" parameterType="usersDto">
 		UPDATE LECTURE_STUDENT
@@ -17,22 +37,25 @@
 			FROM	
 				(SELECT result1.*, ROWNUM as rnum
 				FROM
-					(SELECT users.id,TO_CHAR(birth,'YYYY-MM-DD') birth, phone, email, regdate, Large_category, small_category
+					(SELECT users.id,TO_CHAR(birth,'YYYY-MM-DD') birth, phone, email, regdate, large_category, small_category
 					FROM users 
 					JOIN LECTURE_STUDENT
 					ON users.id=LECTURE_STUDENT.id
 					JOIN LECTURE 
 					on LECTURE.num=LECTURE_STUDENT.ref_group
+					<include refid="searchCondition"/>
 					<choose>
 						<when test="small_category==0">
-							WHERE Large_category=#{Large_category}
+							WHERE large_category=#{large_category}
 						</when>
 						<when test="small_category!=null">
-							WHERE Large_category=#{Large_category} AND small_category=#{small_category}
+							WHERE large_category=#{large_category} AND small_category=#{small_category}
 						</when>
 					</choose>
 					ORDER BY users.id DESC) result1)
+			<![CDATA[		
 			WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+			]]>
 	</select>   
   
   <insert id="lectureSignup" parameterType="lectureStudentDto">

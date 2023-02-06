@@ -6,9 +6,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=1
+				WHERE large_category=1
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -17,9 +17,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=1 AND small_category=1
+				WHERE large_category=1 AND small_category=1
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -28,9 +28,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=1 AND small_category=2
+				WHERE large_category=1 AND small_category=2
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -39,9 +39,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=1 AND small_category=3
+				WHERE large_category=1 AND small_category=3
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -50,9 +50,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=1 AND small_category=4
+				WHERE large_category=1 AND small_category=4
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -61,9 +61,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=1 AND small_category=5
+				WHERE large_category=1 AND small_category=5
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -72,9 +72,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, title, writer, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, title, writer, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=2
+				WHERE large_category=2
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -83,9 +83,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=2 AND small_category=6
+				WHERE large_category=2 AND small_category=6
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -94,9 +94,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=2 AND small_category=7
+				WHERE large_category=2 AND small_category=7
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -105,9 +105,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=2 AND small_category=8
+				WHERE large_category=2 AND small_category=8
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -116,9 +116,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=3
+				WHERE large_category=3
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -127,9 +127,9 @@
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE Large_category=3 AND small_category=9
+				WHERE large_category=3 AND small_category=9
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -141,12 +141,12 @@
 	<insert id="insert" parameterType="lectureDto">
 		INSERT INTO LECTURE
 		(num, teacher, writer,title, describe, imagePath,
-		videoPath, viewCount, regdate, Large_category,small_category)
-		VALUES(LECTURE_seq.NEXTVAL, #{teacher}, #{writer}, #{title}, #{describe},#{imagePath}, #{videoPath}, #{viewCount}, SYSDATE, #{Large_category}, #{small_category} )
+		videoPath, viewCount, regdate, large_category,small_category)
+		VALUES(LECTURE_seq.NEXTVAL, #{teacher}, #{writer}, #{title}, #{describe},#{imagePath}, #{videoPath}, #{viewCount}, SYSDATE, #{large_category}, #{small_category} )
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="lectureDto">
-		SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, Large_category,small_category
+		SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 		FROM LECTURE
 		WHERE num = #{num}
 	</select>
@@ -162,7 +162,7 @@
 	
 	<update id="update" parameterType="lectureDto">
 		UPDATE LECTURE
-		SET title= #{title}, teacher=#{teacher},imagePath=#{imagePath},describe=#{describe}, videoPath=#{videoPath}, Large_category=#{Large_category},small_category=#{small_category}
+		SET title= #{title}, teacher=#{teacher},imagePath=#{imagePath},describe=#{describe}, videoPath=#{videoPath}, large_category=#{large_category},small_category=#{small_category}
 		WHERE num = #{num}
 	</update>
 </mapper>

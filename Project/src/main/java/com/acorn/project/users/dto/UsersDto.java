@@ -15,7 +15,7 @@ public class UsersDto {
 	private String isSave;
 	private String imagePath;
 	private String complete;
-	private int Large_category;
+	private int large_category;
 	private int small_category;
 	private int startRowNum;
 	private int endRowNum;
@@ -39,7 +39,7 @@ public class UsersDto {
 		this.isSave = isSave;
 		this.imagePath = imagePath;
 		this.complete = complete;
-		Large_category = large_category;
+		this.large_category = large_category;
 		this.small_category = small_category;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
@@ -136,11 +136,11 @@ public class UsersDto {
 	}
 
 	public int getLarge_category() {
-		return Large_category;
+		return large_category;
 	}
 
 	public void setLarge_category(int large_category) {
-		Large_category = large_category;
+		this.large_category = large_category;
 	}
 
 	public int getSmall_category() {
@@ -182,6 +182,8 @@ public class UsersDto {
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
 	}
+
+	
 
 	
 	
