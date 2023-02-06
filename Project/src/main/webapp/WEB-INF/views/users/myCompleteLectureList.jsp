@@ -13,10 +13,10 @@
 		<a href="${pageContext.request.contextPath}/users/myLectureList">수강 중인 강의</a>
 		<a href="${pageContext.request.contextPath}/users/myCompleteLectureList">수강 완료 강의</a>
 		<br />
-		<h4>수강 중인 강의</h4>
+		<h4>수강 완료 강의</h4>
 		<c:forEach var="tmp" items="${list }">	
 			<c:choose>    
-				<c:when test="${tmp.complete eq 'no' }">	   	
+				<c:when test="${tmp.complete eq 'yes' }">	   	
 					<a href="">
 						<img width="100px" height="100px" src="${pageContext.request.contextPath }/lecture/images/${tmp.imagePath}">
 					</a>
@@ -33,14 +33,14 @@
 			 --%>
 			<c:if test="${startPageNum ne 1 }">
 				<li class="page-item">
-					<a class="page-link new-page-link" href="myLectureList?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">
+					<a class="page-link new-page-link" href="myCompleteLectureList?pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">
 						<span aria-hidden="true"></span>
 					</a>
 				</li>
 			</c:if>
 			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 				<li class="page-item ${pageNum eq i ? 'active' : '' }">
-					<a class="page-link new-page-link" href="myLectureList?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+					<a class="page-link new-page-link" href="myCompleteLectureList?pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
 				</li>
 			</c:forEach>
 			<%--
@@ -48,7 +48,7 @@
 			 --%>
 			<c:if test="${endPageNum lt totalPageCount }">
 				<li class="page-item">
-					<a class="page-link new-page-link" href="myLectureList?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">
+					<a class="page-link new-page-link" href="myCompleteLectureList?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">
 						<span aria-hidden="true"></span>
 					</a>
 				</li>

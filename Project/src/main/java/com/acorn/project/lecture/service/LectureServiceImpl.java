@@ -594,6 +594,7 @@ public class LectureServiceImpl implements LectureService{
 		
 		LectureStudentDto lsDto2  = studentDao.studentData(lsDto);
 		
+		
 		//request scope 에 글 하나의 정보 담기
 		request.setAttribute("dto", resultDto);
 		request.setAttribute("condition", condition);
@@ -856,11 +857,8 @@ public class LectureServiceImpl implements LectureService{
 	@Override
 	public void lectureComplete(LectureStudentDto dto, HttpServletRequest request) {
 		String id  = (String)request.getSession().getAttribute("id");
-		dto.setId(id);
+		dto.setId(id);	
 		studentDao.lectureComplete(dto);
 	}
-
-
-	
 
 }

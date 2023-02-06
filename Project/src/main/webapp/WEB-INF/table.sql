@@ -144,7 +144,7 @@ CREATE TABLE LECTURE_STUDENT(
     num NUMBER PRIMARY KEY,
     id VARCHAR2(50),
     ref_group NUMBER,
-    complete CHAR(3) DEFAULT 'no'
+    complete VARCHAR2(3) DEFAULT 'no'
 );
 
 CREATE SEQUENCE LECTURE_STUDENT_seq;

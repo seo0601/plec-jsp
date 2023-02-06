@@ -170,8 +170,7 @@
 				<c:choose>
 					<c:when test="${lsDto2.id == null}">
 						<form action="${pageContext.request.contextPath}/lecture/lectureSignup" class= "mt-4 mb-3 d-flex justify-content-center" method="post" id="signForm">
-							<input type="hidden" name="ref_group" value="${dto.num }"/>
-							<input type="hidden" name="num" value="${dto.num }"/>
+							<input type="hidden" name="ref_group" value="${dto.num }"/>							
 							<button class="button" type="submit">수강 신청</button>
 						</form>	
 					</c:when>
@@ -179,8 +178,9 @@
 						<div class="mt-4 d-flex justify-content-center mb-3">
 				        	<button class="button" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>
 				        	<br />
-				        	<form action="${pageContext.request.contextPath}/studentLecture/lectureComplete" id="completeForm">
-				        		<input type="hidden" name="complete"  value="yes" />
+				        	<form action="${pageContext.request.contextPath}/studentLecture/lectureComplete" id="completeForm" method="post">
+				        		<input type="hidden"  name="complete" value="yes" />
+				        		<input type="hidden" name="ref_group" value="${dto.num }"/>
 				        		<button class="button" type="submit">강의완료</button>	
 				        	</form>    		   
 				  	    </div>

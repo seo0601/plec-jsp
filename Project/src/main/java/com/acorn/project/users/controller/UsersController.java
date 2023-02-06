@@ -166,4 +166,11 @@ public class UsersController {
 		return "users/myLectureList";
 	}
 	
+	@RequestMapping(value = "/users/myCompleteLectureList")
+	public String myCompleteLectureList(HttpServletRequest request) {
+		//view 페이지에 사용될 데이터는 request 영역에 담는다.
+		service.myLectureList(request);	
+		return "users/myCompleteLectureList";
+	}
+	
 }
