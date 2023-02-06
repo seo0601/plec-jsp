@@ -210,13 +210,6 @@ public class LectureController {
 		return "lecture/update";
 	}
 	
-	//수강 신청 처리
-	@RequestMapping("/lecture/lectureSignup")
-	public String lectureSignup(LectureStudentDto dto, HttpServletRequest request) {
-		service.lectureSignup(dto, request);
-		return "lecture/lectureSignup";
-	}
-	
 	
 	//새로운 댓글 저장 요청 처리
 	@RequestMapping("/lecture/lectureReview_insert")
@@ -272,9 +265,15 @@ public class LectureController {
 		return "studentLecture/list";
 	}
 	
-	
+	//수강 신청 처리
+	@RequestMapping("/lecture/lectureSignup")
+	public String lectureSignup(LectureStudentDto dto, HttpServletRequest request) {
+		service.lectureSignup(dto, request);
+		return "lecture/lectureSignup";
+	}
+		
 	@RequestMapping("/studentLecture/lectureComplete")
-	public String update(LectureStudentDto dto, HttpServletRequest request) {
+	public String lectureComplete(LectureStudentDto dto, HttpServletRequest request) {
 		service.lectureComplete(dto, request);
 		return "studentLecture/lectureComplete";
 	}

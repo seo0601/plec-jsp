@@ -12,10 +12,14 @@
 		<h1>나의 강의실</h1>
 		<br />
 		<h4>수강중인 강의</h4>
-		<c:forEach var="tmp" items="${list }">		   	
-			<a href="">
-				<img width="100px" height="100px" src="${pageContext.request.contextPath }/lecture/images/${tmp.imagePath}">
-			</a>
+		<c:forEach var="tmp" items="${list }">	
+			<c:choose>    
+				<c:when test="${tmp.complete eq 'no ' }">	   	
+					<a href="">
+						<img width="100px" height="100px" src="${pageContext.request.contextPath }/lecture/images/${tmp.imagePath}">
+					</a>
+				</c:when>
+			</c:choose>    
 		</c:forEach>
 		<br />
 		<br />

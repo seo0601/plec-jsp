@@ -180,7 +180,7 @@
 				        	<button class="button" type="button" onclick="location.href='${pageContext.request.contextPath}/lecture/lecture_view?num=${dto.num}'">강의보기</button>
 				        	<br />
 				        	<form action="${pageContext.request.contextPath}/studentLecture/lectureComplete" id="completeForm">
-				        		<input type="hidden" name="complete"  value="y" />
+				        		<input type="hidden" name="complete"  value="yes" />
 				        		<button class="button" type="submit">강의완료</button>	
 				        	</form>    		   
 				  	    </div>
