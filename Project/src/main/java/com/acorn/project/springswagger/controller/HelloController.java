@@ -2,6 +2,8 @@ package com.acorn.project.springswagger.controller;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,22 @@ public class HelloController {
     @GetMapping("/lecutre/detail")
    public LectureDto detail(int num) {
 	return dao.getData(num);
+   }
+   
+   @RequestMapping("lecture/list")
+   public List<LectureDto> LectureList(LectureDto dto){
+	return dao.LectureList(dto);
+	   
+   }
+   
+   @RequestMapping("lecture/delete")
+   public void delete(int num) {
+	   dao.delete(num);
+   }
+   
+   @RequestMapping("lecture/update")
+   public void update(LectureDto dto) {
+	   dao.update(dto);
    }
 
 }

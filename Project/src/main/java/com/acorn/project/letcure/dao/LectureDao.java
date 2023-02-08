@@ -16,6 +16,7 @@ public interface LectureDao {
 	public LectureDto getData(int num);
 	//게시글 삭제
 	public void delete(int num);
+	
 	//게시글 수정
 	public void update(LectureDto dto);
 	
