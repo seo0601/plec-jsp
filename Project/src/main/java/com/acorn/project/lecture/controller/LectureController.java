@@ -52,108 +52,12 @@ public class LectureController {
 	}	
 
 	//프론트엔드 리스트
-	@RequestMapping(value = "/lecture/frontend/frontendList")
-	public String frontEndList(HttpServletRequest request) {
+	@RequestMapping(value = "/lecture/list")
+	public String lectureList(HttpServletRequest request) {
 		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.frontEndList(request);
+		service.LectureList(request);
 		
-		return "lecture/frontend/frontendList";
-	}
-		
-	//javascript 리스트
-	@RequestMapping(value = "/lecture/frontend/jsList")
-	public String jsList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.jsList(request);
-		
-		return "lecture/frontend/jsList";
-	}
-	
-	//html_css 리스트
-	@RequestMapping(value = "/lecture/frontend/html_cssList")
-	public String html_cssList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.html_cssList(request);
-		
-		return "lecture/frontend/html_cssList";
-	}
-	
-	//react 리스트
-	@RequestMapping(value = "/lecture/frontend/reactList")
-	public String reactList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.reactList(request);
-		
-		return "lecture/frontend/reactList";
-	}
-	
-	//vue 리스트
-	@RequestMapping(value = "/lecture/frontend/vueList")
-	public String vueList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.vueList(request);
-		
-		return "lecture/frontend/vueList";
-	}
-	
-	//jQuery 리스트
-	@RequestMapping(value = "/lecture/frontend/jQueryList")
-	public String jQueryList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.jQueryList(request);
-		
-		return "lecture/frontend/jQueryList";
-	}
-	
-	//백엔드 리스트
-	@RequestMapping(value = "/lecture/backend/backendList")
-	public String backEndList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.backEndList(request);
-		
-		return "lecture/backend/backendList";
-	}
-	//java 리스트
-	@RequestMapping(value = "/lecture/backend/javaList")
-	public String javaList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.javaList(request);
-		
-		return "lecture/backend/javaList";
-	}
-	//spring 리스트
-	@RequestMapping(value = "/lecture/backend/springList")
-	public String springList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.springList(request);
-		
-		return "lecture/backend/springList";
-	}
-	//spring boot 리스트
-	@RequestMapping(value = "/lecture/backend/springbootList")
-	public String springbootList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.springbootList(request);
-		
-		return "lecture/backend/springbootList";
-	}
-		
-	//모바일 리스트
-	@RequestMapping(value = "/lecture/mobile/mobileList")
-	public String mobileList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.mobileList(request);
-		
-		return "lecture/mobile/mobileList";
-	}
-	
-	//kotlin 리스트
-	@RequestMapping(value = "/lecture/mobile/kotlinList")
-	public String kotlinList(HttpServletRequest request) {
-		//view 페이지에 사용될 데이터는 request 영역에 담는다.
-		service.kotlinList(request);
-		
-		return "lecture/mobile/kotlinList";
+		return "lecture/list";
 	}
 	
 	@RequestMapping(value = "/lecture/upload_form")

@@ -15,7 +15,7 @@
 		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 		<div class="sub-tit-box">
 			<div class="container">
-				<h3 class="sub-tit">Mobile</h3>
+				<h3 class="sub-tit">FrontEnd</h3>
 			</div>
 		</div>
 		<div class="container">
@@ -24,10 +24,10 @@
 				<div class="col-md-10">
 					<div class="d-flex justify-content-end">
 						<c:if test="${id eq 'admin' }">
-		    				<button class="btn btn-sm me-2 mb-3 button" type="button" onclick="location.href='${pageContext.request.contextPath }/lecture/upload_form'">새글작성</button>
-			        	</c:if>
+							<button class="btn btn-sm me-2 mb-3 button" type="button" onclick="location.href='${pageContext.request.contextPath }/lecture/upload_form'">새글작성</button>
+						</c:if>
 			        </div>
-					<div  class="row">
+					<div class="row">
 					<c:forEach var="tmp" items="${list }">
 						<div class="col-6 col-md-4 col-lg-3">
 					   		<div class="card mb-3">
@@ -49,27 +49,26 @@
 							
 							<c:if test="${startPageNum ne 1 }">
 								<li class="page-item">
-									<a class="page-link new-page-link" href="${pageContext.request.contextPath}/lecture/mobile/mobileList?pageNum=${startPageNum-1 }">Prev</a>
+									<a class="page-link new-page-link" href="${pageContext.request.contextPath}/lecture/list?large_category=${large_category }&small_category=${small_category }&pageNum=${startPageNum-1 }">Prev</a>
 								</li>
 							</c:if>
 							<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 								<li class="page-item ${pageNum eq i ? 'active' : '' }">
-									<a class="page-link new-page-link" href="${pageContext.request.contextPath}/lecture/mobile/mobileList?pageNum=${i }">${i }</a>
+									<a class="page-link new-page-link" href="${pageContext.request.contextPath}/lecture/list?large_category=${large_category }&small_category=${small_category }&pageNum=${i }">${i }</a>
 								</li>
 							</c:forEach>
 							
 							<c:if test="${endPageNum lt totalPageCount }">
 								<li class="page-item">
-									<a class="page-link new-page-link" href="${pageContext.request.contextPath}/lecture/mobile/mobileList?pageNum=${endPageNum+1 }">Next</a>
+									<a class="page-link new-page-link" href="${pageContext.request.contextPath}/lecture/list?large_category=${large_category }&small_category=${small_category }&pageNum=${endPageNum+1 }">Next</a>
 								</li>
 							</c:if>				
 						</ul>
 					</nav>
-				</div>
+				</div>	
 			</div>
 		</div>
-	</div>	
+	</div>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-
 </body>
 </html>

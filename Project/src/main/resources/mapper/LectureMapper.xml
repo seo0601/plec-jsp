@@ -1,135 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lecture">
-	<select id="frontEndList" parameterType="lectureDto" resultType="lectureDto">
+	<select id="lectureList" parameterType="lectureDto" resultType="lectureDto">
 		SELECT *
 		FROM	
 			(SELECT result1.*, ROWNUM as rnum
 			FROM
 				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
 				FROM LECTURE
-				WHERE large_category=1
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="jsList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=1 AND small_category=1
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="html_cssList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=1 AND small_category=2
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="reactList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=1 AND small_category=3
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="vueList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=1 AND small_category=4
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="jQueryList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=1 AND small_category=5
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="backEndList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, title, writer, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=2
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="javaList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=2 AND small_category=6
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="springList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=2 AND small_category=7
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="springbootList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=2 AND small_category=8
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="mobileList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer,title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=3
-				ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	<select id="kotlinList" parameterType="lectureDto" resultType="lectureDto">
-		SELECT *
-		FROM	
-			(SELECT result1.*, ROWNUM as rnum
-			FROM
-				(SELECT num, teacher, writer, title, describe, imagePath, videoPath, viewCount, regdate, large_category,small_category
-				FROM LECTURE
-				WHERE large_category=3 AND small_category=9
+				<choose>
+						<when test='small_category=="0"'>
+							WHERE large_category=#{large_category}
+						</when>
+						<when test="small_category!=null">
+							WHERE large_category=#{large_category} AND small_category=#{small_category}
+						</when>
+					</choose>
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>

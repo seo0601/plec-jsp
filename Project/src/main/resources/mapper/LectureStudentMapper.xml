@@ -45,7 +45,7 @@
 					on LECTURE.num=LECTURE_STUDENT.ref_group
 					<include refid="searchCondition"/>
 					<choose>
-						<when test="small_category==0">
+						<when test='small_category=="0"'>
 							WHERE large_category=#{large_category}
 						</when>
 						<when test="small_category!=null">

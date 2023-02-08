@@ -117,8 +117,8 @@ CREATE TABLE LECTURE(
     videoPath VARCHAR2(300), --영상 링크
     viewCount NUMBER, -- 조회수
     regdate DATE, --등록일
-    large_category NUMBER, -- 강의 대분류
-    small_category NUMBER -- 강의 소분류
+    large_category VARCHAR2(15), -- 강의 대분류
+    small_category VARCHAR2(15) -- 강의 소분류
 );
 -- LECTURE 시퀀스
 CREATE SEQUENCE LECTURE_seq;

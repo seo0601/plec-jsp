@@ -40,25 +40,25 @@
 				         	<input class="form-control" type="text" name="videoPath" id="videoPath" value="${dto.videoPath}" />
 				    </div>
 				    <div class="mb-3">
-				     	<label class="form-label" for="Large_category">대분류</label>
-				     	<select class="form-control" name="Large_category" id="Large_category">
-				      			<option value="1">프론트엔드</option>
-				      			<option value="2">백엔드</option>
-				      			<option value="3">모바일</option>
+				     	<label class="form-label" for="large_category">대분류</label>
+				     	<select class="form-control" name="large_category" id="large_category">
+				      			<option value="front">프론트엔드</option>
+				      			<option value="backend">백엔드</option>
+				      			<option value="mobile">모바일</option>
 				      	</select>
 				    </div>
 				    <div class="mb-3">
 				      	<label class="form-label" for="small_category">소분류</label>
 				      		<select class="form-control" name="small_category" id="small_category">
-				      			<option value="1">javascript</option>
-				      			<option value="2">html/css</option>
-				      			<option value="3">react</option>
-				      			<option value="4">vue.js</option>
-				      			<option value="5">jQuery</option>
-				      			<option value="6">java</option>
-				      			<option value="7">spring</option>
-				      			<option value="8">spring boot</option>
-				      			<option value="9">kotlin</option>
+				      			<option value="js">javascript</option>
+				      			<option value="html_css">html/css</option>
+				      			<option value="react">react</option>
+				      			<option value="vue">vue.js</option>
+				      			<option value="jquery">jQuery</option>
+				      			<option value="java">java</option>
+				      			<option value="spring">spring</option>
+				      			<option value="springboot">spring boot</option>
+				      			<option value="kotlin">kotlin</option>
 				      		</select>
 				      	</div>
 					<button class="w-100 button btn btn-lg mt-3 mb-5" type="submit" onclick="submitContents(this)">수정확인</button>

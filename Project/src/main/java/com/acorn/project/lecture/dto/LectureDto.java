@@ -18,8 +18,8 @@ public class LectureDto {
 	private String phone;
 	private String birth;
 	private int viewCount;
-	private int large_category;
-	private int small_category;
+	private String large_category;
+	private String small_category;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum; 
@@ -30,7 +30,7 @@ public class LectureDto {
 
 	public LectureDto(int num, String teacher, String writer, String title, String describe, String videoPath,
 			String imagePath, String regdate, String id, String email, String phone, String birth, int viewCount,
-			int large_category, int small_category, int startRowNum, int endRowNum, int prevNum, int nextNum,
+			String large_category, String small_category, int startRowNum, int endRowNum, int prevNum, int nextNum,
 			MultipartFile image) {
 		super();
 		this.num = num;
@@ -159,19 +159,19 @@ public class LectureDto {
 		this.viewCount = viewCount;
 	}
 
-	public int getLarge_category() {
+	public String getLarge_category() {
 		return large_category;
 	}
 
-	public void setLarge_category(int large_category) {
+	public void setLarge_category(String large_category) {
 		this.large_category = large_category;
 	}
 
-	public int getSmall_category() {
+	public String getSmall_category() {
 		return small_category;
 	}
 
-	public void setSmall_category(int small_category) {
+	public void setSmall_category(String small_category) {
 		this.small_category = small_category;
 	}
 
@@ -214,7 +214,6 @@ public class LectureDto {
 	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
-
 
 	
 	

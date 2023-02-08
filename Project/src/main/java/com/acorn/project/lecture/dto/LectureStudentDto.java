@@ -12,8 +12,8 @@ public class LectureStudentDto {
 	private String phone;
 	private String birth;
 	private String regdate;
-	private int large_category;
-	private int small_category;
+	private String large_category;
+	private String small_category;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum; 
@@ -22,7 +22,7 @@ public class LectureStudentDto {
 	public LectureStudentDto() {}
 
 	public LectureStudentDto(int num, String id, int ref_group, String complete, String email, String phone,
-			String birth, String regdate, int large_category, int small_category, int startRowNum, int endRowNum,
+			String birth, String regdate, String large_category, String small_category, int startRowNum, int endRowNum,
 			int prevNum, int nextNum) {
 		super();
 		this.num = num;
@@ -105,19 +105,19 @@ public class LectureStudentDto {
 		this.regdate = regdate;
 	}
 
-	public int getLarge_category() {
+	public String getLarge_category() {
 		return large_category;
 	}
 
-	public void setLarge_category(int large_category) {
+	public void setLarge_category(String large_category) {
 		this.large_category = large_category;
 	}
 
-	public int getSmall_category() {
+	public String getSmall_category() {
 		return small_category;
 	}
 
-	public void setSmall_category(int small_category) {
+	public void setSmall_category(String small_category) {
 		this.small_category = small_category;
 	}
 
@@ -153,7 +153,6 @@ public class LectureStudentDto {
 		this.nextNum = nextNum;
 	}
 
-	
 	
 	
 	

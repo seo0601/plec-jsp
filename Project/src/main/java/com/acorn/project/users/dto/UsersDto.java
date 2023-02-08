@@ -15,8 +15,8 @@ public class UsersDto {
 	private String isSave;
 	private String imagePath;
 	private String complete;
-	private int large_category;
-	private int small_category;
+	private String large_category;
+	private String small_category;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum;
@@ -25,8 +25,8 @@ public class UsersDto {
 	public UsersDto() {}
 
 	public UsersDto(String id, String pwd, String email, String profile, String regdate, String phone, String birth,
-			String newPwd, String isSave, String imagePath, String complete, int large_category, int small_category,
-			int startRowNum, int endRowNum, int prevNum, int nextNum) {
+			String newPwd, String isSave, String imagePath, String complete, String large_category,
+			String small_category, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -135,19 +135,19 @@ public class UsersDto {
 		this.complete = complete;
 	}
 
-	public int getLarge_category() {
+	public String getLarge_category() {
 		return large_category;
 	}
 
-	public void setLarge_category(int large_category) {
+	public void setLarge_category(String large_category) {
 		this.large_category = large_category;
 	}
 
-	public int getSmall_category() {
+	public String getSmall_category() {
 		return small_category;
 	}
 
-	public void setSmall_category(int small_category) {
+	public void setSmall_category(String small_category) {
 		this.small_category = small_category;
 	}
 
@@ -184,7 +184,6 @@ public class UsersDto {
 	}
 
 	
-
 	
 	
 }

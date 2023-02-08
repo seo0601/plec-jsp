@@ -20,47 +20,47 @@
 			<div class="container">
 				<div class="mb-4">
 					<a href="${pageContext.request.contextPath}/users/list">전체회원목록</a>
-					<a href="${pageContext.request.contextPath}/studentLecture/list?large_category=1&small_category=1" class="fw-bold">강의별
+					<a href="${pageContext.request.contextPath}/studentLecture/list?large_category=front&small_category=js" class="fw-bold">강의별
 						회원목록</a> 
 				</div>
 				
 				<div class="mb-3">
 					<h2 class="fw-bold">
 					<c:choose>
-						<c:when test="${dto.large_category==1 and dto.small_category==0}">
+						<c:when test="${dto.large_category==front and dto.small_category==0}">
 							프론트엔드
 						</c:when>
-						<c:when test="${dto.large_category==1 and dto.small_category==1}">
+						<c:when test="${dto.large_category==front and dto.small_category==js}">
 							자바스크립트
 						</c:when>
-						<c:when test="${dto.large_category==1 and dto.small_category==2}">
+						<c:when test="${dto.large_category==front and dto.small_category==html_css}">
 							html/css
 						</c:when>
-						<c:when test="${dto.large_category==1 and dto.small_category==3}">
+						<c:when test="${dto.large_category==front and dto.small_category==react}">
 							리액트
 						</c:when>
-						<c:when test="${dto.large_category==1 and dto.small_category==4}">
+						<c:when test="${dto.large_category==front and dto.small_category==vue}">
 							뷰
 						</c:when>
-						<c:when test="${dto.large_category==1 and dto.small_category==5}">
+						<c:when test="${dto.large_category==front and dto.small_category==jquery}">
 							제이쿼리
 						</c:when>
-						<c:when test="${dto.large_category==2 and dto.small_category==0}">
+						<c:when test="${dto.large_category==backend and dto.small_category==0}">
 							백엔드
 						</c:when>
-						<c:when test="${dto.large_category==2 and dto.small_category==6}">
+						<c:when test="${dto.large_category==backend and dto.small_category==java}">
 							자바
 						</c:when>
-						<c:when test="${dto.large_category==2 and dto.small_category==7}">
+						<c:when test="${dto.large_category==backend and dto.small_category==spring}">
 							스프링
 						</c:when>
-						<c:when test="${dto.large_category==2 and dto.small_category==8}">
+						<c:when test="${dto.large_category==backend and dto.small_category==springboot}">
 							스프링부트
 						</c:when>
-						<c:when test="${dto.large_category==3 and dto.small_category==0}">
+						<c:when test="${dto.large_category==mobile and dto.small_category==0}">
 							모바일
 						</c:when>
-						<c:when test="${dto.large_category==3 and dto.small_category==9}">
+						<c:when test="${dto.large_category==mobile and dto.small_category==kotlin}">
 							코틀린
 						</c:when>
 					
@@ -78,9 +78,9 @@
 							<select
 								class="form-select" name="large_category" id="large_category">
 								<option value="0">대분류</option>
-								<option value="1">프론트엔드</option>
-								<option value="2">백엔드</option>
-								<option value="3">모바일</option>
+								<option value="front">프론트엔드</option>
+				      			<option value="backend">백엔드</option>
+				      			<option value="mobile">모바일</option>
 							</select>
 						</div>
 						<div>
@@ -88,15 +88,15 @@
 							<select
 								class="form-select" name="small_category" id="small_category">
 								<option value="0">소분류</option>
-								<option value="1">javascript</option>
-								<option value="2">html/css</option>
-								<option value="3">react</option>
-								<option value="4">vue.js</option>
-								<option value="5">jQuery</option>
-								<option value="6">java</option>
-								<option value="7">spring</option>
-								<option value="8">spring boot</option>
-								<option value="9">kotlin</option>
+								<option value="js">javascript</option>
+				      			<option value="html_css">html/css</option>
+				      			<option value="react">react</option>
+				      			<option value="vue">vue.js</option>
+				      			<option value="jquery">jQuery</option>
+				      			<option value="java">java</option>
+				      			<option value="spring">spring</option>
+				      			<option value="springboot">spring boot</option>
+				      			<option value="kotlin">kotlin</option>
 							</select>
 						</div>
 						<button type="submit" class="btn new-btn">검색</button>
