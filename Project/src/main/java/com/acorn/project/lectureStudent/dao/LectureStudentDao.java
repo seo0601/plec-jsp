@@ -1,13 +1,16 @@
-package com.acorn.project.letcure.dao;
+package com.acorn.project.lectureStudent.dao;
 
 import java.util.List;
 
-import com.acorn.project.lecture.dto.LectureStudentDto;
+import com.acorn.project.lectureStudent.dto.LectureStudentDto;
+import com.acorn.project.lectureStudent.dto.LectureStudentReq;
+import com.acorn.project.lectureStudent.dto.LectureStudentRes;
+
 
 
 public interface LectureStudentDao {
 	//수강 신청
-	public void lectureSignup (LectureStudentDto dto);
+	public void lectureSignup (LectureStudentRes res);
 	//수강 신청 취소
 	public LectureStudentDto delete(int num);
 	
@@ -16,10 +19,9 @@ public interface LectureStudentDao {
 
 	public LectureStudentDto studentData(LectureStudentDto dto);
 	
-	public void lectureComplete(LectureStudentDto dto);
+	public void lectureComplete(LectureStudentReq req);
 	
 	public int getSequence();
-	
-	
+
 	public int getCount();
 }

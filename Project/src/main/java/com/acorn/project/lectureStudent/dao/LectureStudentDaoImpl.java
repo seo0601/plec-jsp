@@ -1,4 +1,4 @@
-package com.acorn.project.letcure.dao;
+package com.acorn.project.lectureStudent.dao;
 
 import java.util.List;
 
@@ -6,7 +6,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.acorn.project.lecture.dto.LectureStudentDto;
+import com.acorn.project.lectureStudent.dto.LectureStudentDto;
+import com.acorn.project.lectureStudent.dto.LectureStudentReq;
+import com.acorn.project.lectureStudent.dto.LectureStudentRes;
+
+
 
 @Repository
 public class LectureStudentDaoImpl implements LectureStudentDao{
@@ -14,8 +18,8 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 	@Autowired private SqlSession session;
 
 	@Override
-	public void lectureSignup(LectureStudentDto dto) {
-		session.insert("lectureStudent.lectureSignup", dto);
+	public void lectureSignup(LectureStudentRes res) {
+		session.insert("lectureStudent.lectureSignup", res);
 		
 	}
 
@@ -46,8 +50,8 @@ public class LectureStudentDaoImpl implements LectureStudentDao{
 	}
 
 	@Override
-	public void lectureComplete(LectureStudentDto dto) {
-		session.update("lectureStudent.lectureComplete", dto);
+	public void lectureComplete(LectureStudentReq req) {
+		session.update("lectureStudent.lectureComplete", req);
 		
 	}
 

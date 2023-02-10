@@ -1,8 +1,10 @@
-package com.acorn.project.letcure.dao;
+package com.acorn.project.lectureReview.dao;
 
 import java.util.List;
 
-import com.acorn.project.lecture.dto.LectureReviewDto;
+import com.acorn.project.lectureReview.dto.LectureReviewDto;
+
+
 
 
 public interface LectureReviewDao {

@@ -1,4 +1,4 @@
-package com.acorn.project.letcure.dao;
+package com.acorn.project.lectureReview.dao;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.acorn.project.lecture.dto.LectureReviewDto;
+import com.acorn.project.lectureReview.dto.LectureReviewDto;
+
 
 @Repository
 public class LectureReviewDaoImpl implements LectureReviewDao{

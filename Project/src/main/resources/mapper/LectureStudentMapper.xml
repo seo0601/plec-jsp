@@ -26,7 +26,7 @@
 		WHERE id=#{id, jdbcType=VARCHAR} AND ref_group=#{ref_group}
 	</select>
 
-	<update id="lectureComplete" parameterType="usersDto">
+	<update id="lectureComplete" parameterType="lectureStudentReq">
 		UPDATE LECTURE_STUDENT
 		SET complete=#{complete}
 		WHERE ref_group=#{ref_group} AND id=#{id}
@@ -43,7 +43,6 @@
 					ON users.id=LECTURE_STUDENT.id
 					JOIN LECTURE 
 					on LECTURE.num=LECTURE_STUDENT.ref_group
-					<include refid="searchCondition"/>
 					<choose>
 						<when test='small_category=="0"'>
 							WHERE large_category=#{large_category}
@@ -53,9 +52,7 @@
 						</when>
 					</choose>
 					ORDER BY users.id DESC) result1)
-			<![CDATA[		
 			WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-			]]>
 	</select>   
   
   <insert id="lectureSignup" parameterType="lectureStudentDto">

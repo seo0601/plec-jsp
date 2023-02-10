@@ -15,7 +15,7 @@
 						<when test="small_category!=null">
 							WHERE large_category=#{large_category} AND small_category=#{small_category}
 						</when>
-					</choose>
+				</choose>
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
@@ -24,11 +24,11 @@
 		FROM LECTURE
 	</select>
 	
-	<insert id="insert" parameterType="lectureDto">
+	<insert id="insert" parameterType="lectureRes">
 		INSERT INTO LECTURE
 		(num, teacher, writer,title, describe, imagePath,
 		videoPath, viewCount, regdate, large_category,small_category)
-		VALUES(LECTURE_seq.NEXTVAL, #{teacher}, #{writer}, #{title}, #{describe},#{imagePath}, #{videoPath}, #{viewCount}, SYSDATE, #{large_category}, #{small_category} )
+		VALUES(LECTURE_seq.NEXTVAL, #{teacher}, #{writer, jdbcType=VARCHAR}, #{title}, #{describe},#{imagePath,jdbcType=VARCHAR}, #{videoPath}, #{viewCount}, SYSDATE, #{large_category}, #{small_category} )
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="lectureDto">
@@ -46,9 +46,10 @@
 		WHERE num=#{num}
 	</update>
 	
-	<update id="update" parameterType="lectureDto">
+	<update id="update" parameterType="lectureReq">
 		UPDATE LECTURE
-		SET title= #{title}, teacher=#{teacher},imagePath=#{imagePath},describe=#{describe}, videoPath=#{videoPath}, large_category=#{large_category},small_category=#{small_category}
+		SET title= #{title}, teacher=#{teacher},imagePath=#{imagePath,jdbcType=VARCHAR},describe=#{describe}, videoPath=#{videoPath}, large_category=#{large_category},small_category=#{small_category}
 		WHERE num = #{num}
 	</update>
+	
 </mapper>

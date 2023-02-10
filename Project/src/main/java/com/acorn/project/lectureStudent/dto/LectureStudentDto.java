@@ -1,4 +1,4 @@
-package com.acorn.project.lecture.dto;
+package com.acorn.project.lectureStudent.dto;
 
 import org.apache.ibatis.type.Alias;
 

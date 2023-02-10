@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.acorn.project.lecture.dto.LectureDto;
+import com.acorn.project.lecture.dto.LectureReq;
+import com.acorn.project.lecture.dto.LectureRes;
 
 @Repository
 public class LectureDaoImpl implements LectureDao{
@@ -24,8 +26,8 @@ public class LectureDaoImpl implements LectureDao{
 	}
 
 	@Override
-	public void insert(LectureDto dto) {
-		session.insert("lecture.insert", dto);
+	public void insert(LectureRes lectureRes) {
+		session.insert("lecture.insert", lectureRes);
 		
 	}
 
@@ -41,8 +43,8 @@ public class LectureDaoImpl implements LectureDao{
 	}
 
 	@Override
-	public void update(LectureDto dto) {
-		session.update("lecture.update", dto);
+	public void update(LectureReq lectureReq) {
+		session.update("lecture.update", lectureReq);
 		
 	}
 
